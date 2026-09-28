@@ -390,7 +390,7 @@
 
 <!-- 1 HERO -->
 <header class="hero" id="rh-top">
-  <div class="rh-vid" aria-hidden="true"><video muted loop playsinline preload="none" poster="https://images.pexels.com/videos/29919008/pexels-photo-29919008.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1280" data-src="https://videos.pexels.com/video-files/29919008/12841731_960_540_30fps.mp4"></video></div>
+  <div class="rh-vid" aria-hidden="true"><video muted loop playsinline preload="none" poster="https://images.pexels.com/videos/29919008/pexels-photo-29919008.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1280" data-src="https://videos.pexels.com/video-files/29919008/12841731_960_540_30fps.mp4" data-src-sm="https://videos.pexels.com/video-files/29919008/12841730_640_360_30fps.mp4"></video></div>
   <div class="glow" id="rh-glow" aria-hidden="true"></div>
   <div class="grid-bg" aria-hidden="true"></div>
   <div class="grain" aria-hidden="true"></div>
@@ -687,7 +687,7 @@
   <div class="grid-bg" aria-hidden="true"></div>
   <div class="wrap">
     <div class="fcard pc" id="rh-fcard">
-      <div class="rh-vid" aria-hidden="true"><video muted loop playsinline preload="none" poster="https://images.pexels.com/videos/29919008/pexels-photo-29919008.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1280" data-src="https://videos.pexels.com/video-files/29919008/12841731_960_540_30fps.mp4"></video></div>
+      <div class="rh-vid" aria-hidden="true"><video muted loop playsinline preload="none" poster="https://images.pexels.com/videos/29919008/pexels-photo-29919008.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1280" data-src="https://videos.pexels.com/video-files/29919008/12841731_960_540_30fps.mp4" data-src-sm="https://videos.pexels.com/video-files/29919008/12841730_640_360_30fps.mp4"></video></div>
   <div class="grain" aria-hidden="true"></div>
       <h2>Your business should run without you. Start today.</h2>
       <p class="lede">Two quick questions. Three pre-vetted profiles in 24 hours. None of the risk.</p>
@@ -906,15 +906,15 @@
 </script>
 
 <script>
-/* v3: background video. Desktop only, never with reduced motion or data saver; pauses when off screen. */
+/* v3: background video. Never with reduced motion or data saver; 360p on phones; pauses when off screen. */
 (function(){
   var boxes=document.querySelectorAll('#rh .rh-vid'); if(!boxes.length) return;
   var mm=window.matchMedia, c=navigator.connection||{};
   if((mm&&mm('(prefers-reduced-motion: reduce)').matches)||c.saveData||/(^|-)2g$/.test(c.effectiveType||'')) return;
-  if(mm&&!mm('(min-width: 900px)').matches) return; /* phones and small tablets keep the still image */
+  var small=!(mm&&mm('(min-width: 900px)').matches); /* phones get the lighter 360p file */
   boxes.forEach(function(box){
     var v=box.querySelector('video'); if(!v) return;
-    function start(){ if(!v.src){v.src=v.getAttribute('data-src');} var p=v.play(); if(p&&p.catch)p.catch(function(){}); }
+    function start(){ if(!v.src){v.src=v.getAttribute(small?'data-src-sm':'data-src');} var p=v.play(); if(p&&p.catch)p.catch(function(){}); }
     v.addEventListener('playing',function(){box.classList.add('on')});
     v.addEventListener('error',function(){box.classList.remove('on')}); /* the still image stays */
     if('IntersectionObserver' in window){
