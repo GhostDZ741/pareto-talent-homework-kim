@@ -1,0 +1,666 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Right Hand by Pareto Talent | Get 40 hours back in your first 30 days</title>
+<meta name="description" content="Concept page for Pareto Talent's Right Hand Program, built by Abdelhakim Boukeffoussa for the Pareto Talent Bootcamp. Not an official Pareto Talent page.">
+<style>html,body{margin:0;background:#F4F6F9}@media (prefers-color-scheme:dark){html,body{background:#0F1218}}</style>
+</head>
+<body>
+<!--RP-START-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Geist:wght@400..700&display=swap" rel="stylesheet">
+<style>
+#rp{
+  --paper:#F4F6F9; --sheet:#FBFCFD; --ink:#14171D; --ink2:#363C48; --mute:#596071;
+  --line:#D9DEE6; --line2:#E7EAF0;
+  --you:#1A1E26; --you-t:#EEF1F6;
+  --rh:#2F4FDF; --rh-t:#FFFFFF; --rh-ink:#2340C4; --rh-hov:#2340C4; --rh-wash:#E8ECFF; --rh-hatch:rgba(47,79,223,.16);
+  --shadow:0 1px 2px rgba(20,28,48,.06),0 6px 14px -10px rgba(20,28,48,.22);
+  --fd:'Bricolage Grotesque',ui-sans-serif,system-ui,sans-serif;
+  --fb:'Geist',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;
+  --out:cubic-bezier(.23,1,.32,1); --inout:cubic-bezier(.77,0,.175,1);
+  --pad:clamp(16px,4vw,40px);
+  font-family:var(--fb); color:var(--ink); background:var(--paper);
+  font-size:17px; line-height:1.55; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  font-variant-numeric:tabular-nums; overflow-x:clip;
+}
+@media (prefers-color-scheme:dark){
+  #rp{
+    --paper:#0F1218; --sheet:#151922; --ink:#ECEFF5; --ink2:#C3C9D6; --mute:#9AA2B3;
+    --line:#2A303C; --line2:#20252F;
+    --you:#E9ECF2; --you-t:#14171D;
+    --rh:#4A63E6; --rh-t:#FFFFFF; --rh-ink:#8EA2FF; --rh-hov:#3A52D0; --rh-wash:#1B2242; --rh-hatch:rgba(110,138,255,.20);
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 14px -8px rgba(0,0,0,.6);
+  }
+}
+#rp *,#rp *::before,#rp *::after{box-sizing:border-box}
+#rp ::selection{background:var(--rh);color:var(--rh-t)}
+#rp img{display:block;max-width:100%;height:auto}
+#rp a{color:inherit}
+#rp :focus-visible{outline:2px solid var(--rh);outline-offset:3px;border-radius:6px}
+#rp h1,#rp h2,#rp h3,#rp p,#rp ul,#rp ol,#rp figure,#rp blockquote,#rp dl,#rp dd{margin:0;padding:0}
+#rp ul,#rp ol{list-style:none}
+#rp h1,#rp h2,#rp h3{font-family:var(--fd);font-weight:700;letter-spacing:-.03em;line-height:1.02;text-wrap:balance;font-variation-settings:"opsz" 96}
+#rp h2{font-size:clamp(34px,4.6vw,60px)}
+#rp h3{font-size:clamp(21px,2vw,25px);letter-spacing:-.02em;line-height:1.15}
+#rp .wrap{width:min(1240px,100% - var(--pad)*2);margin-inline:auto}
+#rp .lede{font-size:clamp(17px,1.5vw,19.5px);color:var(--ink2);max-width:58ch;text-wrap:pretty}
+#rp section{padding-block:clamp(72px,10vw,136px)}
+#rp .h-lede{margin-top:22px}
+
+/* buttons */
+#rp .pill{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 24px;border-radius:999px;border:0;cursor:pointer;
+  font:600 16px/1 var(--fb);letter-spacing:-.005em;text-decoration:none;white-space:nowrap;background:var(--rh);color:var(--rh-t);
+  box-shadow:0 1px 0 rgba(255,255,255,.18) inset,0 4px 10px -4px rgba(16,22,40,.35);
+  transition:transform 160ms var(--out),background-color 200ms ease,box-shadow 200ms ease}
+#rp .pill:active{transform:scale(.97)}
+@media (hover:hover) and (pointer:fine){#rp .pill:hover{background:var(--rh-hov)}}
+#rp .pill.lg{min-height:56px;padding:0 30px;font-size:17px}
+#rp .ghost{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--ink2);
+  font:500 14px/1 var(--fb);cursor:pointer;transition:transform 160ms var(--out),border-color 200ms ease,color 200ms ease}
+#rp .ghost:active{transform:scale(.97)}
+@media (hover:hover) and (pointer:fine){#rp .ghost:hover{border-color:var(--ink2);color:var(--ink)}}
+#rp .ghost svg{width:15px;height:15px}
+
+/* top bar */
+#rp .bar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:saturate(160%) blur(12px);-webkit-backdrop-filter:saturate(160%) blur(12px);border-bottom:1px solid transparent;transition:border-color 300ms ease}
+#rp .bar.stuck{border-bottom-color:var(--line)}
+#rp .bar .wrap{display:flex;align-items:center;gap:28px;height:68px}
+#rp .brand{display:flex;align-items:center;gap:11px;text-decoration:none;font:700 18px/1 var(--fd);letter-spacing:-.02em;margin-right:auto}
+#rp .brand small{display:block;font:500 12px/1.2 var(--fb);letter-spacing:0;color:var(--mute);margin-top:3px}
+#rp .brand svg{width:34px;height:34px;flex:none;border-radius:9px;box-shadow:0 0 0 1px var(--line)}
+#rp .bar>.wrap>.pill{opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity 240ms var(--out),transform 240ms var(--out),visibility 0s 240ms}
+#rp .bar.cta>.wrap>.pill{opacity:1;visibility:visible;transform:none;transition:opacity 240ms var(--out),transform 240ms var(--out),visibility 0s}
+#rp .nav{display:flex;gap:26px}
+#rp .nav a{font:500 15px/1 var(--fb);color:var(--ink2);text-decoration:none;padding:8px 0;transition:color 200ms ease}
+@media (hover:hover) and (pointer:fine){#rp .nav a:hover{color:var(--ink)}}
+@media (max-width:900px){#rp .nav{display:none}}
+@media (max-width:420px){#rp .bar .pill{padding:0 16px;font-size:15px;min-height:42px}#rp .brand small{display:none}}
+
+/* HERO: the week */
+#rp .hero{padding:clamp(28px,4vw,48px) 0 clamp(48px,6vw,80px)}
+#rp .calhead{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px 48px;align-items:end;padding-bottom:28px}
+#rp .calhead h1{font-size:clamp(40px,4.8vw,70px);max-width:15ch}
+#rp .calhead .lede{margin-top:18px;max-width:44ch}
+#rp .meter{display:flex;flex-direction:column;align-items:flex-end;gap:14px;text-align:right}
+#rp .meter .lbl{font:500 14px/1.3 var(--fb);color:var(--mute)}
+#rp .meter .num{font:700 clamp(64px,7.5vw,104px)/.86 var(--fd);letter-spacing:-.04em;color:var(--rh-ink);font-variation-settings:"opsz" 96}
+#rp .meter .num small{font-size:.32em;letter-spacing:-.01em;margin-left:6px;color:var(--ink2)}
+#rp .meter .acts{display:flex;gap:10px;align-items:center}
+@media (max-width:860px){
+  #rp .calhead{grid-template-columns:1fr}
+  #rp .meter{flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:space-between;text-align:left;gap:14px}
+  #rp .meter .num{font-size:64px}
+  #rp .meter .acts{width:100%}
+  #rp .meter .acts .pill{flex:1}
+}
+
+#rp .week{position:relative;background:var(--sheet);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
+#rp .wk-top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 16px;border-bottom:1px solid var(--line)}
+#rp .wk-title{font:600 14px/1.2 var(--fb);color:var(--ink2)}
+#rp .legend{display:flex;gap:18px;font:500 13px/1 var(--fb);color:var(--mute)}
+#rp .legend span{display:inline-flex;align-items:center;gap:7px}
+#rp .legend i{width:14px;height:10px;border-radius:3px;display:inline-block}
+#rp .legend .k-you{background:var(--you)}
+#rp .legend .k-rh{background:var(--rh)}
+#rp .legend .k-back{background:repeating-linear-gradient(135deg,var(--rh-hatch) 0 3px,transparent 3px 6px);box-shadow:inset 0 0 0 1px var(--rh-hatch)}
+@media (max-width:640px){#rp .legend{gap:10px;font-size:12px}#rp .wk-title{display:none}}
+
+#rp .grid{--hr:44px;display:grid;grid-template-columns:56px repeat(5,minmax(0,1fr));position:relative}
+#rp .days{display:contents}
+#rp .dh{grid-row:1;padding:10px 10px 9px;border-left:1px solid var(--line2);font:600 13px/1.2 var(--fb);color:var(--ink2);display:flex;justify-content:space-between;gap:6px}
+#rp .dh em{font-style:normal;font-weight:500;color:var(--mute)}
+#rp .ruler{grid-row:2;grid-column:1;position:relative;height:calc(var(--hr)*10)}
+#rp .ruler span{position:absolute;right:9px;transform:translateY(-50%);font:500 11.5px/1 var(--fb);color:var(--mute)}
+#rp .col{grid-row:2;position:relative;height:calc(var(--hr)*10);border-left:1px solid var(--line2);
+  background-image:linear-gradient(var(--line2) 1px,transparent 1px);background-size:100% var(--hr)}
+#rp .col::after{content:"";position:absolute;top:0;bottom:0;left:50%;border-left:1px dashed var(--line2)}
+#rp .blk,#rp .back{position:absolute;left:3px;width:calc(50% - 5px);border-radius:8px}
+#rp .back{background:repeating-linear-gradient(135deg,var(--rh-hatch) 0 3px,transparent 3px 7px);box-shadow:inset 0 0 0 1px var(--rh-hatch);
+  opacity:0;transform:scale(.96);transition:opacity 500ms var(--out),transform 500ms var(--out)}
+#rp .blk{z-index:2;padding:6px 8px;overflow:hidden;background:var(--you);color:var(--you-t);
+  font:600 12.5px/1.2 var(--fb);letter-spacing:-.005em;
+  transition:transform 720ms var(--inout),background-color 420ms ease 220ms,color 420ms ease 220ms,box-shadow 420ms ease}
+#rp .blk b{display:block;font-weight:500;opacity:.72;font-size:11.5px;margin-top:2px}
+#rp .blk.keep{left:3px;width:calc(100% - 6px)}
+#rp .blk.go{transform:translateX(calc(100% + 4px));background:var(--rh);color:var(--rh-t);box-shadow:0 3px 8px -4px rgba(16,22,40,.4)}
+#rp .back.on{opacity:1;transform:none}
+#rp .wk-foot{display:flex;justify-content:space-between;gap:12px;padding:10px 16px;border-top:1px solid var(--line);font:500 13px/1.35 var(--fb);color:var(--mute)}
+@media (max-width:760px){
+  #rp .grid{--hr:34px;grid-template-columns:38px repeat(5,minmax(0,1fr))}
+  #rp .blk{font-size:0;padding:0;border-radius:5px}
+  #rp .blk b{display:none}
+  #rp .blk.keep{font-size:9.5px;padding:4px 4px;line-height:1.15;hyphens:auto;overflow-wrap:anywhere}
+  #rp .dh{padding:8px 4px;justify-content:center}
+  #rp .dh em{display:none}
+  #rp .ruler span{right:5px;font-size:10px}
+}
+
+/* proof line */
+#rp .proof{padding-block:clamp(56px,7vw,96px);border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--sheet)}
+#rp .proof p{font:600 clamp(26px,3.4vw,44px)/1.18 var(--fd);letter-spacing:-.025em;max-width:30ch;text-wrap:balance;color:var(--ink2)}
+#rp .proof p b{color:var(--ink);font-weight:800}
+#rp .proof .from{margin-top:28px;font:500 15px/1.5 var(--fb);color:var(--mute);max-width:none}
+#rp .proof .from strong{color:var(--ink2);font-weight:600}
+
+/* problem */
+#rp .prob{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.9fr);gap:clamp(40px,7vw,110px);align-items:end}
+#rp .prob h2{max-width:15ch}
+#rp .routes{margin-top:34px;display:flex;flex-wrap:wrap;gap:10px}
+#rp .routes li{padding:9px 14px;border-radius:999px;background:var(--you);color:var(--you-t);font:500 14.5px/1 var(--fb)}
+#rp .kq{display:grid;grid-template-columns:96px 1fr;gap:20px;align-items:start}
+#rp .kq img{width:96px;height:120px;object-fit:cover;object-position:50% 20%;border-radius:12px;background:var(--line)}
+#rp .kq q{display:block;font:500 clamp(20px,1.9vw,24px)/1.38 var(--fd);letter-spacing:-.015em;quotes:"\201C" "\201D";text-wrap:pretty}
+#rp .kq cite{display:block;margin-top:14px;font:500 14px/1.4 var(--fb);font-style:normal;color:var(--mute)}
+#rp .kq cite strong{color:var(--ink);font-weight:600}
+@media (max-width:860px){#rp .prob{grid-template-columns:1fr}}
+
+/* calculator */
+#rp .calc{background:var(--sheet);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+#rp .calc .top{max-width:720px}
+#rp .rate{margin-top:52px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px 40px;align-items:center}
+#rp .rate label{font:600 15px/1.3 var(--fb);color:var(--ink2);grid-column:1/-1}
+#rp .rate output{font:700 clamp(40px,4.4vw,56px)/1 var(--fd);letter-spacing:-.04em;min-width:5ch;text-align:right}
+#rp input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:36px;background:transparent;cursor:pointer;margin:0}
+#rp input[type=range]::-webkit-slider-runnable-track{height:6px;border-radius:99px;background:linear-gradient(90deg,var(--rh) var(--p,25%),var(--line) var(--p,25%))}
+#rp input[type=range]::-moz-range-track{height:6px;border-radius:99px;background:linear-gradient(90deg,var(--rh) var(--p,25%),var(--line) var(--p,25%))}
+#rp input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;margin-top:-10px;border-radius:50%;background:var(--sheet);box-shadow:0 0 0 2px var(--rh),0 4px 10px rgba(20,28,48,.25);transition:transform 160ms var(--out)}
+#rp input[type=range]::-moz-range-thumb{width:24px;height:24px;border:0;border-radius:50%;background:var(--sheet);box-shadow:0 0 0 2px var(--rh),0 4px 10px rgba(20,28,48,.25)}
+#rp input[type=range]:active::-webkit-slider-thumb{transform:scale(1.12)}
+#rp .bars{margin-top:44px;display:grid;gap:12px}
+#rp .bars .b{position:relative;height:66px;border-radius:12px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 18px;
+  font:600 15px/1.2 var(--fb);min-width:max(240px,30%);max-width:100%}
+#rp .bars .b strong{font:700 24px/1 var(--fd);letter-spacing:-.03em;white-space:nowrap}
+#rp .bars .val{background:var(--rh);color:var(--rh-t)}
+#rp .bars .cost{background:var(--you);color:var(--you-t)}
+#rp .verdict{margin-top:30px;font:500 clamp(19px,1.8vw,22px)/1.45 var(--fb);color:var(--ink2);max-width:52ch}
+#rp .verdict b{color:var(--ink);font-weight:700}
+#rp .fine{margin-top:14px;font:400 14px/1.5 var(--fb);color:var(--mute);max-width:70ch}
+@media (max-width:640px){#rp .bars .b{min-width:100%;height:auto;padding:14px 16px;flex-direction:column;align-items:flex-start;gap:6px}}
+
+/* how it works: a 24-hour ruler with event blocks */
+#rp .how h2{max-width:16ch}
+#rp .line24{margin-top:64px;position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding-top:44px}
+#rp .line24::before{content:"";position:absolute;left:0;right:0;top:30px;height:1px;background:var(--line)}
+#rp .ev{position:relative;border-radius:12px;padding:20px 22px 24px;background:var(--rh-wash)}
+#rp .ev .when{position:absolute;top:-44px;left:0;font:600 14px/1 var(--fb);color:var(--ink2)}
+#rp .ev .when::after{content:"";position:absolute;left:0;top:22px;width:1px;height:14px;background:var(--ink2)}
+#rp .ev h3{color:var(--ink)}
+#rp .ev p{margin-top:8px;color:var(--ink2);max-width:34ch}
+#rp .ev:last-child{background:var(--rh)}
+#rp .ev:last-child h3,#rp .ev:last-child p{color:var(--rh-t)}
+@media (max-width:820px){
+  #rp .line24{grid-template-columns:1fr;gap:34px;padding-top:0}
+  #rp .line24::before{display:none}
+  #rp .ev .when{position:static;display:block;margin-bottom:12px}
+  #rp .ev .when::after{display:none}
+}
+
+/* voices */
+#rp .voices{background:var(--you);color:var(--you-t)}
+#rp .voices h2{max-width:18ch}
+#rp .vgrid{margin-top:60px;display:grid;grid-template-columns:1.25fr 1fr;grid-template-rows:auto auto;gap:20px}
+#rp .vq{border-radius:18px;padding:clamp(24px,3vw,36px);background:color-mix(in srgb,var(--you-t) 6%,transparent);display:flex;flex-direction:column;gap:22px;justify-content:space-between}
+#rp .vq.big{grid-row:span 2;align-self:start;gap:48px;background:var(--rh);color:var(--rh-t)}
+#rp .vq q{display:block;quotes:"\201C" "\201D";font:500 clamp(18px,1.6vw,21px)/1.42 var(--fd);letter-spacing:-.01em;text-wrap:pretty}
+#rp .vq.big q{font-size:clamp(28px,3.4vw,46px);line-height:1.16;letter-spacing:-.03em}
+#rp .who{display:flex;align-items:center;gap:14px}
+#rp .who img{width:52px;height:52px;border-radius:50%;object-fit:cover;background:rgba(255,255,255,.12)}
+#rp .vq.big .who img{width:68px;height:68px}
+#rp .who b{display:block;font:600 16px/1.25 var(--fb)}
+#rp .who span{display:block;font:400 14px/1.35 var(--fb);opacity:.78}
+#rp .vgrid .side{display:grid;gap:20px}
+#rp .vq.small{flex-direction:row;align-items:flex-start;gap:18px}
+#rp .vq.small .who{flex-direction:column;align-items:flex-start;gap:10px;flex:none;width:118px}
+@media (max-width:900px){#rp .vgrid{grid-template-columns:1fr}#rp .vq.big{grid-row:auto}#rp .vq.small{flex-direction:column}#rp .vq.small .who{flex-direction:row;width:auto;align-items:center}}
+
+/* included: agenda view */
+#rp .incl{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(40px,6vw,96px)}
+#rp .incl .stick{position:sticky;top:100px;align-self:start}
+#rp .agenda{display:grid;gap:8px}
+#rp .agenda li{display:grid;grid-template-columns:150px 1fr;gap:20px;padding:18px 20px;border-radius:14px;background:var(--sheet);border:1px solid var(--line2)}
+#rp .agenda .t{font:600 14px/1.35 var(--fb);color:var(--rh-ink);padding-top:3px}
+#rp .agenda h3{font-size:20px}
+#rp .agenda p{margin-top:6px;color:var(--ink2);font-size:15.5px;max-width:52ch}
+#rp .agenda li.lead{background:var(--rh);border-color:transparent;color:var(--rh-t)}
+#rp .agenda li.lead .t,#rp .agenda li.lead p{color:var(--rh-t)}
+#rp .agenda li.lead p{opacity:.88}
+@media (max-width:900px){#rp .incl{grid-template-columns:1fr}#rp .incl .stick{position:static}}
+@media (max-width:520px){#rp .agenda li{grid-template-columns:1fr;gap:4px}}
+
+/* founders */
+#rp .found{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(40px,6vw,96px);align-items:center}
+#rp .found figure img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:20px;background:var(--line)}
+#rp .found figcaption{margin-top:12px;font:400 14px/1.4 var(--fb);color:var(--mute)}
+#rp .found h2{max-width:17ch}
+#rp .path{margin-top:34px;display:grid;gap:0;border-left:2px solid var(--line);padding-left:22px}
+#rp .path li{position:relative;padding:0 0 22px}
+#rp .path li::before{content:"";position:absolute;left:-29px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--sheet);box-shadow:inset 0 0 0 2px var(--rh)}
+#rp .path li:last-child::before{background:var(--rh)}
+#rp .path b{display:block;font:600 16px/1.3 var(--fb)}
+#rp .path span{display:block;color:var(--ink2);font-size:15.5px}
+#rp .ceiling{margin-top:14px;font:600 clamp(20px,2vw,26px)/1.3 var(--fd);letter-spacing:-.02em;max-width:28ch}
+@media (max-width:860px){#rp .found{grid-template-columns:1fr}#rp .found figure{max-width:440px}}
+
+/* pricing */
+#rp .price{background:var(--sheet);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+#rp .ptable{margin-top:52px;width:100%;border-collapse:separate;border-spacing:0 10px}
+#rp .ptable th{text-align:left;font:500 13.5px/1.2 var(--fb);color:var(--mute);padding:0 22px 4px}
+#rp .ptable td{padding:22px;background:var(--paper);font-size:16px;color:var(--ink2);vertical-align:middle}
+#rp .ptable td:first-child{border-radius:14px 0 0 14px}
+#rp .ptable td:last-child{border-radius:0 14px 14px 0;text-align:right}
+#rp .ptable .plan{font:700 22px/1.1 var(--fd);letter-spacing:-.02em;color:var(--ink)}
+#rp .ptable .big{font:700 26px/1 var(--fd);letter-spacing:-.03em;color:var(--ink)}
+#rp .ptable tr.best td{background:var(--rh);color:var(--rh-t)}
+#rp .ptable tr.best .plan,#rp .ptable tr.best .big{color:var(--rh-t)}
+#rp .tag{display:inline-block;margin-left:10px;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.18);font:600 12.5px/1 var(--fb);vertical-align:3px}
+#rp .pnote{margin-top:18px;color:var(--mute);font-size:15px;max-width:70ch}
+@media (max-width:760px){
+  #rp .ptable thead{display:none}
+  #rp .ptable,#rp .ptable tbody,#rp .ptable tr,#rp .ptable td{display:block;width:100%}
+  #rp .ptable tr{margin-bottom:12px;border-radius:14px;overflow:hidden}
+  #rp .ptable td{border-radius:0!important;text-align:left!important;padding:10px 18px}
+  #rp .ptable td:first-child{padding-top:20px}
+  #rp .ptable td:last-child{padding-bottom:20px}
+  #rp .ptable td[data-l]::before{content:attr(data-l);display:block;font:500 12.5px/1.3 var(--fb);opacity:.7;margin-bottom:3px}
+}
+
+/* guarantees */
+#rp .gl{margin-top:56px;display:grid;gap:0}
+#rp .gl li{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:20px 56px;padding:34px 0;border-top:1px solid var(--line)}
+#rp .gl li:last-child{border-bottom:1px solid var(--line)}
+#rp .gl h3{font-size:clamp(28px,3vw,40px);letter-spacing:-.03em}
+#rp .gl h3 span{display:block;margin-top:8px;font:500 15px/1.4 var(--fb);letter-spacing:0;color:var(--rh-ink)}
+#rp .gl q{display:block;quotes:"\201C" "\201D";font-size:clamp(17px,1.5vw,19px);color:var(--ink2);max-width:56ch;text-wrap:pretty}
+@media (max-width:760px){#rp .gl li{grid-template-columns:1fr}}
+
+/* faq */
+#rp .faq{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(32px,6vw,96px)}
+#rp details{border-bottom:1px solid var(--line)}
+#rp details:first-child{border-top:1px solid var(--line)}
+#rp summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 0;font:600 18px/1.35 var(--fb);letter-spacing:-.01em}
+#rp summary::-webkit-details-marker{display:none}
+#rp summary i{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--rh-wash);color:var(--rh-ink);transition:transform 240ms var(--out),background-color 200ms ease}
+#rp summary i svg{width:14px;height:14px}
+#rp details[open] summary i{transform:rotate(45deg);background:var(--rh);color:var(--rh-t)}
+#rp details p{padding:0 0 24px;color:var(--ink2);max-width:62ch}
+@media (max-width:860px){#rp .faq{grid-template-columns:1fr}}
+
+/* apply */
+#rp .apply{background:var(--you);color:var(--you-t)}
+#rp .apply .in{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(40px,6vw,96px);align-items:start}
+#rp .apply .stick{position:sticky;top:100px}
+#rp .apply h2{max-width:12ch}
+#rp .apply .lede{color:color-mix(in srgb,var(--you-t) 80%,transparent)}
+#rp .next{margin-top:36px;display:grid;gap:14px}
+#rp .next li{display:grid;grid-template-columns:34px 1fr;gap:14px;align-items:start;font-size:16.5px}
+#rp .next li span{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--rh);color:var(--rh-t);font:700 15px/1 var(--fd)}
+#rp .next li p{padding-top:5px}
+#rp .formbox{background:#FFFFFF;border-radius:20px;padding:8px;box-shadow:0 30px 60px -30px rgba(0,0,0,.6);scroll-margin-top:90px}
+#rp .formbox iframe{display:block;width:100%;min-height:640px;border:0;border-radius:14px;background:#FFFFFF}
+@media (max-width:900px){#rp .apply .in{grid-template-columns:1fr}#rp .apply .stick{position:static}}
+
+/* footer */
+#rp .foot{padding:36px 0 44px;font-size:14px;color:var(--mute)}
+#rp .foot .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 40px}
+#rp .foot span{max-width:72ch}
+#rp .foot b{color:var(--ink2);font-weight:600}
+
+/* one orchestrated reveal for section content */
+@media (prefers-reduced-motion:no-preference){
+  #rp .rv{opacity:0;transform:translateY(18px);filter:blur(4px);transition:opacity 700ms var(--out),transform 700ms var(--out),filter 700ms var(--out)}
+  #rp .rv.in{opacity:1;transform:none;filter:none}
+}
+@media (prefers-reduced-motion:reduce){
+  #rp .blk,#rp .back{transition:none!important}
+}
+</style>
+
+<div id="rp">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="rp-mark" viewBox="0 0 36 36"><rect width="36" height="36" rx="9" fill="#0A1122"/><circle cx="18" cy="18" r="9.2" fill="none" stroke="#E9ECF2" stroke-opacity=".5" stroke-width="1.5"/><line x1="18" y1="18" x2="18" y2="10.2" stroke="#FF6B3F" stroke-width="2.6" stroke-linecap="round"/><line x1="18" y1="18" x2="23.8" y2="14.4" stroke="#E9A23B" stroke-width="2.1" stroke-linecap="round"/><circle cx="18" cy="18" r="2.1" fill="#E9ECF2"/></symbol>
+  <symbol id="rp-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+  <symbol id="rp-replay" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7M3 4v5h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<header class="bar" id="rp-bar">
+  <div class="wrap">
+    <a class="brand" href="#rp-top" data-go><svg aria-hidden="true"><use href="#rp-mark"/></svg><span>Right Hand<small>by Pareto Talent</small></span></a>
+    <nav class="nav" aria-label="Page sections">
+      <a href="#rp-how" data-go>How it works</a>
+      <a href="#rp-voices" data-go>Founders</a>
+      <a href="#rp-price" data-go>Pricing</a>
+      <a href="#rp-faq" data-go>FAQ</a>
+    </nav>
+    <a class="pill" href="#rp-apply" data-go>Check if I qualify</a>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<div class="hero" id="rp-top">
+  <div class="wrap">
+    <div class="calhead">
+      <div>
+        <h1>Get 40 hours back in your first 30 days.</h1>
+        <p class="lede">A full-time Right Hand runs your inbox, calendar, follow-ups and ops. Or your next month is free.</p>
+      </div>
+      <div class="meter">
+        <p class="lbl" id="rp-mlbl">Hours your Right Hand takes in this example week</p>
+        <p class="num" aria-live="polite" aria-labelledby="rp-mlbl"><span id="rp-count">0</span><small>hrs</small></p>
+        <div class="acts">
+          <button class="ghost" type="button" id="rp-replay"><svg aria-hidden="true"><use href="#rp-replay"/></svg>Replay</button>
+          <a class="pill lg" href="#rp-apply" data-go>Check if I qualify</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="week" id="rp-week">
+      <div class="wk-top">
+        <p class="wk-title">Example founder week, 8 am to 6 pm</p>
+        <p class="legend" aria-hidden="true"><span><i class="k-you"></i>You</span><span><i class="k-rh"></i>Your Right Hand</span><span><i class="k-back"></i>Back to you</span></p>
+      </div>
+      <div class="grid" id="rp-grid" role="img" aria-label="An example week: about 40 of 50 hours of inbox, calendar, follow-up and ops work move from the founder's column to the Right Hand's column. Strategy, key clients and team leadership stay with the founder."></div>
+      <p class="wk-foot"><span>Illustration. Tasks and times are an example, not a client's real calendar.</span><span>Freedom 40 guarantee: 40+ hours back in 30 days</span></p>
+    </div>
+  </div>
+</div>
+
+<!-- PROOF -->
+<section class="proof" aria-label="Proof">
+  <div class="wrap rv">
+    <p><b>100+ founders</b> served, rated <b>4.9</b>. <b>93%</b> still with Pareto after 12 months. Every placement chosen from <b>1,000+ applicants</b>.</p>
+    <p class="from">Trusted by founders from <strong>Genius Network</strong>, <strong>Lifestyle Investor</strong>, <strong>Front Row Dads</strong> and <strong>Driven Mastermind</strong>.</p>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section aria-labelledby="rp-prob-h">
+  <div class="wrap prob">
+    <div class="rv">
+      <h2 id="rp-prob-h">You don't have a people problem. You have a delegation problem.</h2>
+      <p class="lede h-lede">Every decision, approval and quick thing still routes through you. Working harder doesn't remove the ceiling. Handing it off does.</p>
+      <ul class="routes" aria-label="What still routes through you">
+        <li>Inbox</li><li>Calendar</li><li>Follow-ups</li><li>Approvals</li><li>Ops</li>
+      </ul>
+    </div>
+    <figure class="kq rv">
+      <img src="https://paretotalent.com/img/kasim-headshot.jpg" alt="Kasim Aslam" width="96" height="120" loading="lazy" decoding="async">
+      <blockquote>
+        <q>Talent is the leverage. Find the right people. Give them ownership. Get out of the way.</q>
+        <cite><strong>Kasim Aslam</strong>, co-founder of Pareto Talent. Built Solutions 8 into the #1 Google Ads agency in the world.</cite>
+      </blockquote>
+    </figure>
+  </div>
+</section>
+
+<!-- CALCULATOR -->
+<section class="calc" aria-labelledby="rp-calc-h">
+  <div class="wrap">
+    <div class="top rv">
+      <h2 id="rp-calc-h">What 40 hours is worth at your rate.</h2>
+      <p class="lede h-lede">Freedom 40 guarantees at least 40 hours back in your first 30 days. Compare that to the price, not to a salary.</p>
+    </div>
+    <div class="rate rv">
+      <label for="rp-rate">What is one hour of your time worth?</label>
+      <input type="range" id="rp-rate" min="50" max="1000" step="25" value="250" aria-describedby="rp-verdict">
+      <output for="rp-rate" id="rp-rateout">$250</output>
+    </div>
+    <div class="bars rv" aria-hidden="true">
+      <div class="b val" id="rp-bval"><span>40 hours of your time</span><strong id="rp-val">$10,000</strong></div>
+      <div class="b cost" id="rp-bcost"><span>Annual plan, per month</span><strong>$3,000</strong></div>
+    </div>
+    <p class="verdict" id="rp-verdict" aria-live="polite">That's <b>3.3× the monthly price</b>, at the guarantee's floor.</p>
+    <p class="fine">Compared with the annual plan's effective $3,000 a month. The one-time $3,000 placement fee comes on top. Your number, your math; it never promises more than the guarantee.</p>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="rp-how" aria-labelledby="rp-how-h">
+  <div class="wrap">
+    <div class="rv">
+      <h2 id="rp-how-h">From two questions to three profiles in 24 hours.</h2>
+    </div>
+    <ol class="line24 rv">
+      <li class="ev"><span class="when">Today</span><h3>Answer 2 quick questions</h3><p>Where you're stuck and how you work. Under a minute.</p></li>
+      <li class="ev"><span class="when">Short call</span><h3>Book a short matching call</h3><p>A short call to confirm fit, so the matches are built around you.</p></li>
+      <li class="ev"><span class="when">+24 hours</span><h3>Meet 3 pre-vetted profiles</h3><p>Pick the one you're excited about. No contract until you find your person.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- VOICES -->
+<section class="voices" id="rp-voices" aria-labelledby="rp-voices-h">
+  <div class="wrap">
+    <h2 id="rp-voices-h" class="rv">Founders who stopped doing it all themselves.</h2>
+    <div class="vgrid rv">
+      <figure class="vq big">
+        <blockquote><q>My executive assistant Marina came from Pareto Talent and is just a world-beater. The best EA I have ever had.</q></blockquote>
+        <figcaption class="who"><img src="https://paretotalent.com/img/justin-donald.png" alt="" width="68" height="68" loading="lazy" decoding="async"><span><b>Justin Donald</b><span>Founder, Lifestyle Investor</span></span></figcaption>
+      </figure>
+      <div class="side">
+        <figure class="vq small">
+          <figcaption class="who"><img src="https://paretotalent.com/img/joe-polish.png" alt="" width="52" height="52" loading="lazy" decoding="async"><span><b>Joe Polish</b><span>Founder, Genius Network</span></span></figcaption>
+          <blockquote><q>My executive assistant runs point on critical projects and keeps track of so many endless opportunities.</q></blockquote>
+        </figure>
+        <figure class="vq small">
+          <figcaption class="who"><img src="https://paretotalent.com/img/john-roman.png" alt="" width="52" height="52" loading="lazy" decoding="async"><span><b>Jon Vroman</b><span>Founder, Front Row Dads</span></span></figcaption>
+          <blockquote><q>I just can't even imagine not having my EA right now.</q></blockquote>
+        </figure>
+        <figure class="vq small">
+          <figcaption class="who"><img src="https://paretotalent.com/img/eric.png" alt="" width="52" height="52" loading="lazy" decoding="async"><span><b>Eric Ritter</b><span>Pareto client</span></span></figcaption>
+          <blockquote><q>I've had three different executive assistants before, and I thought it was me, right? I was burning through them.</q></blockquote>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INCLUDED -->
+<section aria-labelledby="rp-incl-h">
+  <div class="wrap incl">
+    <div class="stick rv">
+      <h2 id="rp-incl-h">Not a placement. A complete delegation system.</h2>
+      <p class="lede h-lede">Training, a system, a community and a success manager come with the person.</p>
+    </div>
+    <ul class="agenda rv">
+      <li class="lead"><p class="t">Full time</p><div><h3>A dedicated Right Hand</h3><p>Based in Latin America, chosen from 1,000+ applicants. Owns your inbox, calendar, follow-ups and ops.</p></div></li>
+      <li><p class="t">Every week</p><div><h3>Delegation Mastermind with Kasim Aslam</h3><p>"I would not be nearly as efficient with my assistant if it wasn't for the Delegation Mastermind." Kevin, Pareto client.</p></div></li>
+      <li><p class="t">Before day one</p><div><h3>10-day AI bootcamp</h3><p>40+ hours of training before placement, then 104+ sessions a year.</p></div></li>
+      <li><p class="t">Always on</p><div><h3>Pareto Second Brain OS</h3><p>The system your Right Hand runs your business on.</p></div></li>
+      <li><p class="t">Always on</p><div><h3>250+ operator community</h3><p>Your Right Hand is never working alone.</p></div></li>
+      <li><p class="t">Ongoing</p><div><h3>Client Success Manager</h3><p>A dedicated person keeping the match on track.</p></div></li>
+      <li><p class="t">From day one</p><div><h3>Three guarantees</h3><p>Freedom 40, Matching and Lifetime Replacement.</p></div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- FOUNDERS -->
+<section aria-labelledby="rp-found-h" style="padding-top:0">
+  <div class="wrap found">
+    <figure class="rv">
+      <img src="https://assets.cdn.filesafe.space/KjTTNn7q7Rl3zed7tzFS/media/68269830dcadfd145ee05544.jpeg" alt="Kasim Aslam and Ivan Bunin, co-founders of Pareto Talent" width="470" height="588" loading="lazy" decoding="async">
+      <figcaption>Kasim Aslam (left) and Ivan Bunin (right), co-founders of Pareto Talent.</figcaption>
+    </figure>
+    <div class="rv">
+      <h2 id="rp-found-h">Ivan started as a Right Hand at 18.</h2>
+      <ol class="path">
+        <li><b>2018</b><span>Hired as a Right Hand at Solutions 8, then a 6-person company. No resources.</span></li>
+        <li><b>CTO</b><span>Rose to CTO as the agency grew to 200+ clients and the #1 Google Ads agency in the world.</span></li>
+        <li><b>2022</b><span>Helped scale it to an 8-figure exit.</span></li>
+        <li><b>2023</b><span>Co-founded Pareto Talent with Kasim Aslam.</span></li>
+      </ol>
+      <p class="ceiling">You're not hiring an assistant. You're hiring someone with that ceiling.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="price" id="rp-price" aria-labelledby="rp-price-h">
+  <div class="wrap">
+    <div class="rv">
+      <h2 id="rp-price-h">Priced against your hour, not a salary.</h2>
+      <p class="lede h-lede">Every plan adds a one-time $3,000 placement fee, already counted in year one below.</p>
+    </div>
+    <table class="ptable rv">
+      <thead><tr><th scope="col">Plan</th><th scope="col">Price</th><th scope="col">Per month</th><th scope="col">Year one, all-in</th></tr></thead>
+      <tbody>
+        <tr class="best"><td class="plan">Annual<span class="tag">Saves $7,200</span></td><td data-l="Price">$36,000 a year</td><td data-l="Per month"><span class="big">$3,000</span></td><td data-l="Year one, all-in">$39,000</td></tr>
+        <tr><td class="plan">Quarterly</td><td data-l="Price">$10,000 a quarter</td><td data-l="Per month"><span class="big">$3,333</span></td><td data-l="Year one, all-in">$43,000</td></tr>
+        <tr><td class="plan">Monthly</td><td data-l="Price">$3,600 a month</td><td data-l="Per month"><span class="big">$3,600</span></td><td data-l="Year one, all-in">$46,200</td></tr>
+      </tbody>
+    </table>
+    <p class="pnote">Pareto's matching page says month-to-month starts at $3,600 a month with no long-term contract required.</p>
+  </div>
+</section>
+
+<!-- GUARANTEES -->
+<section aria-labelledby="rp-g-h">
+  <div class="wrap">
+    <h2 id="rp-g-h" class="rv">The risk moves from you to them.</h2>
+    <ul class="gl rv">
+      <li><h3>Freedom 40<span>40 hours back, or next month free</span></h3><q>Attend the Delegation Mastermind, follow the onboarding plan, and meet with your Right Hand 10 minutes daily. If you don't get at least 40 hours back within your first 30 days, your next month is on us.</q></li>
+      <li><h3>Matching<span>No match, no contract</span></h3><q>If we don't find a match you're truly excited about, you owe nothing. No contracts until you find your person.</q></li>
+      <li><h3>Lifetime Replacement<span>Any reason, any time</span></h3><q>If the match is ever not right, for any reason, at any time, we replace your Right Hand at no cost.</q></li>
+    </ul>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="rp-faq" aria-labelledby="rp-faq-h" style="padding-top:0">
+  <div class="wrap faq">
+    <h2 id="rp-faq-h" class="rv">Questions founders ask.</h2>
+    <div class="rv">
+      <details><summary>Who is this for?<i><svg aria-hidden="true"><use href="#rp-plus"/></svg></i></summary><p>Founders doing $100K+ a month who have become the bottleneck in their own company. It isn't built for solopreneurs or for hiring freelancers.</p></details>
+      <details><summary>Where do Right Hands come from?<i><svg aria-hidden="true"><use href="#rp-plus"/></svg></i></summary><p>Latin America. Each placement is chosen from more than 1,000 applicants and completes 40+ hours of AI training before placement.</p></details>
+      <details><summary>What happens after I click "Check if I qualify"?<i><svg aria-hidden="true"><use href="#rp-plus"/></svg></i></summary><p>You answer 2 quick questions (under a minute) and get an email with the next step. On a real Right Hand match, that means a short matching call, then 3 pre-vetted profiles within 24 hours. No contract until you find your person.</p></details>
+      <details><summary>What if it doesn't work out?<i><svg aria-hidden="true"><use href="#rp-plus"/></svg></i></summary><p>If you don't get 40 hours back in your first 30 days, your next month is on them. If the fit is ever wrong, they replace your Right Hand at no cost, any time.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- APPLY -->
+<section class="apply" aria-labelledby="rp-apply-h">
+  <div class="wrap in">
+    <div class="stick">
+      <h2 id="rp-apply-h">Two questions. Under a minute.</h2>
+      <p class="lede h-lede">Your revenue and what you'd hand off first. Then the next step lands in your inbox.</p>
+      <ol class="next">
+        <li><span>1</span><p>A short matching call to confirm fit.</p></li>
+        <li><span>2</span><p>3 pre-vetted profiles within 24 hours.</p></li>
+        <li><span>3</span><p>You pick the one you're excited about. No contract until then.</p></li>
+      </ol>
+    </div>
+    <div class="formbox" id="rp-apply">
+      <iframe src="https://api.leadconnectorhq.com/widget/form/7Bn8uTRlXGf5omQGbksJ" style="width:100%;height:1031px;border:none;border-radius:14px" id="inline-7Bn8uTRlXGf5omQGbksJ" data-layout="{'id':'INLINE'}" data-trigger-type="alwaysShow" data-trigger-value="" data-activation-type="alwaysActivated" data-activation-value="" data-deactivation-type="neverDeactivate" data-deactivation-value="" data-form-name="Abdelhakim Boukeffoussa Right Hand Qualifier" data-height="1031" data-layout-iframe-id="inline-7Bn8uTRlXGf5omQGbksJ" data-form-id="7Bn8uTRlXGf5omQGbksJ" data-cookie-consent="true" data-cookie-consent-provider="auto" title="Right Hand qualifier form"></iframe>
+      <script src="https://link.msgsndr.com/js/form_embed.js"></script>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <span><b>Concept page</b> built by Abdelhakim Boukeffoussa for the Pareto Talent Bootcamp. Not an official Pareto Talent page. Figures, quotes and guarantees are from paretotalent.com.</span>
+    <span>Photos: paretotalent.com. Form: HighLevel. Type: Bricolage Grotesque and Geist.</span>
+  </div>
+</footer>
+</div>
+
+<script>
+(function(){
+  var root=document.getElementById('rp'); if(!root) return;
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function $(id){return document.getElementById(id)}
+
+  /* in-page links scroll inside the funnel without changing the URL */
+  root.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('a[data-go]'); if(!a) return;
+    var t=document.querySelector(a.getAttribute('href')); if(!t) return;
+    e.preventDefault(); t.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
+  });
+
+  /* sticky bar hairline once the page moves */
+  var bar=$('rp-bar'), hero=$('rp-top');
+  if('IntersectionObserver' in window&&bar&&hero){
+    var s=document.createElement('div'); s.style.cssText='position:absolute;top:0;height:1px;width:1px'; hero.prepend(s);
+    new IntersectionObserver(function(en){bar.classList.toggle('stuck',!en[0].isIntersecting)}).observe(s);
+    var hp=root.querySelector('.meter .pill'); if(hp) new IntersectionObserver(function(en){bar.classList.toggle('cta',!en[0].isIntersecting)}).observe(hp);
+  } else if(bar){bar.classList.add('cta')}
+
+  /* THE WEEK: [day, start hour, length, label, keep] */
+  var W=[
+    [0,8,1.5,'Inbox triage'],[0,9.5,1,'Calendar reshuffle'],[0,10.5,2,'Strategy',1],[0,12.5,1.5,'Vendor follow-ups'],[0,14,1,'Travel booking'],[0,15,1.5,'Invoices and expenses'],[0,16.5,1.5,'CRM and meeting notes'],
+    [1,8,1.5,'Inbox triage'],[1,9.5,2,'Key client calls',1],[1,11.5,1.5,'Follow-up emails'],[1,13,1.5,'Hiring logistics'],[1,14.5,1,'Scheduling'],[1,15.5,1,'Research'],[1,16.5,1.5,'Ops checklist'],
+    [2,8,1,'Inbox'],[2,9,1,'Calendar'],[2,10,2,'Team leadership',1],[2,12,1.5,'Partner follow-ups'],[2,13.5,1.5,'Project tracking'],[2,15,1.5,'Docs and SOPs'],[2,16.5,1.5,'CRM updates'],
+    [3,8,1.5,'Inbox triage'],[3,9.5,2,'Product decisions',1],[3,11.5,1,'Event logistics'],[3,12.5,1.5,'Vendor calls'],[3,14,1.5,'Reports'],[3,15.5,1,'Scheduling'],[3,16.5,1.5,'Follow-ups'],
+    [4,8,1,'Inbox'],[4,9,1.5,'Weekly ops review'],[4,10.5,2,'Deep work',1],[4,12.5,1.5,'Expense reports'],[4,14,1.5,"Next week's calendar"],[4,15.5,1,'Follow-ups'],[4,16.5,1.5,'Loose ends']
+  ];
+  var DAYS=[['Mon','12'],['Tue','13'],['Wed','14'],['Thu','15'],['Fri','16']];
+  var grid=$('rp-grid'), cnt=$('rp-count'), moving=[], timers=[];
+  function fmtH(h){var hh=Math.floor(h),m=Math.round((h-hh)*60),ap=hh>=12?'pm':'am',d=hh>12?hh-12:hh;return d+(m?':'+(m<10?'0':'')+m:'')+' '+ap}
+  function dur(x){return x===1?'1 hr':(x+' hrs')}
+  if(grid){
+    var corner=document.createElement('div'); corner.style.gridRow='1'; grid.appendChild(corner);
+    DAYS.forEach(function(d,i){var h=document.createElement('div');h.className='dh';h.style.gridColumn=(i+2);h.innerHTML=d[0]+' <em>Oct '+d[1]+'</em>';grid.appendChild(h)});
+    var ruler=document.createElement('div'); ruler.className='ruler';
+    for(var t=9;t<=17;t++){var sp=document.createElement('span');sp.style.top=((t-8)*10)+'%';sp.textContent=fmtH(t).replace(' ','');ruler.appendChild(sp)}
+    grid.appendChild(ruler);
+    var cols=DAYS.map(function(_,i){var c=document.createElement('div');c.className='col';c.style.gridColumn=(i+2);grid.appendChild(c);return c});
+    W.forEach(function(w){
+      var top=((w[1]-8)/10*100)+'%', ht='calc('+(w[2]/10*100)+'% - 3px)';
+      if(!w[4]){var bk=document.createElement('div');bk.className='back';bk.style.top='calc('+top+' + 1.5px)';bk.style.height=ht;cols[w[0]].appendChild(bk);}
+      var b=document.createElement('div'); b.className='blk'+(w[4]?' keep':''); b.style.top='calc('+top+' + 1.5px)'; b.style.height=ht;
+      b.innerHTML=w[3]+'<b>'+dur(w[2])+'</b>'; cols[w[0]].appendChild(b);
+      if(!w[4]) moving.push({b:b,bk:b.previousSibling,h:w[2],d:w[0],s:w[1]});
+    });
+    moving.sort(function(a,b){return a.s-b.s||a.d-b.d});
+  }
+  function setCount(v){if(cnt) cnt.textContent=(Math.round(v*10)/10).toString()}
+  function reset(){timers.forEach(clearTimeout);timers=[];moving.forEach(function(m){m.b.classList.remove('go');m.bk.classList.remove('on')});setCount(0)}
+  function finish(){moving.forEach(function(m){m.b.classList.add('go');m.bk.classList.add('on')});setCount(40)}
+  function play(){
+    reset(); if(reduce){finish();return}
+    var total=0, step=88;
+    moving.forEach(function(m,i){
+      timers.push(setTimeout(function(){
+        m.b.classList.add('go'); m.bk.classList.add('on');
+        var from=total; total+=m.h; var to=total, t0=performance.now();
+        (function tick(now){var k=Math.min(1,(now-t0)/420);setCount(from+(to-from)*k);if(k<1)requestAnimationFrame(tick)})(t0);
+      },500+i*step));
+    });
+  }
+  var played=false, wk=$('rp-week');
+  if('IntersectionObserver' in window&&wk){
+    new IntersectionObserver(function(en,o){if(en[0].isIntersecting&&!played){played=true;play();o.disconnect()}},{threshold:.35}).observe(wk);
+  } else { finish(); }
+  var rb=$('rp-replay'); if(rb) rb.addEventListener('click',function(){play()});
+
+  /* calculator */
+  var r=$('rp-rate'), out=$('rp-rateout'), val=$('rp-val'), bv=$('rp-bval'), bc=$('rp-bcost'), ver=$('rp-verdict');
+  function money(n){return '$'+Math.round(n).toLocaleString('en-US')}
+  function calc(){
+    var rate=+r.value, v=rate*40, ratio=v/3000;
+    out.textContent=money(rate); val.textContent=money(v);
+    r.style.setProperty('--p',((rate-50)/(950)*100)+'%');
+    var max=Math.max(v,3000); bv.style.width=(v/max*100)+'%'; bc.style.width=(3000/max*100)+'%';
+    if(rate<75){ver.innerHTML='Below about $75 an hour, the math doesn\'t work yet. <b>This is built for founders whose hour is worth more.</b>'}
+    else{ver.innerHTML='That\'s <b>'+(Math.round(ratio*10)/10).toString()+'× the monthly price</b>, at the guarantee\'s floor.'}
+  }
+  if(r){r.addEventListener('input',calc);calc()}
+
+  /* one reveal grammar for section content */
+  var rv=root.querySelectorAll('.rv');
+  if(!reduce&&'IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -12% 0px'});
+    rv.forEach(function(el){io.observe(el)});
+  } else { rv.forEach(function(el){el.classList.add('in')}) }
+})();
+</script>
+<!--RP-END-->
+</body>
+</html>
