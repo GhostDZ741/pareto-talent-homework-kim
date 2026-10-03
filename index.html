@@ -9,350 +9,615 @@
      del dominio, que en un project page de GitHub no podemos tocar. -->
 <meta name="robots" content="noindex, nofollow">
 <meta name="color-scheme" content="dark">
-<meta name="theme-color" content="#0B0D10">
-
+<meta name="theme-color" content="#0C1512">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3CclipPath id=%22l%22%3E%3Crect width=%2216%22 height=%2232%22/%3E%3C/clipPath%3E%3CclipPath id=%22r%22%3E%3Crect x=%2216%22 width=%2216%22 height=%2232%22/%3E%3C/clipPath%3E%3Cpolygon points=%2216.00,1.00 17.83,6.78 21.74,2.14 21.22,8.18 26.61,5.39 23.82,10.78 29.86,10.26 25.22,14.17 31.00,16.00 25.22,17.83 29.86,21.74 23.82,21.22 26.61,26.61 21.22,23.82 21.74,29.86 17.83,25.22 16.00,31.00 14.17,25.22 10.26,29.86 10.78,23.82 5.39,26.61 8.18,21.22 2.14,21.74 6.78,17.83 1.00,16.00 6.78,14.17 2.14,10.26 8.18,10.78 5.39,5.39 10.78,8.18 10.26,2.14 14.17,6.78%22 fill=%22#00603A%22 clip-path=%22url%28#l%29%22/%3E%3Cpolygon points=%2216.00,1.00 17.83,6.78 21.74,2.14 21.22,8.18 26.61,5.39 23.82,10.78 29.86,10.26 25.22,14.17 31.00,16.00 25.22,17.83 29.86,21.74 23.82,21.22 26.61,26.61 21.22,23.82 21.74,29.86 17.83,25.22 16.00,31.00 14.17,25.22 10.26,29.86 10.78,23.82 5.39,26.61 8.18,21.22 2.14,21.74 6.78,17.83 1.00,16.00 6.78,14.17 2.14,10.26 8.18,10.78 5.39,5.39 10.78,8.18 10.26,2.14 14.17,6.78%22 fill=%22#74ACDF%22 clip-path=%22url%28#r%29%22/%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%225.2%22 fill=%22#EDF1EC%22/%3E%3C/svg%3E">
 <link rel="preload" href="fonts/din-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/ui-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="fonts/ui-700.woff2" as="font" type="font/woff2" crossorigin>
-
+<link rel="preload" href="fonts/ui-600.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-/* ─────────────────────────── fuentes (subset, self-hosted) ─────────────── */
-@font-face{font-family:'DIN';font-weight:600;font-style:normal;font-display:swap;
-  src:url('fonts/din-600.woff2') format('woff2')}
-@font-face{font-family:'UI';font-weight:400;font-style:normal;font-display:swap;
-  src:url('fonts/ui-400.woff2') format('woff2')}
-@font-face{font-family:'UI';font-weight:700;font-style:normal;font-display:swap;
-  src:url('fonts/ui-700.woff2') format('woff2')}
+/* ── fonts: self-hosted subsets (Bahnschrift as DIN, Segoe UI as UI) ───────── */
+@font-face{font-family:'DIN';font-weight:600;font-style:normal;font-display:swap;src:url('fonts/din-600.woff2') format('woff2')}
+@font-face{font-family:'UI';font-weight:400;font-style:normal;font-display:swap;src:url('fonts/ui-400.woff2') format('woff2')}
+@font-face{font-family:'UI';font-weight:600;font-style:normal;font-display:swap;src:url('fonts/ui-600.woff2') format('woff2')}
+@font-face{font-family:'UI';font-weight:700;font-style:normal;font-display:swap;src:url('fonts/ui-700.woff2') format('woff2')}
 
-/* ─────────────────────────── tokens ────────────────────────────────────── */
+/* ── tokens ─────────────────────────────────────────────────────────────── */
 :root{
-  --bg:#0B0D10;
-  --ink:#F3F5F6;
-  --muted:#9AA4B0;
-  --dim:#7C8794;
-  --accent:#5DD3C4;
-  --line:rgba(255,255,255,.10);
-  --pad:clamp(22px,5vw,72px);
-  --ease:cubic-bezier(.16,1,.3,1);
+  --ground:#0C1512;          /* deep green-black glaze */
+  --grout:#060B09;
+  --bone:#EDF1EC;
+  --ink-2:#C3CCC7;
+  --muted:#909E99;
+  --hair:rgba(237,241,236,.14);
+  --hair-2:rgba(237,241,236,.08);
+  --sun:#F6B40E;             /* reserved: the newest day, nothing else */
+  --ease-out:cubic-bezier(.23,1,.32,1);
+  --ease-io:cubic-bezier(.77,0,.175,1);
+  --pad:clamp(20px,5.2vw,84px);
+  --med:clamp(330px,38vw,580px);   /* medallion diameter */
+  --gap:clamp(36px,5vw,96px);
 }
 
 *,*::before,*::after{box-sizing:border-box}
-html,body{margin:0}
-html{-webkit-text-size-adjust:100%}
-body{
-  background:var(--bg);
-  color:var(--ink);
+html{-webkit-text-size-adjust:100%;overflow-x:clip;
+  scrollbar-width:thin;scrollbar-color:rgba(237,241,236,.2) var(--ground)}
+body{margin:0;min-height:100vh;background:var(--ground);color:var(--bone);
   font-family:'UI',system-ui,-apple-system,'Segoe UI',sans-serif;
-  -webkit-font-smoothing:antialiased;
-}
-html{overflow-x:clip}   /* clip: no crea contenedor de scroll ni rompe position:sticky */
-img{display:block;max-width:100%;height:auto}
-:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  -webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+::selection{background:rgba(237,241,236,.24);color:#fff}
+img,svg,canvas{display:block}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--bone);outline-offset:4px;border-radius:6px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0 0 0 0);white-space:nowrap;border:0}
 
-.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;
-  overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+/* light falling on a tiled wall: neutral, brightest where the medallion hangs */
+.ground{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(55% 75% at 68% 40%,rgba(237,241,236,.045),transparent 70%)}
+.grain{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.16;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
 
-/* ─────────────────────────── fondo ─────────────────────────────────────── */
-/* Tres capas estaticas (rejilla, grano) + una reactiva al cursor (luz). */
-.bg{position:fixed;inset:0;pointer-events:none;z-index:0}
+/* ── frame ──────────────────────────────────────────────────────────────── */
+.page{position:relative;z-index:1;min-height:100vh;min-height:100svh;display:grid;
+  grid-template-rows:auto 1fr auto;padding:clamp(22px,3.4vh,38px) var(--pad) clamp(20px,3vh,32px);
+  overflow-x:clip}
+/* the axis: the seam between the two halves of the medallion, carried through the page */
+.axis{position:absolute;top:0;bottom:0;right:calc(var(--pad) + var(--med) / 2);width:1px;pointer-events:none;
+  background:linear-gradient(transparent,var(--hair-2) 10%,var(--hair-2) 90%,transparent)}
 
-/* rejilla, desvanecida hacia los bordes para que no compita con el texto */
-.bg-grid{
-  background-image:
-    linear-gradient(rgba(255,255,255,.030) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.030) 1px,transparent 1px);
-  background-size:74px 74px;
-  -webkit-mask-image:radial-gradient(ellipse 92% 74% at 50% 42%,#000 18%,transparent 76%);
-  mask-image:radial-gradient(ellipse 92% 74% at 50% 42%,#000 18%,transparent 76%);
-}
+.bar{display:grid;grid-template-columns:minmax(0,1fr) var(--med);column-gap:var(--gap);
+  font-size:13px;font-weight:600;letter-spacing:.01em;color:var(--muted)}
+.bar .r{padding-left:calc(var(--med) / 2 + 18px)}
 
-/* grano fino: le quita el aspecto de degradado plano */
-.bg-grain{
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='150' height='150' filter='url(%23n)'/%3E%3C/svg%3E");
-  opacity:.038;
-}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) var(--med);column-gap:var(--gap);
+  align-items:center;padding:clamp(26px,5vh,60px) 0}
 
-/* luz ambiente que sigue al cursor (unico elemento interactivo).
-   Vive dentro de un contenedor recortado: si no, sus 940px se salen del
-   viewport y generan scroll horizontal en pantallas chicas. */
-.bg-clip{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:1}
-.bg-glow{
-  position:absolute;left:0;top:0;width:940px;height:940px;margin:-470px 0 0 -470px;
-  border-radius:50%;
-  background:radial-gradient(circle,rgba(93,211,196,.085),rgba(93,211,196,.03) 42%,transparent 66%);
-  transform:translate3d(50vw,42vh,0);
-  will-change:transform;
-}
-
-/* ─────────────────────────── estructura ────────────────────────────────── */
-.page{
-  position:relative;z-index:2;
-  min-height:100vh;min-height:100svh;
-  display:flex;flex-direction:column;
-  padding:clamp(26px,3.4vh,42px) var(--pad) clamp(24px,3.2vh,38px);
-}
-
-.topbar,.foot{
-  display:flex;justify-content:space-between;align-items:center;gap:16px;
-  font-size:11px;font-weight:700;letter-spacing:.20em;text-transform:uppercase;
-}
-.topbar{color:var(--muted)}
-.foot{color:var(--dim)}
-.tag{display:inline-flex;align-items:center;gap:9px;white-space:nowrap}
-.dot{width:5px;height:5px;border-radius:50%;background:var(--accent);flex:none;
-  box-shadow:0 0 10px rgba(93,211,196,.8)}
-
-/* ─────────────────────────── hero ──────────────────────────────────────── */
-.hero{
-  flex:1;
-  display:grid;
-  grid-template-columns:minmax(0,1fr) auto;
-  align-items:center;
-  gap:clamp(34px,6vw,92px);
-  padding:clamp(34px,6vh,74px) 0;
-}
-
-.name{
-  margin:0;
-  font-family:'DIN',system-ui,sans-serif;
-  font-weight:600;
-  font-size:clamp(32px,7.6vw,104px);
-  line-height:.95;
-  letter-spacing:.004em;
-  text-transform:uppercase;
-  color:var(--ink);
-}
+/* ── identity ───────────────────────────────────────────────────────────── */
+.name{margin:0;font-family:'DIN',system-ui,sans-serif;font-weight:600;
+  font-size:clamp(40px,6.3vw,96px);line-height:.9;letter-spacing:-.006em;text-transform:uppercase}
 .name span{display:block}
+.role{margin:clamp(18px,2.2vw,26px) 0 0;font-size:clamp(16px,1.42vw,21px);line-height:1.45;
+  color:var(--ink-2);text-wrap:balance}
+.role .sep{display:inline-block;width:1px;height:.95em;margin:0 .75em;vertical-align:-.13em;background:var(--hair)}
+.desc{margin:10px 0 0;font-size:14px;color:var(--muted)}
 
-.role{
-  margin:clamp(18px,2.4vw,26px) 0 0;
-  font-size:clamp(15px,1.45vw,20px);
-  font-weight:400;
-  line-height:1.45;
-  color:var(--ink);
-  text-wrap:balance;   /* si llega a cortar, reparte parejo y no deja una palabra huerfana */
-}
-.role .sep{color:var(--accent);padding:0 .45em;font-weight:400}
+/* ── the days: glazed tiles on grout seams ──────────────────────────────── */
+.days{position:relative;margin-top:clamp(28px,4.4vh,46px);display:flex;flex-direction:column;max-width:640px}
+.day{--tile:52px;position:relative;display:grid;grid-template-columns:var(--tile) minmax(0,1fr) auto;
+  align-items:center;column-gap:20px;min-height:70px;padding:9px 4px 9px 0;text-decoration:none;
+  border-top:1px solid var(--hair-2)}
+.day:last-child{border-bottom:1px solid var(--hair-2)}
+.day::before{content:'';position:absolute;inset:0 -14px;border-radius:10px;pointer-events:none;opacity:0;
+  background:linear-gradient(90deg,rgba(237,241,236,.055),rgba(237,241,236,0) 78%);transition:opacity .22s ease}
+.day:focus-visible::before,.day.is-on::before{opacity:1}
+.day:active::before{opacity:1;background:linear-gradient(90deg,rgba(237,241,236,.09),rgba(237,241,236,0) 78%)}
 
-.desc{
-  margin:clamp(14px,1.8vw,20px) 0 0;
-  font-size:clamp(12px,1.05vw,13.5px);
-  font-weight:700;
-  letter-spacing:.17em;
-  text-transform:uppercase;
-  color:var(--muted);
-}
+.tile{--lx:120%;--ly:-30%;width:var(--tile);height:var(--tile);border-radius:4px;display:grid;place-content:center;
+  justify-items:center;row-gap:2px;transform-origin:0 50%;color:#0E1A16;
+  background:radial-gradient(circle at var(--lx) var(--ly),rgba(255,255,255,.62),rgba(255,255,255,0) 58%),#DCE4D9;
+  box-shadow:inset 0 0 0 1px rgba(6,11,9,.22)}
+.tile .k{font-family:'DIN';font-weight:600;font-size:11px;line-height:1;letter-spacing:.1em;text-transform:uppercase;opacity:.66}
+.tile .n{font-family:'DIN';font-weight:600;font-size:21px;line-height:1}
+/* the newest day: the only gold on the page */
+.day:first-child .tile,.tile.is-new{color:#2A1A00;
+  background:radial-gradient(circle at var(--lx) var(--ly),rgba(255,248,214,.7),rgba(255,248,214,0) 58%),var(--sun)}
 
-/* ─────────────────────────── CTA ───────────────────────────────────────── */
-.cta{
-  margin-top:clamp(30px,4.4vw,52px);
-  display:inline-flex;align-items:center;gap:12px;
-  padding:17px 30px;
-  border-radius:999px;
-  background:#F2F4F5;color:#0B0D10;
-  font-size:14px;font-weight:700;letter-spacing:.02em;
-  text-decoration:none;
-  justify-self:start;
-  box-shadow:0 0 0 1px rgba(255,255,255,.16),0 16px 40px -20px rgba(0,0,0,.95);
-  transition:transform .4s var(--ease),box-shadow .4s var(--ease),background-color .3s ease;
-}
-.cta .arrow{transition:transform .4s var(--ease)}
-.cta:hover{
-  background:#fff;
-  transform:translateY(-2px);
-  box-shadow:0 0 0 1px rgba(255,255,255,.22),
-             0 22px 46px -18px rgba(0,0,0,.95),
-             0 0 44px -8px rgba(93,211,196,.42);
-}
-.cta:hover .arrow{transform:translateX(4px)}
-.cta:active{transform:translateY(0);box-shadow:0 0 0 1px rgba(255,255,255,.16),
-             0 8px 22px -14px rgba(0,0,0,.95)}
-
-/* ─────────────────────────── homework anterior ─────────────────────────── */
-.prev{
-  display:inline-flex;align-items:center;gap:11px;
-  margin-top:18px;
-  padding:9px 17px;
-  border-radius:999px;
-  border:1px solid var(--line);
-  background:rgba(255,255,255,.02);
-  font-size:12.5px;font-weight:400;
-  color:var(--muted);text-decoration:none;
-  transition:color .3s ease,border-color .3s ease,background-color .3s ease;
-}
-.prev .prev-day{
-  font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--accent);
-}
-.prev .prev-go{color:var(--dim);transition:color .3s ease}
-.prev:hover{color:var(--ink);border-color:rgba(93,211,196,.42);background:rgba(93,211,196,.05)}
-.prev:hover .prev-go{color:var(--accent)}
-/* Esta pagina es un INDICE, no una entrega suelta: el visitante elige que dia ver.
-   El mas reciente conserva el tratamiento lleno (.cta) y los anteriores el contorno
-   (.prev), asi el lenguaje visual ya existente no se reemplaza.
-   Sumar un dia = una fila nueva + su PDF. Nada mas. */
-.days{
-  margin-top:clamp(30px,4.4vw,52px);
-  display:flex;flex-direction:column;align-items:flex-start;gap:10px;
-}
-.days .cta,.days .prev{margin-top:0}
-.cta .day-n{
-  font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
-  color:rgba(11,13,16,.5);padding-right:2px;
+.txt{min-width:0}
+.title{display:block;font-weight:600;font-size:clamp(16px,1.22vw,18.5px);line-height:1.3;text-wrap:pretty;
+  transition:color .2s ease}
+.go{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;font-weight:700;letter-spacing:.09em;
+  color:var(--muted);transition:color .2s ease}
+.go svg{transition:transform .3s var(--ease-out)}
+.day:focus-visible .go,.day.is-on .go{color:var(--bone)}
+.day:focus-visible .go svg,.day.is-on .go svg{transform:translateX(3px)}
+@media (hover:hover) and (pointer:fine){
+  .day:hover::before{opacity:1}
+  .day:hover .go{color:var(--bone)}
+  .day:hover .go svg{transform:translateX(3px)}
 }
 
-/* ─────────────────────────── retrato ───────────────────────────────────── */
-/* width:max-content = el div mide exactamente lo que la imagen. Sin esto, en
-   mobile el item de grid se estira a todo el ancho y el halo de ::before
-   (inset en %) crece contra un rectangulo ancho y bajo -> se sale del viewport. */
-.portrait{position:relative;flex:none;width:max-content}
-.portrait img{
-  width:clamp(142px,18vw,288px);
-  border-radius:50%;
-  box-shadow:0 0 0 1px var(--line),0 34px 90px -34px rgba(0,0,0,.95);
-}
-/* halo frio detras del retrato: le da profundidad sin bordes duros */
-.portrait::before{
-  content:'';position:absolute;inset:-18%;border-radius:50%;z-index:-1;
-  background:radial-gradient(circle,rgba(93,211,196,.13),transparent 68%);
-  filter:blur(12px);
-}
+/* ── the emblem: medallion, window, plates ──────────────────────────────── */
+.emblem{position:relative;width:var(--med);justify-self:end}
+.medallion{position:relative;width:var(--med);aspect-ratio:1}
+.rosette{position:absolute;width:137%;height:137%;left:-18.5%;top:-18.5%;overflow:visible;pointer-events:none}
+.rosette .c{fill:none;stroke:rgba(237,241,236,.15);stroke-width:1;vector-effect:non-scaling-stroke}
+.rosette .c.fine{stroke:rgba(237,241,236,.09)}
+.rosette .t{stroke:var(--grout);stroke-width:3;stroke-linejoin:round}
+.rosette .seam{stroke:var(--grout);stroke-width:4}
+.rosette .tiles{transition:opacity .45s ease,filter .45s ease}
+/* the glaze highlight: one soft light moved by transform, blended into the tiles */
+.sheen{position:absolute;inset:0;border-radius:50%;overflow:hidden;pointer-events:none;mix-blend-mode:soft-light;
+  transition:opacity .45s ease}
+.sheen i{position:absolute;left:0;top:0;width:76%;height:76%;margin:-38% 0 0 -38%;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(255,255,255,.95),rgba(255,255,255,.35) 45%,rgba(255,255,255,0));
+  transform:translate3d(calc(var(--med) * .3),calc(var(--med) * .26),0);will-change:transform}
 
-/* ─────────────────────────── entrada ───────────────────────────────────── */
-@keyframes rise{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:none}}
-[data-anim]{animation:rise .8s var(--ease) both;animation-delay:var(--d,0ms)}
+/* the window: a circle around the portrait that opens into an A4 page */
+.window{--w:calc(var(--med) * .411);--h:calc(var(--med) * .582);--d:calc(var(--med) * .3836);
+  position:absolute;width:var(--w);height:var(--h);
+  left:calc((var(--med) - var(--w)) / 2);top:calc((var(--med) - var(--h)) / 2);
+  clip-path:inset(calc((var(--h) - var(--d)) / 2) calc((var(--w) - var(--d)) / 2) round calc(var(--d) / 2));
+  background:radial-gradient(70% 55% at 50% 42%,#1B3029 0%,#0F1C18 70%);
+  transition:clip-path .56s var(--ease-io)}
+.window.is-open{clip-path:inset(0 0 0 0 round 8px)}
+.window > *{position:absolute;transition:opacity .34s ease,filter .34s ease,transform .5s var(--ease-out)}
+.portrait{width:calc(var(--d) * 1.06);height:auto;left:50%;top:50%;transform:translate(-50%,-47%)}
+.window .cover{inset:0;width:100%;height:100%;object-fit:cover;object-position:top;opacity:0;filter:blur(10px);transform:scale(1.03)}
+.window .cover.is-on{opacity:1;filter:none;transform:none}
+.window.is-open .portrait{opacity:0;filter:blur(10px);transform:translate(-50%,-47%) scale(.94)}
+.medallion.is-preview .rosette .tiles{opacity:.42;filter:blur(1.4px)}
+.medallion.is-preview .sheen{opacity:0}
 
-/* ─────────────────────────── responsive ────────────────────────────────── */
-@media (max-width:980px){
-  .hero{
-    grid-template-columns:minmax(0,1fr);
-    align-items:start;
-    /* sin esto, las filas auto se estiran para llenar el hero y aparece un
-       hueco enorme entre el retrato y el nombre */
-    align-content:center;
-    gap:clamp(26px,4.4vw,38px);
-    padding:clamp(26px,4.6vh,44px) 0;
-  }
-  .portrait{order:-1}
-  .portrait img{width:clamp(144px,36vw,200px)}
-  .role{max-width:none}
-}
-@media (max-width:400px){
-  .role,.desc{font-size:11.5px}
-  .role{line-height:1.6}
-  .cta{padding:15px 24px;font-size:13px}
-}
+.plates{display:grid;grid-template-columns:1fr 1fr;column-gap:calc(var(--med) * .045);
+  margin-top:calc(var(--med) * .035)}
+.plate{position:relative;margin:0;height:calc(var(--med) * .2);border-radius:5px;overflow:hidden;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
+.plate.dz{aspect-ratio:3/2;justify-self:end}
+.plate.ar{aspect-ratio:14/9;justify-self:start}
+.plate > svg,.plate > canvas{position:absolute;inset:0;width:100%;height:100%}
+.plate > canvas{opacity:0;transition:opacity .7s ease}
+.plate > canvas.is-live{opacity:1}
+/* glaze edge: a bevel of light on the rim of a hand-made tile */
+.plate::after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.4),inset 0 -1px 0 rgba(0,0,0,.28),inset 0 0 0 1px rgba(0,0,0,.18)}
 
+/* the shared element: a day tile flying into the window */
+.ghost{position:fixed;margin:0;z-index:30;pointer-events:none;transform-origin:50% 50%}
+
+.foot{display:grid;grid-template-columns:minmax(0,1fr) var(--med);column-gap:var(--gap);
+  font-size:13px;font-weight:600;color:var(--muted)}
+.foot span{grid-column:2;padding-left:calc(var(--med) / 2 + 18px)}
+
+/* ── arrival: construction lines draw, then everything sets ─────────────── */
+@media (prefers-reduced-motion:no-preference){
+  .rise{animation:rise .9s var(--ease-out) both;animation-delay:var(--d,0ms)}
+  @keyframes rise{from{opacity:0;transform:translateY(12px);filter:blur(10px)}to{opacity:1;transform:none;filter:none}}
+  .day{animation:rise .8s var(--ease-out) both;animation-delay:calc(430ms + var(--i,0) * 55ms)}
+  .day:nth-child(1){--i:0}
+  .day:nth-child(2){--i:1}
+  .day:nth-child(3){--i:2}
+  .day:nth-child(4){--i:3}
+  .day:nth-child(5){--i:4}
+  .day:nth-child(6){--i:5}
+  .day:nth-child(7){--i:6}
+  .day:nth-child(8){--i:7}
+  .day:nth-child(9){--i:8}
+  .day:nth-child(10){--i:9}
+  .day:nth-child(11){--i:10}
+  .day:nth-child(12){--i:11}
+  .rosette .c{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.5s var(--ease-out) forwards;animation-delay:var(--d,0ms)}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  .rosette .t{transform-box:fill-box;transform-origin:center;animation:set .7s var(--ease-out) both;animation-delay:var(--d,0ms)}
+  @keyframes set{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:none}}
+  .rosette .seam{animation:fade .8s ease both;animation-delay:500ms}
+  .window{animation:open-in 1s var(--ease-out) both;animation-delay:760ms}
+  @keyframes open-in{from{opacity:0;filter:blur(14px)}to{opacity:1;filter:none}}
+  .plate{animation:rise .9s var(--ease-out) both}
+  .plate.dz{animation-delay:1150ms}
+  .plate.ar{animation-delay:1230ms}
+  @keyframes fade{from{opacity:0}to{opacity:1}}
+}
 @media (prefers-reduced-motion:reduce){
-  [data-anim]{animation:none}
-  .bg-glow{display:none}
-  .cta,.cta .arrow{transition:none}
+  .window,.window > *,.rosette .tiles,.sheen{transition:none}
 }
+
+/* ── narrow screens: the emblem leads, the list follows ─────────────────── */
+@media (max-width:900px){
+  :root{--med:min(74vw,360px);--gap:0px}
+  .axis{display:none}
+  .bar{grid-template-columns:1fr auto}
+  .bar .r{padding-left:0}
+  .layout{grid-template-columns:minmax(0,1fr);row-gap:30px;padding:26px 0 30px}
+  .emblem{order:-1;justify-self:center}
+  .plate{height:calc(var(--med) * .24)}
+  .days{max-width:none}
+  .foot{grid-template-columns:1fr}
+  .foot span{grid-column:1;padding-left:0}
+}
+@media (max-width:420px){
+  .day{--tile:46px;column-gap:16px;min-height:66px}
+  .tile .n{font-size:19px}
+  .go span{display:none}
+}
+
 </style>
 </head>
 <body>
-
-<div class="bg bg-grid" aria-hidden="true"></div>
-<div class="bg bg-grain" aria-hidden="true"></div>
-<div class="bg-clip" aria-hidden="true"><div class="bg-glow"></div></div>
+<div class="ground" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
 
 <div class="page">
+  <div class="axis" aria-hidden="true"></div>
 
-  <header class="topbar" data-anim style="--d:200ms">
-    <span class="tag"><i class="dot"></i>Pareto Talent</span>
-    <span class="tag">All homework</span>
+  <header class="bar rise" style="--d:100ms">
+    <span>Pareto Talent</span>
+    <span class="r">All homework</span>
   </header>
 
-  <main class="hero">
-    <div class="copy">
-      <h1 class="name" data-anim style="--d:350ms">
-        <span>Abdelhakim</span>
-        <span>Boukeffoussa</span>
-      </h1>
+  <main class="layout">
+    <section class="intro">
+      <h1 class="name"><span class="rise" style="--d:160ms">Abdelhakim</span> <span class="rise" style="--d:240ms">Boukeffoussa</span></h1>
+      <p class="role rise" style="--d:330ms">Business and Operations<span class="sep" aria-hidden="true"></span><span class="sr-only">, </span>IT, AI &amp; Marketing</p>
+      <p class="desc rise" style="--d:390ms">All homework &middot; one link</p>
 
-      <p class="role" data-anim style="--d:500ms">Business and Operations<span class="sep" aria-hidden="true">|</span>IT, AI &amp; Marketing</p>
-
-      <p class="desc" data-anim style="--d:650ms">All homework &middot; one link</p>
-
-      <div class="days" data-anim style="--d:800ms">
-        <a class="prev" href="./homework-day4.pdf" target="_blank" rel="noopener noreferrer">
-          <span class="prev-day">Day 04</span>
-          <span>A Skill That Writes the First Message</span>
-          <span class="prev-go" aria-hidden="true">&rarr;</span>
+      <!-- DAYS, newest first. The first row is the gold one, automatically.
+           To add a day: copy the first <a class="day"> block, paste it above it,
+           then change href, data-cover, the number and the title.
+           data-cover is optional: without it the row simply has no preview. -->
+      <nav class="days" aria-label="Homework by day">
+        <a class="day" href="./homework-day5.pdf" target="_blank" rel="noopener noreferrer" data-cover="img/cover-day5.webp">
+          <span class="tile"><span class="k">Day</span><span class="n">05</span></span>
+          <span class="txt"><span class="title">A Landing Page That Leads With the Guarantee</span></span>
+          <span class="go"><span>PDF</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           <span class="sr-only">(opens in a new tab)</span>
         </a>
 
-        <a class="cta" href="./homework-day5.pdf" target="_blank" rel="noopener noreferrer">
-          <span class="day-n">Day 05</span>
-          A Landing Page That Leads With the Guarantee
-          <span class="sr-only">(opens in a new tab)</span>
-          <svg class="arrow" width="17" height="17" viewBox="0 0 17 17" fill="none" aria-hidden="true">
-            <path d="M2.5 8.5h12M9.8 3.6l4.9 4.9-4.9 4.9"
-                  stroke="currentColor" stroke-width="1.7"
-                  stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-
-        <a class="prev" href="./homework-day3.pdf" target="_blank" rel="noopener noreferrer">
-          <span class="prev-day">Day 03</span>
-          <span>Second Brain for Kasim Aslam</span>
-          <span class="prev-go" aria-hidden="true">&rarr;</span>
-          <span class="sr-only">(opens in a new tab)</span>
-        </a>
-        <a class="prev" href="./homework-day2.pdf" target="_blank" rel="noopener noreferrer">
-          <span class="prev-day">Day 02</span>
-          <span>Kasim Aslam Voice &amp; Thinking</span>
-          <span class="prev-go" aria-hidden="true">&rarr;</span>
+        <a class="day" href="./homework-day4.pdf" target="_blank" rel="noopener noreferrer" data-cover="img/cover-day4.webp">
+          <span class="tile"><span class="k">Day</span><span class="n">04</span></span>
+          <span class="txt"><span class="title">A Skill That Writes the First Message</span></span>
+          <span class="go"><span>PDF</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           <span class="sr-only">(opens in a new tab)</span>
         </a>
 
-        <a class="prev" href="./homework.pdf" target="_blank" rel="noopener noreferrer">
-          <span class="prev-day">Day 01</span>
-          <span>Story &middot; Fun &middot; Expectations</span>
-          <span class="prev-go" aria-hidden="true">&rarr;</span>
+        <a class="day" href="./homework-day3.pdf" target="_blank" rel="noopener noreferrer" data-cover="img/cover-day3.webp">
+          <span class="tile"><span class="k">Day</span><span class="n">03</span></span>
+          <span class="txt"><span class="title">Second Brain for Kasim Aslam</span></span>
+          <span class="go"><span>PDF</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           <span class="sr-only">(opens in a new tab)</span>
         </a>
+
+        <a class="day" href="./homework-day2.pdf" target="_blank" rel="noopener noreferrer" data-cover="img/cover-day2.webp">
+          <span class="tile"><span class="k">Day</span><span class="n">02</span></span>
+          <span class="txt"><span class="title">Kasim Aslam Voice &amp; Thinking</span></span>
+          <span class="go"><span>PDF</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="sr-only">(opens in a new tab)</span>
+        </a>
+
+        <a class="day" href="./homework.pdf" target="_blank" rel="noopener noreferrer" data-cover="img/cover-day1.webp">
+          <span class="tile"><span class="k">Day</span><span class="n">01</span></span>
+          <span class="txt"><span class="title">Story &middot; Fun &middot; Expectations</span></span>
+          <span class="go"><span>PDF</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="sr-only">(opens in a new tab)</span>
+        </a>
+      </nav>
+    </section>
+
+    <aside class="emblem" aria-label="Algeria and Argentina">
+      <div class="medallion">
+        <svg class="rosette" viewBox="-400 -400 800 800" aria-hidden="true" focusable="false"><defs><clipPath id="zL"><rect x="-400" y="-400" width="400" height="800"/></clipPath><clipPath id="zR"><rect x="0" y="-400" width="400" height="800"/></clipPath></defs><g class="cons"><circle class="c" style="--d:60ms" r="112" pathLength="1"/><circle class="c" style="--d:115ms" r="121" pathLength="1"/><circle class="c" style="--d:170ms" r="186" pathLength="1"/><circle class="c" style="--d:225ms" r="224" pathLength="1"/><circle class="c" style="--d:280ms" r="250" pathLength="1"/><circle class="c" style="--d:335ms" r="258" pathLength="1"/><circle class="c" style="--d:390ms" r="292" pathLength="1"/><circle class="c" style="--d:445ms" r="330" pathLength="1"/><circle class="c" style="--d:500ms" r="380" pathLength="1"/><line class="c" style="--d:180ms" x1="0" y1="0" x2="0.0" y2="-392.0" pathLength="1"/><line class="c fine" style="--d:260ms" x1="23.6" y1="-118.7" x2="48.8" y2="-245.2" pathLength="1"/><line class="c" style="--d:198ms" x1="0" y1="0" x2="150.0" y2="-362.2" pathLength="1"/><line class="c fine" style="--d:278ms" x1="67.2" y1="-100.6" x2="138.9" y2="-207.9" pathLength="1"/><line class="c" style="--d:216ms" x1="0" y1="0" x2="277.2" y2="-277.2" pathLength="1"/><line class="c fine" style="--d:296ms" x1="100.6" y1="-67.2" x2="207.9" y2="-138.9" pathLength="1"/><line class="c" style="--d:234ms" x1="0" y1="0" x2="362.2" y2="-150.0" pathLength="1"/><line class="c fine" style="--d:314ms" x1="118.7" y1="-23.6" x2="245.2" y2="-48.8" pathLength="1"/><line class="c" style="--d:252ms" x1="0" y1="0" x2="392.0" y2="-0.0" pathLength="1"/><line class="c fine" style="--d:332ms" x1="118.7" y1="23.6" x2="245.2" y2="48.8" pathLength="1"/><line class="c" style="--d:270ms" x1="0" y1="0" x2="362.2" y2="150.0" pathLength="1"/><line class="c fine" style="--d:350ms" x1="100.6" y1="67.2" x2="207.9" y2="138.9" pathLength="1"/><line class="c" style="--d:288ms" x1="0" y1="0" x2="277.2" y2="277.2" pathLength="1"/><line class="c fine" style="--d:368ms" x1="67.2" y1="100.6" x2="138.9" y2="207.9" pathLength="1"/><line class="c" style="--d:306ms" x1="0" y1="0" x2="150.0" y2="362.2" pathLength="1"/><line class="c fine" style="--d:386ms" x1="23.6" y1="118.7" x2="48.8" y2="245.2" pathLength="1"/><line class="c" style="--d:324ms" x1="0" y1="0" x2="0.0" y2="392.0" pathLength="1"/><line class="c fine" style="--d:404ms" x1="-23.6" y1="118.7" x2="-48.8" y2="245.2" pathLength="1"/><line class="c" style="--d:342ms" x1="0" y1="0" x2="-150.0" y2="362.2" pathLength="1"/><line class="c fine" style="--d:422ms" x1="-67.2" y1="100.6" x2="-138.9" y2="207.9" pathLength="1"/><line class="c" style="--d:360ms" x1="0" y1="0" x2="-277.2" y2="277.2" pathLength="1"/><line class="c fine" style="--d:440ms" x1="-100.6" y1="67.2" x2="-207.9" y2="138.9" pathLength="1"/><line class="c" style="--d:378ms" x1="0" y1="0" x2="-362.2" y2="150.0" pathLength="1"/><line class="c fine" style="--d:458ms" x1="-118.7" y1="23.6" x2="-245.2" y2="48.8" pathLength="1"/><line class="c" style="--d:396ms" x1="0" y1="0" x2="-392.0" y2="0.0" pathLength="1"/><line class="c fine" style="--d:476ms" x1="-118.7" y1="-23.6" x2="-245.2" y2="-48.8" pathLength="1"/><line class="c" style="--d:414ms" x1="0" y1="0" x2="-362.2" y2="-150.0" pathLength="1"/><line class="c fine" style="--d:494ms" x1="-100.6" y1="-67.2" x2="-207.9" y2="-138.9" pathLength="1"/><line class="c" style="--d:432ms" x1="0" y1="0" x2="-277.2" y2="-277.2" pathLength="1"/><line class="c fine" style="--d:512ms" x1="-67.2" y1="-100.6" x2="-138.9" y2="-207.9" pathLength="1"/><line class="c" style="--d:450ms" x1="0" y1="0" x2="-150.0" y2="-362.2" pathLength="1"/><line class="c fine" style="--d:530ms" x1="-23.6" y1="-118.7" x2="-48.8" y2="-245.2" pathLength="1"/></g><g class="tiles"><g clip-path="url(#zL)"><polygon class="t" style="--d:520ms" points="-23.61,-118.68 0.00,-186.00 23.61,-118.68" fill="#c6102d"/><polygon class="t" style="--d:597ms" points="23.61,-118.68 71.18,-171.84 67.22,-100.61" fill="#ca102e"/><polygon class="t" style="--d:675ms" points="67.22,-100.61 131.52,-131.52 100.61,-67.22" fill="#c9102e"/><polygon class="t" style="--d:752ms" points="100.61,-67.22 171.84,-71.18 118.68,-23.61" fill="#c2102d"/><polygon class="t" style="--d:830ms" points="118.68,-23.61 186.00,-0.00 118.68,23.61" fill="#c20f2d"/><polygon class="t" style="--d:907ms" points="118.68,23.61 171.84,71.18 100.61,67.22" fill="#c2102d"/><polygon class="t" style="--d:985ms" points="100.61,67.22 131.52,131.52 67.22,100.61" fill="#c7102e"/><polygon class="t" style="--d:1062ms" points="67.22,100.61 71.18,171.84 23.61,118.68" fill="#c3102d"/><polygon class="t" style="--d:1140ms" points="23.61,118.68 0.00,186.00 -23.61,118.68" fill="#ca102e"/><polygon class="t" style="--d:1062ms" points="-23.61,118.68 -71.18,171.84 -67.22,100.61" fill="#c9102e"/><polygon class="t" style="--d:985ms" points="-67.22,100.61 -131.52,131.52 -100.61,67.22" fill="#cf1130"/><polygon class="t" style="--d:907ms" points="-100.61,67.22 -171.84,71.18 -118.68,23.61" fill="#cd102f"/><polygon class="t" style="--d:830ms" points="-118.68,23.61 -186.00,0.00 -118.68,-23.61" fill="#c3102d"/><polygon class="t" style="--d:752ms" points="-118.68,-23.61 -171.84,-71.18 -100.61,-67.22" fill="#c5102d"/><polygon class="t" style="--d:675ms" points="-100.61,-67.22 -131.52,-131.52 -67.22,-100.61" fill="#c4102d"/><polygon class="t" style="--d:597ms" points="-67.22,-100.61 -71.18,-171.84 -23.61,-118.68" fill="#ca102e"/><polygon class="t" style="--d:628ms" points="23.61,-118.68 71.18,-171.84 64.18,-214.61 48.77,-245.20 22.83,-222.83 0.00,-186.00" fill="#00603a"/><polygon class="t" style="--d:706ms" points="67.22,-100.61 131.52,-131.52 141.42,-173.71 138.89,-207.87 106.37,-197.13 71.18,-171.84" fill="#005d38"/><polygon class="t" style="--d:783ms" points="100.61,-67.22 171.84,-71.18 197.13,-106.37 207.87,-138.89 173.71,-141.42 131.52,-131.52" fill="#00613b"/><polygon class="t" style="--d:861ms" points="118.68,-23.61 186.00,-0.00 222.83,-22.83 245.20,-48.77 214.61,-64.18 171.84,-71.18" fill="#005f39"/><polygon class="t" style="--d:938ms" points="118.68,23.61 171.84,71.18 214.61,64.18 245.20,48.77 222.83,22.83 186.00,-0.00" fill="#00603a"/><polygon class="t" style="--d:1016ms" points="100.61,67.22 131.52,131.52 173.71,141.42 207.87,138.89 197.13,106.37 171.84,71.18" fill="#00623b"/><polygon class="t" style="--d:1093ms" points="67.22,100.61 71.18,171.84 106.37,197.13 138.89,207.87 141.42,173.71 131.52,131.52" fill="#005e39"/><polygon class="t" style="--d:1171ms" points="23.61,118.68 0.00,186.00 22.83,222.83 48.77,245.20 64.18,214.61 71.18,171.84" fill="#00603a"/><polygon class="t" style="--d:1171ms" points="-23.61,118.68 -71.18,171.84 -64.18,214.61 -48.77,245.20 -22.83,222.83 0.00,186.00" fill="#00623b"/><polygon class="t" style="--d:1093ms" points="-67.22,100.61 -131.52,131.52 -141.42,173.71 -138.89,207.87 -106.37,197.13 -71.18,171.84" fill="#00633c"/><polygon class="t" style="--d:1016ms" points="-100.61,67.22 -171.84,71.18 -197.13,106.37 -207.87,138.89 -173.71,141.42 -131.52,131.52" fill="#005f3a"/><polygon class="t" style="--d:938ms" points="-118.68,23.61 -186.00,0.00 -222.83,22.83 -245.20,48.77 -214.61,64.18 -171.84,71.18" fill="#005e39"/><polygon class="t" style="--d:861ms" points="-118.68,-23.61 -171.84,-71.18 -214.61,-64.18 -245.20,-48.77 -222.83,-22.83 -186.00,0.00" fill="#005d38"/><polygon class="t" style="--d:783ms" points="-100.61,-67.22 -131.52,-131.52 -173.71,-141.42 -207.87,-138.89 -197.13,-106.37 -171.84,-71.18" fill="#00623b"/><polygon class="t" style="--d:706ms" points="-67.22,-100.61 -71.18,-171.84 -106.37,-197.13 -138.89,-207.87 -141.42,-173.71 -131.52,-131.52" fill="#00633c"/><polygon class="t" style="--d:628ms" points="-23.61,-118.68 -0.00,-186.00 -22.83,-222.83 -48.77,-245.20 -64.18,-214.61 -71.18,-171.84" fill="#00613b"/><polygon class="t" style="--d:590ms" points="0.00,-186.00 -22.83,-222.83 0.00,-250.00 22.83,-222.83" fill="#dfe6dc"/><polygon class="t" style="--d:667ms" points="71.18,-171.84 64.18,-214.61 95.67,-230.97 106.37,-197.13" fill="#e3eae0"/><polygon class="t" style="--d:745ms" points="131.52,-131.52 141.42,-173.71 176.78,-176.78 173.71,-141.42" fill="#dee5db"/><polygon class="t" style="--d:822ms" points="171.84,-71.18 197.13,-106.37 230.97,-95.67 214.61,-64.18" fill="#d7ded4"/><polygon class="t" style="--d:900ms" points="186.00,-0.00 222.83,-22.83 250.00,-0.00 222.83,22.83" fill="#e0e7dd"/><polygon class="t" style="--d:977ms" points="171.84,71.18 214.61,64.18 230.97,95.67 197.13,106.37" fill="#e3eae0"/><polygon class="t" style="--d:1055ms" points="131.52,131.52 173.71,141.42 176.78,176.78 141.42,173.71" fill="#dce3d9"/><polygon class="t" style="--d:1132ms" points="71.18,171.84 106.37,197.13 95.67,230.97 64.18,214.61" fill="#d7ddd4"/><polygon class="t" style="--d:1210ms" points="0.00,186.00 22.83,222.83 0.00,250.00 -22.83,222.83" fill="#d9e0d6"/><polygon class="t" style="--d:1132ms" points="-71.18,171.84 -64.18,214.61 -95.67,230.97 -106.37,197.13" fill="#d7ded4"/><polygon class="t" style="--d:1055ms" points="-131.52,131.52 -141.42,173.71 -176.78,176.78 -173.71,141.42" fill="#d8dfd5"/><polygon class="t" style="--d:977ms" points="-171.84,71.18 -197.13,106.37 -230.97,95.67 -214.61,64.18" fill="#dce3d9"/><polygon class="t" style="--d:900ms" points="-186.00,0.00 -222.83,22.83 -250.00,0.00 -222.83,-22.83" fill="#d7ded5"/><polygon class="t" style="--d:822ms" points="-171.84,-71.18 -214.61,-64.18 -230.97,-95.67 -197.13,-106.37" fill="#dfe6dc"/><polygon class="t" style="--d:745ms" points="-131.52,-131.52 -173.71,-141.42 -176.78,-176.78 -141.42,-173.71" fill="#e3eae0"/><polygon class="t" style="--d:667ms" points="-71.18,-171.84 -106.37,-197.13 -95.67,-230.97 -64.18,-214.61" fill="#dbe1d8"/><polygon class="t" style="--d:648ms" points="48.77,-245.20 64.18,-214.61 95.67,-230.97 98.73,-238.36 86.92,-242.92 74.89,-246.89 62.69,-250.27 50.33,-253.04" fill="#0e2d22"/><polygon class="t" style="--d:609ms" points="48.77,-245.20 22.83,-222.83 0.00,-250.00 0.00,-258.00 12.66,-257.69 25.29,-256.76 37.86,-255.21 50.33,-253.04" fill="#0e2e23"/><polygon class="t" style="--d:725ms" points="138.89,-207.87 141.42,-173.71 176.78,-176.78 182.43,-182.43 173.26,-191.17 163.67,-199.44 153.69,-207.23 143.34,-214.52" fill="#0e2c21"/><polygon class="t" style="--d:686ms" points="138.89,-207.87 106.37,-197.13 95.67,-230.97 98.73,-238.36 110.31,-233.23 121.62,-227.54 132.64,-221.29 143.34,-214.52" fill="#0e2c21"/><polygon class="t" style="--d:803ms" points="207.87,-138.89 197.13,-106.37 230.97,-95.67 238.36,-98.73 233.23,-110.31 227.54,-121.62 221.29,-132.64 214.52,-143.34" fill="#0e2d22"/><polygon class="t" style="--d:764ms" points="207.87,-138.89 173.71,-141.42 176.78,-176.78 182.43,-182.43 191.17,-173.26 199.44,-163.67 207.23,-153.69 214.52,-143.34" fill="#0e2b21"/><polygon class="t" style="--d:880ms" points="245.20,-48.77 222.83,-22.83 250.00,-0.00 258.00,-0.00 257.69,-12.66 256.76,-25.29 255.21,-37.86 253.04,-50.33" fill="#0e2d22"/><polygon class="t" style="--d:841ms" points="245.20,-48.77 214.61,-64.18 230.97,-95.67 238.36,-98.73 242.92,-86.92 246.89,-74.89 250.27,-62.69 253.04,-50.33" fill="#0e2e23"/><polygon class="t" style="--d:958ms" points="245.20,48.77 214.61,64.18 230.97,95.67 238.36,98.73 242.92,86.92 246.89,74.89 250.27,62.69 253.04,50.33" fill="#0e2d22"/><polygon class="t" style="--d:919ms" points="245.20,48.77 222.83,22.83 250.00,-0.00 258.00,-0.00 257.69,12.66 256.76,25.29 255.21,37.86 253.04,50.33" fill="#0e2e22"/><polygon class="t" style="--d:1035ms" points="207.87,138.89 173.71,141.42 176.78,176.78 182.43,182.43 191.17,173.26 199.44,163.67 207.23,153.69 214.52,143.34" fill="#0e2e23"/><polygon class="t" style="--d:996ms" points="207.87,138.89 197.13,106.37 230.97,95.67 238.36,98.73 233.23,110.31 227.54,121.62 221.29,132.64 214.52,143.34" fill="#0e2e23"/><polygon class="t" style="--d:1113ms" points="138.89,207.87 106.37,197.13 95.67,230.97 98.73,238.36 110.31,233.23 121.62,227.54 132.64,221.29 143.34,214.52" fill="#0e2d22"/><polygon class="t" style="--d:1074ms" points="138.89,207.87 141.42,173.71 176.78,176.78 182.43,182.43 173.26,191.17 163.67,199.44 153.69,207.23 143.34,214.52" fill="#0e2c21"/><polygon class="t" style="--d:1190ms" points="48.77,245.20 22.83,222.83 0.00,250.00 0.00,258.00 12.66,257.69 25.29,256.76 37.86,255.21 50.33,253.04" fill="#0e2c21"/><polygon class="t" style="--d:1151ms" points="48.77,245.20 64.18,214.61 95.67,230.97 98.73,238.36 86.92,242.92 74.89,246.89 62.69,250.27 50.33,253.04" fill="#0e2c21"/><polygon class="t" style="--d:1151ms" points="-48.77,245.20 -64.18,214.61 -95.67,230.97 -98.73,238.36 -86.92,242.92 -74.89,246.89 -62.69,250.27 -50.33,253.04" fill="#0e2c22"/><polygon class="t" style="--d:1190ms" points="-48.77,245.20 -22.83,222.83 0.00,250.00 0.00,258.00 -12.66,257.69 -25.29,256.76 -37.86,255.21 -50.33,253.04" fill="#0e2b21"/><polygon class="t" style="--d:1074ms" points="-138.89,207.87 -141.42,173.71 -176.78,176.78 -182.43,182.43 -173.26,191.17 -163.67,199.44 -153.69,207.23 -143.34,214.52" fill="#0e2c21"/><polygon class="t" style="--d:1113ms" points="-138.89,207.87 -106.37,197.13 -95.67,230.97 -98.73,238.36 -110.31,233.23 -121.62,227.54 -132.64,221.29 -143.34,214.52" fill="#0e2c21"/><polygon class="t" style="--d:996ms" points="-207.87,138.89 -197.13,106.37 -230.97,95.67 -238.36,98.73 -233.23,110.31 -227.54,121.62 -221.29,132.64 -214.52,143.34" fill="#0e2d22"/><polygon class="t" style="--d:1035ms" points="-207.87,138.89 -173.71,141.42 -176.78,176.78 -182.43,182.43 -191.17,173.26 -199.44,163.67 -207.23,153.69 -214.52,143.34" fill="#0e2c21"/><polygon class="t" style="--d:919ms" points="-245.20,48.77 -222.83,22.83 -250.00,0.00 -258.00,0.00 -257.69,12.66 -256.76,25.29 -255.21,37.86 -253.04,50.33" fill="#0e2d22"/><polygon class="t" style="--d:958ms" points="-245.20,48.77 -214.61,64.18 -230.97,95.67 -238.36,98.73 -242.92,86.92 -246.89,74.89 -250.27,62.69 -253.04,50.33" fill="#0e2e23"/><polygon class="t" style="--d:841ms" points="-245.20,-48.77 -214.61,-64.18 -230.97,-95.67 -238.36,-98.73 -242.92,-86.92 -246.89,-74.89 -250.27,-62.69 -253.04,-50.33" fill="#0e2d22"/><polygon class="t" style="--d:880ms" points="-245.20,-48.77 -222.83,-22.83 -250.00,0.00 -258.00,0.00 -257.69,-12.66 -256.76,-25.29 -255.21,-37.86 -253.04,-50.33" fill="#0e2c21"/><polygon class="t" style="--d:764ms" points="-207.87,-138.89 -173.71,-141.42 -176.78,-176.78 -182.43,-182.43 -191.17,-173.26 -199.44,-163.67 -207.23,-153.69 -214.52,-143.34" fill="#0e2d22"/><polygon class="t" style="--d:803ms" points="-207.87,-138.89 -197.13,-106.37 -230.97,-95.67 -238.36,-98.73 -233.23,-110.31 -227.54,-121.62 -221.29,-132.64 -214.52,-143.34" fill="#0e2e23"/><polygon class="t" style="--d:686ms" points="-138.89,-207.87 -106.37,-197.13 -95.67,-230.97 -98.73,-238.36 -110.31,-233.23 -121.62,-227.54 -132.64,-221.29 -143.34,-214.52" fill="#0e2b21"/><polygon class="t" style="--d:725ms" points="-138.89,-207.87 -141.42,-173.71 -176.78,-176.78 -182.43,-182.43 -173.26,-191.17 -163.67,-199.44 -153.69,-207.23 -143.34,-214.52" fill="#0e2d22"/><polygon class="t" style="--d:609ms" points="-48.77,-245.20 -22.83,-222.83 -0.00,-250.00 -0.00,-258.00 -12.66,-257.69 -25.29,-256.76 -37.86,-255.21 -50.33,-253.04" fill="#0e2d22"/><polygon class="t" style="--d:648ms" points="-48.77,-245.20 -64.18,-214.61 -95.67,-230.97 -98.73,-238.36 -86.92,-242.92 -74.89,-246.89 -62.69,-250.27 -50.33,-253.04" fill="#0e2d22"/><polygon class="t" style="--d:660ms" points="-25.29,-256.76 -12.66,-257.69 0.00,-258.00 12.66,-257.69 25.29,-256.76 28.62,-290.59 14.33,-291.65 0.00,-292.00 -14.33,-291.65 -28.62,-290.59" fill="#123b2d"/><polygon class="t" style="--d:698ms" points="25.29,-256.76 37.86,-255.21 50.33,-253.04 62.69,-250.27 74.89,-246.89 84.76,-279.43 70.95,-283.25 56.97,-286.39 42.85,-288.84 28.62,-290.59" fill="#0f2920"/><polygon class="t" style="--d:737ms" points="74.89,-246.89 86.92,-242.92 98.73,-238.36 110.31,-233.23 121.62,-227.54 137.65,-257.52 124.85,-263.96 111.74,-269.77 98.37,-274.93 84.76,-279.43" fill="#12392b"/><polygon class="t" style="--d:776ms" points="121.62,-227.54 132.64,-221.29 143.34,-214.52 153.69,-207.23 163.67,-199.44 185.24,-225.72 173.94,-234.54 162.23,-242.79 150.12,-250.46 137.65,-257.52" fill="#0f2a21"/><polygon class="t" style="--d:815ms" points="163.67,-199.44 173.26,-191.17 182.43,-182.43 191.17,-173.26 199.44,-163.67 225.72,-185.24 216.36,-196.10 206.48,-206.48 196.10,-216.36 185.24,-225.72" fill="#12392b"/><polygon class="t" style="--d:853ms" points="199.44,-163.67 207.23,-153.69 214.52,-143.34 221.29,-132.64 227.54,-121.62 257.52,-137.65 250.46,-150.12 242.79,-162.23 234.54,-173.94 225.72,-185.24" fill="#0f2b22"/><polygon class="t" style="--d:892ms" points="227.54,-121.62 233.23,-110.31 238.36,-98.73 242.92,-86.92 246.89,-74.89 279.43,-84.76 274.93,-98.37 269.77,-111.74 263.96,-124.85 257.52,-137.65" fill="#123b2d"/><polygon class="t" style="--d:931ms" points="246.89,-74.89 250.27,-62.69 253.04,-50.33 255.21,-37.86 256.76,-25.29 290.59,-28.62 288.84,-42.85 286.39,-56.97 283.25,-70.95 279.43,-84.76" fill="#0f2b22"/><polygon class="t" style="--d:970ms" points="256.76,-25.29 257.69,-12.66 258.00,-0.00 257.69,12.66 256.76,25.29 290.59,28.62 291.65,14.33 292.00,-0.00 291.65,-14.33 290.59,-28.62" fill="#12392b"/><polygon class="t" style="--d:1008ms" points="256.76,25.29 255.21,37.86 253.04,50.33 250.27,62.69 246.89,74.89 279.43,84.76 283.25,70.95 286.39,56.97 288.84,42.85 290.59,28.62" fill="#0f2a21"/><polygon class="t" style="--d:1047ms" points="246.89,74.89 242.92,86.92 238.36,98.73 233.23,110.31 227.54,121.62 257.52,137.65 263.96,124.85 269.77,111.74 274.93,98.37 279.43,84.76" fill="#11382b"/><polygon class="t" style="--d:1086ms" points="227.54,121.62 221.29,132.64 214.52,143.34 207.23,153.69 199.44,163.67 225.72,185.24 234.54,173.94 242.79,162.23 250.46,150.12 257.52,137.65" fill="#0f2920"/><polygon class="t" style="--d:1125ms" points="199.44,163.67 191.17,173.26 182.43,182.43 173.26,191.17 163.67,199.44 185.24,225.72 196.10,216.36 206.48,206.48 216.36,196.10 225.72,185.24" fill="#133c2d"/><polygon class="t" style="--d:1163ms" points="163.67,199.44 153.69,207.23 143.34,214.52 132.64,221.29 121.62,227.54 137.65,257.52 150.12,250.46 162.23,242.79 173.94,234.54 185.24,225.72" fill="#0f2b22"/><polygon class="t" style="--d:1202ms" points="121.62,227.54 110.31,233.23 98.73,238.36 86.92,242.92 74.89,246.89 84.76,279.43 98.37,274.93 111.74,269.77 124.85,263.96 137.65,257.52" fill="#133c2d"/><polygon class="t" style="--d:1241ms" points="74.89,246.89 62.69,250.27 50.33,253.04 37.86,255.21 25.29,256.76 28.62,290.59 42.85,288.84 56.97,286.39 70.95,283.25 84.76,279.43" fill="#0f2920"/><polygon class="t" style="--d:1280ms" points="25.29,256.76 12.66,257.69 0.00,258.00 -12.66,257.69 -25.29,256.76 -28.62,290.59 -14.33,291.65 0.00,292.00 14.33,291.65 28.62,290.59" fill="#12392b"/><polygon class="t" style="--d:1241ms" points="-25.29,256.76 -37.86,255.21 -50.33,253.04 -62.69,250.27 -74.89,246.89 -84.76,279.43 -70.95,283.25 -56.97,286.39 -42.85,288.84 -28.62,290.59" fill="#0f2a21"/><polygon class="t" style="--d:1202ms" points="-74.89,246.89 -86.92,242.92 -98.73,238.36 -110.31,233.23 -121.62,227.54 -137.65,257.52 -124.85,263.96 -111.74,269.77 -98.37,274.93 -84.76,279.43" fill="#123b2d"/><polygon class="t" style="--d:1163ms" points="-121.62,227.54 -132.64,221.29 -143.34,214.52 -153.69,207.23 -163.67,199.44 -185.24,225.72 -173.94,234.54 -162.23,242.79 -150.12,250.46 -137.65,257.52" fill="#0f2a21"/><polygon class="t" style="--d:1125ms" points="-163.67,199.44 -173.26,191.17 -182.43,182.43 -191.17,173.26 -199.44,163.67 -225.72,185.24 -216.36,196.10 -206.48,206.48 -196.10,216.36 -185.24,225.72" fill="#11382b"/><polygon class="t" style="--d:1086ms" points="-199.44,163.67 -207.23,153.69 -214.52,143.34 -221.29,132.64 -227.54,121.62 -257.52,137.65 -250.46,150.12 -242.79,162.23 -234.54,173.94 -225.72,185.24" fill="#0f2b22"/><polygon class="t" style="--d:1047ms" points="-227.54,121.62 -233.23,110.31 -238.36,98.73 -242.92,86.92 -246.89,74.89 -279.43,84.76 -274.93,98.37 -269.77,111.74 -263.96,124.85 -257.52,137.65" fill="#123b2d"/><polygon class="t" style="--d:1008ms" points="-246.89,74.89 -250.27,62.69 -253.04,50.33 -255.21,37.86 -256.76,25.29 -290.59,28.62 -288.84,42.85 -286.39,56.97 -283.25,70.95 -279.43,84.76" fill="#0f2920"/><polygon class="t" style="--d:970ms" points="-256.76,25.29 -257.69,12.66 -258.00,0.00 -257.69,-12.66 -256.76,-25.29 -290.59,-28.62 -291.65,-14.33 -292.00,0.00 -291.65,14.33 -290.59,28.62" fill="#12392b"/><polygon class="t" style="--d:931ms" points="-256.76,-25.29 -255.21,-37.86 -253.04,-50.33 -250.27,-62.69 -246.89,-74.89 -279.43,-84.76 -283.25,-70.95 -286.39,-56.97 -288.84,-42.85 -290.59,-28.62" fill="#0f2b22"/><polygon class="t" style="--d:892ms" points="-246.89,-74.89 -242.92,-86.92 -238.36,-98.73 -233.23,-110.31 -227.54,-121.62 -257.52,-137.65 -263.96,-124.85 -269.77,-111.74 -274.93,-98.37 -279.43,-84.76" fill="#123a2c"/><polygon class="t" style="--d:853ms" points="-227.54,-121.62 -221.29,-132.64 -214.52,-143.34 -207.23,-153.69 -199.44,-163.67 -225.72,-185.24 -234.54,-173.94 -242.79,-162.23 -250.46,-150.12 -257.52,-137.65" fill="#0f2b22"/><polygon class="t" style="--d:815ms" points="-199.44,-163.67 -191.17,-173.26 -182.43,-182.43 -173.26,-191.17 -163.67,-199.44 -185.24,-225.72 -196.10,-216.36 -206.48,-206.48 -216.36,-196.10 -225.72,-185.24" fill="#12382b"/><polygon class="t" style="--d:776ms" points="-163.67,-199.44 -153.69,-207.23 -143.34,-214.52 -132.64,-221.29 -121.62,-227.54 -137.65,-257.52 -150.12,-250.46 -162.23,-242.79 -173.94,-234.54 -185.24,-225.72" fill="#0f2b22"/><polygon class="t" style="--d:737ms" points="-121.62,-227.54 -110.31,-233.23 -98.73,-238.36 -86.92,-242.92 -74.89,-246.89 -84.76,-279.43 -98.37,-274.93 -111.74,-269.77 -124.85,-263.96 -137.65,-257.52" fill="#12392b"/><polygon class="t" style="--d:698ms" points="-74.89,-246.89 -62.69,-250.27 -50.33,-253.04 -37.86,-255.21 -25.29,-256.76 -28.62,-290.59 -42.85,-288.84 -56.97,-286.39 -70.95,-283.25 -84.76,-279.43" fill="#102b22"/></g><g clip-path="url(#zR)"><polygon class="t" style="--d:520ms" points="-23.61,-118.68 0.00,-186.00 23.61,-118.68" fill="#2e6cb4"/><polygon class="t" style="--d:597ms" points="23.61,-118.68 71.18,-171.84 67.22,-100.61" fill="#2e6cb2"/><polygon class="t" style="--d:675ms" points="67.22,-100.61 131.52,-131.52 100.61,-67.22" fill="#2f6eb6"/><polygon class="t" style="--d:752ms" points="100.61,-67.22 171.84,-71.18 118.68,-23.61" fill="#2f6fb8"/><polygon class="t" style="--d:830ms" points="118.68,-23.61 186.00,-0.00 118.68,23.61" fill="#2f6eb7"/><polygon class="t" style="--d:907ms" points="118.68,23.61 171.84,71.18 100.61,67.22" fill="#2e6cb3"/><polygon class="t" style="--d:985ms" points="100.61,67.22 131.52,131.52 67.22,100.61" fill="#3072bc"/><polygon class="t" style="--d:1062ms" points="67.22,100.61 71.18,171.84 23.61,118.68" fill="#2e6db4"/><polygon class="t" style="--d:1140ms" points="23.61,118.68 0.00,186.00 -23.61,118.68" fill="#3072be"/><polygon class="t" style="--d:1062ms" points="-23.61,118.68 -71.18,171.84 -67.22,100.61" fill="#2f6eb7"/><polygon class="t" style="--d:985ms" points="-67.22,100.61 -131.52,131.52 -100.61,67.22" fill="#2e6bb2"/><polygon class="t" style="--d:907ms" points="-100.61,67.22 -171.84,71.18 -118.68,23.61" fill="#2e6db5"/><polygon class="t" style="--d:830ms" points="-118.68,23.61 -186.00,0.00 -118.68,-23.61" fill="#2e6cb3"/><polygon class="t" style="--d:752ms" points="-118.68,-23.61 -171.84,-71.18 -100.61,-67.22" fill="#3071bc"/><polygon class="t" style="--d:675ms" points="-100.61,-67.22 -131.52,-131.52 -67.22,-100.61" fill="#2f70b9"/><polygon class="t" style="--d:597ms" points="-67.22,-100.61 -71.18,-171.84 -23.61,-118.68" fill="#2f6eb6"/><polygon class="t" style="--d:628ms" points="23.61,-118.68 71.18,-171.84 64.18,-214.61 48.77,-245.20 22.83,-222.83 0.00,-186.00" fill="#70a7d8"/><polygon class="t" style="--d:706ms" points="67.22,-100.61 131.52,-131.52 141.42,-173.71 138.89,-207.87 106.37,-197.13 71.18,-171.84" fill="#72a8da"/><polygon class="t" style="--d:783ms" points="100.61,-67.22 171.84,-71.18 197.13,-106.37 207.87,-138.89 173.71,-141.42 131.52,-131.52" fill="#73abde"/><polygon class="t" style="--d:861ms" points="118.68,-23.61 186.00,-0.00 222.83,-22.83 245.20,-48.77 214.61,-64.18 171.84,-71.18" fill="#75ade0"/><polygon class="t" style="--d:938ms" points="118.68,23.61 171.84,71.18 214.61,64.18 245.20,48.77 222.83,22.83 186.00,-0.00" fill="#72aadc"/><polygon class="t" style="--d:1016ms" points="100.61,67.22 131.52,131.52 173.71,141.42 207.87,138.89 197.13,106.37 171.84,71.18" fill="#76aee2"/><polygon class="t" style="--d:1093ms" points="67.22,100.61 71.18,171.84 106.37,197.13 138.89,207.87 141.42,173.71 131.52,131.52" fill="#75ade0"/><polygon class="t" style="--d:1171ms" points="23.61,118.68 0.00,186.00 22.83,222.83 48.77,245.20 64.18,214.61 71.18,171.84" fill="#77b1e5"/><polygon class="t" style="--d:1171ms" points="-23.61,118.68 -71.18,171.84 -64.18,214.61 -48.77,245.20 -22.83,222.83 0.00,186.00" fill="#72a9dc"/><polygon class="t" style="--d:1093ms" points="-67.22,100.61 -131.52,131.52 -141.42,173.71 -138.89,207.87 -106.37,197.13 -71.18,171.84" fill="#71a7d9"/><polygon class="t" style="--d:1016ms" points="-100.61,67.22 -171.84,71.18 -197.13,106.37 -207.87,138.89 -173.71,141.42 -131.52,131.52" fill="#76afe3"/><polygon class="t" style="--d:938ms" points="-118.68,23.61 -186.00,0.00 -222.83,22.83 -245.20,48.77 -214.61,64.18 -171.84,71.18" fill="#74acdf"/><polygon class="t" style="--d:861ms" points="-118.68,-23.61 -171.84,-71.18 -214.61,-64.18 -245.20,-48.77 -222.83,-22.83 -186.00,0.00" fill="#75aee2"/><polygon class="t" style="--d:783ms" points="-100.61,-67.22 -131.52,-131.52 -173.71,-141.42 -207.87,-138.89 -197.13,-106.37 -171.84,-71.18" fill="#75ade0"/><polygon class="t" style="--d:706ms" points="-67.22,-100.61 -71.18,-171.84 -106.37,-197.13 -138.89,-207.87 -141.42,-173.71 -131.52,-131.52" fill="#72aadc"/><polygon class="t" style="--d:628ms" points="-23.61,-118.68 -0.00,-186.00 -22.83,-222.83 -48.77,-245.20 -64.18,-214.61 -71.18,-171.84" fill="#75ade0"/><polygon class="t" style="--d:590ms" points="0.00,-186.00 -22.83,-222.83 0.00,-250.00 22.83,-222.83" fill="#dde4da"/><polygon class="t" style="--d:667ms" points="71.18,-171.84 64.18,-214.61 95.67,-230.97 106.37,-197.13" fill="#e5ece2"/><polygon class="t" style="--d:745ms" points="131.52,-131.52 141.42,-173.71 176.78,-176.78 173.71,-141.42" fill="#e1e8de"/><polygon class="t" style="--d:822ms" points="171.84,-71.18 197.13,-106.37 230.97,-95.67 214.61,-64.18" fill="#e1e8de"/><polygon class="t" style="--d:900ms" points="186.00,-0.00 222.83,-22.83 250.00,-0.00 222.83,22.83" fill="#e6ede3"/><polygon class="t" style="--d:977ms" points="171.84,71.18 214.61,64.18 230.97,95.67 197.13,106.37" fill="#dbe2d8"/><polygon class="t" style="--d:1055ms" points="131.52,131.52 173.71,141.42 176.78,176.78 141.42,173.71" fill="#e1e8de"/><polygon class="t" style="--d:1132ms" points="71.18,171.84 106.37,197.13 95.67,230.97 64.18,214.61" fill="#dde4da"/><polygon class="t" style="--d:1210ms" points="0.00,186.00 22.83,222.83 0.00,250.00 -22.83,222.83" fill="#d8dfd5"/><polygon class="t" style="--d:1132ms" points="-71.18,171.84 -64.18,214.61 -95.67,230.97 -106.37,197.13" fill="#e2e9df"/><polygon class="t" style="--d:1055ms" points="-131.52,131.52 -141.42,173.71 -176.78,176.78 -173.71,141.42" fill="#dae1d7"/><polygon class="t" style="--d:977ms" points="-171.84,71.18 -197.13,106.37 -230.97,95.67 -214.61,64.18" fill="#e4ebe1"/><polygon class="t" style="--d:900ms" points="-186.00,0.00 -222.83,22.83 -250.00,0.00 -222.83,-22.83" fill="#dde4da"/><polygon class="t" style="--d:822ms" points="-171.84,-71.18 -214.61,-64.18 -230.97,-95.67 -197.13,-106.37" fill="#e4ebe1"/><polygon class="t" style="--d:745ms" points="-131.52,-131.52 -173.71,-141.42 -176.78,-176.78 -141.42,-173.71" fill="#e4ebe1"/><polygon class="t" style="--d:667ms" points="-71.18,-171.84 -106.37,-197.13 -95.67,-230.97 -64.18,-214.61" fill="#dde4da"/><polygon class="t" style="--d:648ms" points="48.77,-245.20 64.18,-214.61 95.67,-230.97 98.73,-238.36 86.92,-242.92 74.89,-246.89 62.69,-250.27 50.33,-253.04" fill="#0f253a"/><polygon class="t" style="--d:609ms" points="48.77,-245.20 22.83,-222.83 0.00,-250.00 0.00,-258.00 12.66,-257.69 25.29,-256.76 37.86,-255.21 50.33,-253.04" fill="#0f2337"/><polygon class="t" style="--d:725ms" points="138.89,-207.87 141.42,-173.71 176.78,-176.78 182.43,-182.43 173.26,-191.17 163.67,-199.44 153.69,-207.23 143.34,-214.52" fill="#0f2337"/><polygon class="t" style="--d:686ms" points="138.89,-207.87 106.37,-197.13 95.67,-230.97 98.73,-238.36 110.31,-233.23 121.62,-227.54 132.64,-221.29 143.34,-214.52" fill="#0f2438"/><polygon class="t" style="--d:803ms" points="207.87,-138.89 197.13,-106.37 230.97,-95.67 238.36,-98.73 233.23,-110.31 227.54,-121.62 221.29,-132.64 214.52,-143.34" fill="#0f2337"/><polygon class="t" style="--d:764ms" points="207.87,-138.89 173.71,-141.42 176.78,-176.78 182.43,-182.43 191.17,-173.26 199.44,-163.67 207.23,-153.69 214.52,-143.34" fill="#0f2438"/><polygon class="t" style="--d:880ms" points="245.20,-48.77 222.83,-22.83 250.00,-0.00 258.00,-0.00 257.69,-12.66 256.76,-25.29 255.21,-37.86 253.04,-50.33" fill="#0f2438"/><polygon class="t" style="--d:841ms" points="245.20,-48.77 214.61,-64.18 230.97,-95.67 238.36,-98.73 242.92,-86.92 246.89,-74.89 250.27,-62.69 253.04,-50.33" fill="#0f2439"/><polygon class="t" style="--d:958ms" points="245.20,48.77 214.61,64.18 230.97,95.67 238.36,98.73 242.92,86.92 246.89,74.89 250.27,62.69 253.04,50.33" fill="#0f2438"/><polygon class="t" style="--d:919ms" points="245.20,48.77 222.83,22.83 250.00,-0.00 258.00,-0.00 257.69,12.66 256.76,25.29 255.21,37.86 253.04,50.33" fill="#0f2336"/><polygon class="t" style="--d:1035ms" points="207.87,138.89 173.71,141.42 176.78,176.78 182.43,182.43 191.17,173.26 199.44,163.67 207.23,153.69 214.52,143.34" fill="#0f2539"/><polygon class="t" style="--d:996ms" points="207.87,138.89 197.13,106.37 230.97,95.67 238.36,98.73 233.23,110.31 227.54,121.62 221.29,132.64 214.52,143.34" fill="#0f2539"/><polygon class="t" style="--d:1113ms" points="138.89,207.87 106.37,197.13 95.67,230.97 98.73,238.36 110.31,233.23 121.62,227.54 132.64,221.29 143.34,214.52" fill="#0f2438"/><polygon class="t" style="--d:1074ms" points="138.89,207.87 141.42,173.71 176.78,176.78 182.43,182.43 173.26,191.17 163.67,199.44 153.69,207.23 143.34,214.52" fill="#0f2439"/><polygon class="t" style="--d:1190ms" points="48.77,245.20 22.83,222.83 0.00,250.00 0.00,258.00 12.66,257.69 25.29,256.76 37.86,255.21 50.33,253.04" fill="#0f2336"/><polygon class="t" style="--d:1151ms" points="48.77,245.20 64.18,214.61 95.67,230.97 98.73,238.36 86.92,242.92 74.89,246.89 62.69,250.27 50.33,253.04" fill="#0f2337"/><polygon class="t" style="--d:1151ms" points="-48.77,245.20 -64.18,214.61 -95.67,230.97 -98.73,238.36 -86.92,242.92 -74.89,246.89 -62.69,250.27 -50.33,253.04" fill="#0f2336"/><polygon class="t" style="--d:1190ms" points="-48.77,245.20 -22.83,222.83 0.00,250.00 0.00,258.00 -12.66,257.69 -25.29,256.76 -37.86,255.21 -50.33,253.04" fill="#0f2337"/><polygon class="t" style="--d:1074ms" points="-138.89,207.87 -141.42,173.71 -176.78,176.78 -182.43,182.43 -173.26,191.17 -163.67,199.44 -153.69,207.23 -143.34,214.52" fill="#0f2437"/><polygon class="t" style="--d:1113ms" points="-138.89,207.87 -106.37,197.13 -95.67,230.97 -98.73,238.36 -110.31,233.23 -121.62,227.54 -132.64,221.29 -143.34,214.52" fill="#0f2539"/><polygon class="t" style="--d:996ms" points="-207.87,138.89 -197.13,106.37 -230.97,95.67 -238.36,98.73 -233.23,110.31 -227.54,121.62 -221.29,132.64 -214.52,143.34" fill="#0f2337"/><polygon class="t" style="--d:1035ms" points="-207.87,138.89 -173.71,141.42 -176.78,176.78 -182.43,182.43 -191.17,173.26 -199.44,163.67 -207.23,153.69 -214.52,143.34" fill="#0f2437"/><polygon class="t" style="--d:919ms" points="-245.20,48.77 -222.83,22.83 -250.00,0.00 -258.00,0.00 -257.69,12.66 -256.76,25.29 -255.21,37.86 -253.04,50.33" fill="#0f2337"/><polygon class="t" style="--d:958ms" points="-245.20,48.77 -214.61,64.18 -230.97,95.67 -238.36,98.73 -242.92,86.92 -246.89,74.89 -250.27,62.69 -253.04,50.33" fill="#10253a"/><polygon class="t" style="--d:841ms" points="-245.20,-48.77 -214.61,-64.18 -230.97,-95.67 -238.36,-98.73 -242.92,-86.92 -246.89,-74.89 -250.27,-62.69 -253.04,-50.33" fill="#0f2438"/><polygon class="t" style="--d:880ms" points="-245.20,-48.77 -222.83,-22.83 -250.00,0.00 -258.00,0.00 -257.69,-12.66 -256.76,-25.29 -255.21,-37.86 -253.04,-50.33" fill="#0f2336"/><polygon class="t" style="--d:764ms" points="-207.87,-138.89 -173.71,-141.42 -176.78,-176.78 -182.43,-182.43 -191.17,-173.26 -199.44,-163.67 -207.23,-153.69 -214.52,-143.34" fill="#0f2337"/><polygon class="t" style="--d:803ms" points="-207.87,-138.89 -197.13,-106.37 -230.97,-95.67 -238.36,-98.73 -233.23,-110.31 -227.54,-121.62 -221.29,-132.64 -214.52,-143.34" fill="#0f2337"/><polygon class="t" style="--d:686ms" points="-138.89,-207.87 -106.37,-197.13 -95.67,-230.97 -98.73,-238.36 -110.31,-233.23 -121.62,-227.54 -132.64,-221.29 -143.34,-214.52" fill="#0f253a"/><polygon class="t" style="--d:725ms" points="-138.89,-207.87 -141.42,-173.71 -176.78,-176.78 -182.43,-182.43 -173.26,-191.17 -163.67,-199.44 -153.69,-207.23 -143.34,-214.52" fill="#0f2337"/><polygon class="t" style="--d:609ms" points="-48.77,-245.20 -22.83,-222.83 -0.00,-250.00 -0.00,-258.00 -12.66,-257.69 -25.29,-256.76 -37.86,-255.21 -50.33,-253.04" fill="#0f2336"/><polygon class="t" style="--d:648ms" points="-48.77,-245.20 -64.18,-214.61 -95.67,-230.97 -98.73,-238.36 -86.92,-242.92 -74.89,-246.89 -62.69,-250.27 -50.33,-253.04" fill="#10253a"/><polygon class="t" style="--d:660ms" points="-25.29,-256.76 -12.66,-257.69 0.00,-258.00 12.66,-257.69 25.29,-256.76 28.62,-290.59 14.33,-291.65 0.00,-292.00 -14.33,-291.65 -28.62,-290.59" fill="#14314a"/><polygon class="t" style="--d:698ms" points="25.29,-256.76 37.86,-255.21 50.33,-253.04 62.69,-250.27 74.89,-246.89 84.76,-279.43 70.95,-283.25 56.97,-286.39 42.85,-288.84 28.62,-290.59" fill="#102639"/><polygon class="t" style="--d:737ms" points="74.89,-246.89 86.92,-242.92 98.73,-238.36 110.31,-233.23 121.62,-227.54 137.65,-257.52 124.85,-263.96 111.74,-269.77 98.37,-274.93 84.76,-279.43" fill="#14314a"/><polygon class="t" style="--d:776ms" points="121.62,-227.54 132.64,-221.29 143.34,-214.52 153.69,-207.23 163.67,-199.44 185.24,-225.72 173.94,-234.54 162.23,-242.79 150.12,-250.46 137.65,-257.52" fill="#10273b"/><polygon class="t" style="--d:815ms" points="163.67,-199.44 173.26,-191.17 182.43,-182.43 191.17,-173.26 199.44,-163.67 225.72,-185.24 216.36,-196.10 206.48,-206.48 196.10,-216.36 185.24,-225.72" fill="#142f48"/><polygon class="t" style="--d:853ms" points="199.44,-163.67 207.23,-153.69 214.52,-143.34 221.29,-132.64 227.54,-121.62 257.52,-137.65 250.46,-150.12 242.79,-162.23 234.54,-173.94 225.72,-185.24" fill="#11273c"/><polygon class="t" style="--d:892ms" points="227.54,-121.62 233.23,-110.31 238.36,-98.73 242.92,-86.92 246.89,-74.89 279.43,-84.76 274.93,-98.37 269.77,-111.74 263.96,-124.85 257.52,-137.65" fill="#14314b"/><polygon class="t" style="--d:931ms" points="246.89,-74.89 250.27,-62.69 253.04,-50.33 255.21,-37.86 256.76,-25.29 290.59,-28.62 288.84,-42.85 286.39,-56.97 283.25,-70.95 279.43,-84.76" fill="#10273b"/><polygon class="t" style="--d:970ms" points="256.76,-25.29 257.69,-12.66 258.00,-0.00 257.69,12.66 256.76,25.29 290.59,28.62 291.65,14.33 292.00,-0.00 291.65,-14.33 290.59,-28.62" fill="#143049"/><polygon class="t" style="--d:1008ms" points="256.76,25.29 255.21,37.86 253.04,50.33 250.27,62.69 246.89,74.89 279.43,84.76 283.25,70.95 286.39,56.97 288.84,42.85 290.59,28.62" fill="#0f2538"/><polygon class="t" style="--d:1047ms" points="246.89,74.89 242.92,86.92 238.36,98.73 233.23,110.31 227.54,121.62 257.52,137.65 263.96,124.85 269.77,111.74 274.93,98.37 279.43,84.76" fill="#142f48"/><polygon class="t" style="--d:1086ms" points="227.54,121.62 221.29,132.64 214.52,143.34 207.23,153.69 199.44,163.67 225.72,185.24 234.54,173.94 242.79,162.23 250.46,150.12 257.52,137.65" fill="#10273b"/><polygon class="t" style="--d:1125ms" points="199.44,163.67 191.17,173.26 182.43,182.43 173.26,191.17 163.67,199.44 185.24,225.72 196.10,216.36 206.48,206.48 216.36,196.10 225.72,185.24" fill="#143049"/><polygon class="t" style="--d:1163ms" points="163.67,199.44 153.69,207.23 143.34,214.52 132.64,221.29 121.62,227.54 137.65,257.52 150.12,250.46 162.23,242.79 173.94,234.54 185.24,225.72" fill="#11273c"/><polygon class="t" style="--d:1202ms" points="121.62,227.54 110.31,233.23 98.73,238.36 86.92,242.92 74.89,246.89 84.76,279.43 98.37,274.93 111.74,269.77 124.85,263.96 137.65,257.52" fill="#143048"/><polygon class="t" style="--d:1241ms" points="74.89,246.89 62.69,250.27 50.33,253.04 37.86,255.21 25.29,256.76 28.62,290.59 42.85,288.84 56.97,286.39 70.95,283.25 84.76,279.43" fill="#102539"/><polygon class="t" style="--d:1280ms" points="25.29,256.76 12.66,257.69 0.00,258.00 -12.66,257.69 -25.29,256.76 -28.62,290.59 -14.33,291.65 0.00,292.00 14.33,291.65 28.62,290.59" fill="#142f47"/><polygon class="t" style="--d:1241ms" points="-25.29,256.76 -37.86,255.21 -50.33,253.04 -62.69,250.27 -74.89,246.89 -84.76,279.43 -70.95,283.25 -56.97,286.39 -42.85,288.84 -28.62,290.59" fill="#10273c"/><polygon class="t" style="--d:1202ms" points="-74.89,246.89 -86.92,242.92 -98.73,238.36 -110.31,233.23 -121.62,227.54 -137.65,257.52 -124.85,263.96 -111.74,269.77 -98.37,274.93 -84.76,279.43" fill="#143049"/><polygon class="t" style="--d:1163ms" points="-121.62,227.54 -132.64,221.29 -143.34,214.52 -153.69,207.23 -163.67,199.44 -185.24,225.72 -173.94,234.54 -162.23,242.79 -150.12,250.46 -137.65,257.52" fill="#10273b"/><polygon class="t" style="--d:1125ms" points="-163.67,199.44 -173.26,191.17 -182.43,182.43 -191.17,173.26 -199.44,163.67 -225.72,185.24 -216.36,196.10 -206.48,206.48 -196.10,216.36 -185.24,225.72" fill="#14314a"/><polygon class="t" style="--d:1086ms" points="-199.44,163.67 -207.23,153.69 -214.52,143.34 -221.29,132.64 -227.54,121.62 -257.52,137.65 -250.46,150.12 -242.79,162.23 -234.54,173.94 -225.72,185.24" fill="#10273b"/><polygon class="t" style="--d:1047ms" points="-227.54,121.62 -233.23,110.31 -238.36,98.73 -242.92,86.92 -246.89,74.89 -279.43,84.76 -274.93,98.37 -269.77,111.74 -263.96,124.85 -257.52,137.65" fill="#143049"/><polygon class="t" style="--d:1008ms" points="-246.89,74.89 -250.27,62.69 -253.04,50.33 -255.21,37.86 -256.76,25.29 -290.59,28.62 -288.84,42.85 -286.39,56.97 -283.25,70.95 -279.43,84.76" fill="#10273b"/><polygon class="t" style="--d:970ms" points="-256.76,25.29 -257.69,12.66 -258.00,0.00 -257.69,-12.66 -256.76,-25.29 -290.59,-28.62 -291.65,-14.33 -292.00,0.00 -291.65,14.33 -290.59,28.62" fill="#14314b"/><polygon class="t" style="--d:931ms" points="-256.76,-25.29 -255.21,-37.86 -253.04,-50.33 -250.27,-62.69 -246.89,-74.89 -279.43,-84.76 -283.25,-70.95 -286.39,-56.97 -288.84,-42.85 -290.59,-28.62" fill="#10263a"/><polygon class="t" style="--d:892ms" points="-246.89,-74.89 -242.92,-86.92 -238.36,-98.73 -233.23,-110.31 -227.54,-121.62 -257.52,-137.65 -263.96,-124.85 -269.77,-111.74 -274.93,-98.37 -279.43,-84.76" fill="#15324b"/><polygon class="t" style="--d:853ms" points="-227.54,-121.62 -221.29,-132.64 -214.52,-143.34 -207.23,-153.69 -199.44,-163.67 -225.72,-185.24 -234.54,-173.94 -242.79,-162.23 -250.46,-150.12 -257.52,-137.65" fill="#102539"/><polygon class="t" style="--d:815ms" points="-199.44,-163.67 -191.17,-173.26 -182.43,-182.43 -173.26,-191.17 -163.67,-199.44 -185.24,-225.72 -196.10,-216.36 -206.48,-206.48 -216.36,-196.10 -225.72,-185.24" fill="#142f47"/><polygon class="t" style="--d:776ms" points="-163.67,-199.44 -153.69,-207.23 -143.34,-214.52 -132.64,-221.29 -121.62,-227.54 -137.65,-257.52 -150.12,-250.46 -162.23,-242.79 -173.94,-234.54 -185.24,-225.72" fill="#10273b"/><polygon class="t" style="--d:737ms" points="-121.62,-227.54 -110.31,-233.23 -98.73,-238.36 -86.92,-242.92 -74.89,-246.89 -84.76,-279.43 -98.37,-274.93 -111.74,-269.77 -124.85,-263.96 -137.65,-257.52" fill="#14314b"/><polygon class="t" style="--d:698ms" points="-74.89,-246.89 -62.69,-250.27 -50.33,-253.04 -37.86,-255.21 -25.29,-256.76 -28.62,-290.59 -42.85,-288.84 -56.97,-286.39 -70.95,-283.25 -84.76,-279.43" fill="#10263b"/></g></g><line class="seam" x1="0" y1="-300" x2="0" y2="300"/></svg>
+        <div class="sheen" aria-hidden="true"><i></i></div>
+        <div class="window">
+          <img class="portrait" src="img/portrait-cut.webp" width="460" height="460" alt="Portrait of Abdelhakim Boukeffoussa" decoding="async" fetchpriority="high">
+        </div>
       </div>
-    </div>
-
-    <div class="portrait" data-anim style="--d:350ms">
-      <img src="portrait.webp" width="436" height="436"
-           alt="Portrait of Abdelhakim Boukeffoussa">
-    </div>
+      <div class="plates">
+        <figure class="plate dz"><svg role="img" aria-label="Flag of Algeria" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600"><path fill="#fff" d="M0 0h900v600H0z"/><path fill="#006233" d="M0 0h450v600H0z"/><path fill="#d21034" d="M579.903811 225a150 150 0 1 0 0 150 120 120 0 1 1 0-150M585.676275 300 450 255.916106 533.852549 371.329239v-142.658277L450 344.083894z"/></svg><canvas aria-hidden="true"></canvas></figure>
+        <figure class="plate ar"><svg role="img" aria-label="Flag of Argentina" xmlns="http://www.w3.org/2000/svg" viewBox="11.111 0 777.778 500"><rect width="800" fill="#74acdf" height="500"/><rect y="166.67" width="800" fill="#fff" height="166.67"/><g id="ar-rays"><path id="ar-ray1" stroke-width="1.1116" stroke="#85340a" fill="#f6b40e" d="m396.84 251.31l28.454 61.992s0.4896 1.185 1.28 0.8586c0.7902-0.3267 0.2988-1.5116 0.2988-1.5116l-23.715-63.956m-0.68 24.12c-0.3465 9.4278 5.4526 14.613 4.6943 23.032-0.7569 8.42 3.8673 13.18 4.9396 16.454 1.0733 3.2744-1.16 5.2323-0.198 5.6982 0.96336 0.4662 3.07-2.1207 2.3833-6.7756-0.68675-4.6549-4.2204-6.0368-3.3898-16.32 0.83-10.283-4.206-12.678-2.98-22.058"/><use href="#ar-ray1" transform="rotate(22.5 400,250)"/><use href="#ar-ray1" transform="rotate(45 400,250)"/><use href="#ar-ray1" transform="rotate(67.5 400,250)"/><path id="ar-ray2" fill="#85340a" d="m404.31 274.41c0.45334 9.0538 5.5867 13.063 4.5787 21.314 2.2133-6.5249-3.1233-11.583-2.82-21.22m-7.6487-23.757l19.487 42.577-16.329-43.887"/><use href="#ar-ray2" transform="rotate(22.5 400,250)"/><use href="#ar-ray2" transform="rotate(45 400,250)"/><use href="#ar-ray2" transform="rotate(67.5 400,250)"/></g><use href="#ar-rays" transform="rotate(90 400,250)"/><use href="#ar-rays" transform="rotate(180 400,250)"/><use href="#ar-rays" transform="rotate(270 400,250)"/><circle r="27.778" stroke="#85340a" cy="250" cx="400" stroke-width="1.5" fill="#f6b40e"/><path id="ar-loweyecontour" fill="#843511" d="m409.47 244.06c-1.8967 0.00003-3.7131 0.82183-4.7812 2.5312 2.1367 1.9227 6.8565 2.1318 10.062-0.21875-1.3883-1.4954-3.3845-2.3125-5.2812-2.3125zm-0.0312 0.4375c1.8462-0.0335 3.5717 0.81446 3.8125 1.6562-2.1367 2.3504-5.5508 2.1463-7.6875 0.4375 0.9348-1.4957 2.4391-2.0677 3.875-2.0938z"/><use href="#ar-uppalpebra" transform="matrix(-1 0 0 1 800.25 0)"/><use href="#ar-eyebrow_nose" transform="matrix(-1 0 0 1 800.25 0)"/><use href="#ar-pupil" transform="translate(18.862)"/><use href="#ar-lowpalpebra" transform="matrix(-1 0 0 1 800.25 0)"/><path d="m395.75 253.84c-0.91341 0.16668-1.5625 0.97727-1.5625 1.9062 0 1.0614 0.87748 1.9062 1.9375 1.9062 0.62667 0 1.2025-0.2968 1.5625-0.8125 0.73952 0.55614 1.7646 0.61511 2.3125 0.625 0.0843 0.002 0.19312 0 0.25 0 0.54791-0.01 1.573-0.0689 2.3125-0.625 0.36 0.5157 0.93583 0.8125 1.5625 0.8125 1.06 0 1.9375-0.84488 1.9375-1.9062 0-0.92898-0.64918-1.7396-1.5625-1.9062 0.513 0.1809 0.84375 0.6765 0.84375 1.2188 0 0.7074-0.57124 1.2812-1.2812 1.2812-0.6804 0-1.2413-0.54015-1.2812-1.2188-0.20862 0.41637-1.0341 1.6551-2.6562 1.7188-1.6222-0.0636-2.4476-1.3024-2.6562-1.7188-0.04 0.6786-0.60085 1.2188-1.2812 1.2188-0.71001 0-1.2812-0.57385-1.2812-1.2812 0-0.54225 0.33075-1.0378 0.84375-1.2188z" fill="#85340a"/><path d="m397.84 259.53c-2.138 0-2.9829 1.9368-4.9062 3.2188 1.0687-0.42633 1.9096-1.2693 3.4062-2.125 1.496-0.85442 2.7717 0.1875 3.625 0.1875h0.0312c0.8532 0 2.129-1.0416 3.625-0.1875 1.4967 0.8559 2.3688 1.6987 3.4375 2.125-1.9233-1.282-2.7996-3.2188-4.9375-3.2188-0.4266 0-1.2716 0.23055-2.125 0.65625h-0.0312c-0.85334-0.42642-1.6983-0.65625-2.125-0.65625z" fill="#85340a"/><path d="m397.12 262.06c-0.8439 0.0374-1.9596 0.20675-3.5625 0.6875 3.8473-0.85434 4.6962 0.4375 6.4062 0.4375h0.0312c1.71 0 2.5588-1.292 6.4062-0.4375-4.2744-1.282-5.1242-0.4375-6.4062-0.4375h-0.0312c-0.80125 0-1.4372-0.3124-2.8438-0.25z" fill="#85340a"/><path d="m393.75 262.72c-0.24819 0.003-0.51871 0.005-0.8125 0.0312 4.488 0.42766 2.3306 3 7.0312 3h0.0312c4.7007 0 2.5745-2.5724 7.0625-3-4.7007-0.4266-3.2146 2.3438-7.0625 2.3438h-0.0312c-3.6075 0-2.4959-2.4215-6.2188-2.375z" fill="#85340a"/><path d="m403.85 269.66c0-2.1234-1.7233-3.8465-3.8463-3.8465-2.1233 0-3.8463 1.723-3.8463 3.8465 0.423-1.781 2.0166-3.0393 3.8463-3.0393 1.8333 0 3.424 1.2586 3.8463 3.0393v0 0z" fill="#85340a"/><path id="ar-eyebrow_nose" fill="#85340a" d="m382.73 244.02c4.9146-4.2729 11.11-4.9147 14.53-1.7086 0.837 1.1207 1.3733 2.319 1.5934 3.5696 0.4302 2.433-0.3303 5.0617-2.2367 7.7559 0.2151-0.001 0.6435 0.2124 0.8568 0.4266 1.6967-3.244 2.2967-6.5761 1.74-9.7454-0.1458-0.828-0.3735-1.643-0.6696-2.4357-4.7007-3.8452-11.11-4.2729-15.811 2.1377z"/><path id="ar-uppalpebra" fill="#85340a" d="m390.42 242.74c2.7767 0 3.4186 0.6417 4.7007 1.71 1.2833 1.0683 1.9233 0.8541 2.1367 1.0683 0.2124 0.2142 0 0.8541-0.4266 0.6399s-1.2833-0.6399-2.5633-1.7086c-1.2833-1.0696-2.5633-1.0683-3.8463-1.0683-3.8463 0-5.983 3.2046-6.4094 2.9907-0.4266-0.2142 2.1367-3.6325 6.4094-3.6325z"/><use href="#ar-loweyecontour" transform="translate(-19.181)"/><circle id="ar-pupil" cy="246.15" cx="390.54" r="1.923" fill="#85340a"/><path id="ar-lowpalpebra" fill="#85340a" d="m385.29 247.44c3.6327 2.7783 7.265 2.5644 9.4017 1.282 2.1367-1.282 2.1367-1.7086 1.71-1.7086-0.4266 0-0.8532 0.4266-2.5633 1.281-1.71 0.8559-4.273 0.8559-8.546-0.8541z"/></svg><canvas aria-hidden="true"></canvas></figure>
+      </div>
+    </aside>
   </main>
 
-  <footer class="foot" data-anim style="--d:950ms">
-    <span class="tag">Digital submission</span>
-  </footer>
-
+  <footer class="foot rise" style="--d:1250ms"><span>Digital submission</span></footer>
 </div>
 
 <script>
-/* Luz ambiente que sigue al cursor. Se apaga sola: no corre en equipos con
-   prefers-reduced-motion ni en pantallas sin puntero fino (ahi queda la luz
-   estatica del CSS). El rAF se detiene cuando llega al objetivo. */
-(function () {
-  var glow = document.querySelector('.bg-glow');
-  if (!glow) return;
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  if (!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+/* Glaze: a flag fired onto a hand-made tile.
+   The vector flag is rasterised once and lit in WebGL: a slightly uneven glaze,
+   a bevelled rim, and a point light that follows the pointer (or drifts when idle).
+   Returns null when only software WebGL is available; the SVG underneath stays. */
+(function (global) {
+  'use strict';
 
-  var tx = innerWidth * 0.5, ty = innerHeight * 0.42;
-  var cx = tx, cy = ty, raf = null;
+  var VS = 'attribute vec2 p;varying vec2 v;void main(){v=p*.5+.5;gl_Position=vec4(p,0.,1.);}';
+  var FS = [
+    'precision mediump float;',
+    'uniform sampler2D T;uniform vec2 L;uniform float A;',
+    'varying vec2 v;',
+    'float h(vec2 q){',
+    '  return .55*sin(q.x*5.1+1.3)*sin(q.y*3.7+.4)+.3*sin(q.x*11.3-q.y*7.9+2.1)+.15*sin(q.x*21.7+q.y*15.1+.7);',
+    '}',
+    'void main(){',
+    '  vec2 q=vec2(v.x*A,v.y);',
+    '  float e=.004,s=.011;',
+    '  vec3 n=normalize(vec3(-s*(h(q+vec2(e,0.))-h(q-vec2(e,0.)))/(2.*e),-s*(h(q+vec2(0.,e))-h(q-vec2(0.,e)))/(2.*e),1.));',
+    '  float dx=min(v.x,1.-v.x)*A,dy=min(v.y,1.-v.y);',
+    '  float w=1.-smoothstep(0.,.045,min(dx,dy));',
+    '  vec2 dir=dx<dy?vec2(sign(v.x-.5),0.):vec2(0.,sign(v.y-.5));',
+    '  n=normalize(n+vec3(dir*w*.9,0.));',
+    '  vec3 l=normalize(vec3((L-v)*vec2(A,1.),.62));',
+    '  vec3 hv=normalize(l+vec3(0.,0.,1.));',
+    '  float nh=max(dot(n,hv),0.);',
+    '  float spec=pow(nh,110.)*.42+pow(nh,14.)*.05;',
+    '  float diff=max(dot(n,l),0.);',
+    '  vec3 base=texture2D(T,vec2(v.x,1.-v.y)).rgb;',
+    '  gl_FragColor=vec4(base*(.84+.2*diff)+spec,1.);',
+    '}'
+  ].join('\n');
 
-  function frame() {
-    cx += (tx - cx) * 0.075;
-    cy += (ty - cy) * 0.075;
-    glow.style.transform = 'translate3d(' + cx.toFixed(1) + 'px,' + cy.toFixed(1) + 'px,0)';
-    if (Math.abs(tx - cx) < 0.4 && Math.abs(ty - cy) < 0.4) { raf = null; return; }
-    raf = requestAnimationFrame(frame);
+  function sh(gl, t, src) {
+    var s = gl.createShader(t); gl.shaderSource(s, src); gl.compileShader(s);
+    return gl.getShaderParameter(s, gl.COMPILE_STATUS) ? s : null;
   }
 
+  function raster(svg) {
+    var tagged = svg.replace('<svg ', '<svg width="1024" height="512" preserveAspectRatio="none" ');
+    var img = new Image();
+    img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(tagged);
+    return img.decode().then(function () {
+      var c = document.createElement('canvas'); c.width = 1024; c.height = 512;
+      c.getContext('2d').drawImage(img, 0, 0, 1024, 512);
+      return c;
+    });
+  }
+
+  function plate(canvas, svg, aspect) {
+    var gl = canvas.getContext('webgl', { antialias: true, alpha: false, failIfMajorPerformanceCaveat: true });
+    if (!gl) return null;
+    var vs = sh(gl, gl.VERTEX_SHADER, VS), fs = sh(gl, gl.FRAGMENT_SHADER, FS);
+    if (!vs || !fs) return null;
+    var pr = gl.createProgram();
+    gl.attachShader(pr, vs); gl.attachShader(pr, fs); gl.linkProgram(pr);
+    if (!gl.getProgramParameter(pr, gl.LINK_STATUS)) return null;
+    gl.useProgram(pr);
+    var b = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, b);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+    var ap = gl.getAttribLocation(pr, 'p'); gl.enableVertexAttribArray(ap); gl.vertexAttribPointer(ap, 2, gl.FLOAT, false, 0, 0);
+    var uL = gl.getUniformLocation(pr, 'L');
+    gl.uniform1f(gl.getUniformLocation(pr, 'A'), aspect);
+    gl.uniform1i(gl.getUniformLocation(pr, 'T'), 0);
+
+    function size() {
+      var r = Math.min(global.devicePixelRatio || 1, 2);
+      var w = Math.round(canvas.clientWidth * r), h = Math.round(canvas.clientHeight * r);
+      if (w && h && (canvas.width !== w || canvas.height !== h)) { canvas.width = w; canvas.height = h; }
+      gl.viewport(0, 0, canvas.width, canvas.height);
+    }
+    return raster(svg).then(function (src) {
+      var t = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, t);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, src);
+      gl.generateMipmap(gl.TEXTURE_2D);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+      size();
+      return {
+        canvas: canvas,
+        size: size,
+        draw: function (lx, ly) { gl.uniform2f(uL, lx, ly); gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4); }
+      };
+    });
+  }
+
+  global.Glaze = { plate: plate };
+})(window);
+
+</script>
+<script>
+/* Zellige & Sol: one light, one dock, one window.
+   - the pointer is the light: it moves the glaze highlight on the rosette and on both flag plates
+   - the day tiles magnify like a dock, neighbours pushed apart on springs
+   - resting on a day opens the medallion window onto that day's cover: the tile flies in (shared element),
+     the circle opens into a page, covers crossfade through blur
+   Everything is optional: without JS the page is complete and every link works. */
+(function () {
+  'use strict';
+  var doc = document;
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  var days = doc.querySelector('.days');
+  var rows = days ? [].slice.call(days.querySelectorAll('.day')) : [];
+  var emblem = doc.querySelector('.emblem');
+  var med = doc.querySelector('.medallion');
+  var win = doc.querySelector('.window');
+  var svg = doc.querySelector('.rosette');
+  var sheen = doc.querySelector('.sheen i');
+  if (!emblem || !med || !win || !svg) return;
+
+  /* ── the light ─────────────────────────────────────────────────────────── */
+  // The pointer is the light. The rosette's sheen follows it and rests when it stops;
+  // the flag plates keep a slow drift of their own when the pointer is away.
+  var P = { x: 0, y: 0, t: -1e9 };
+  var S = null, F = null;          // smoothed sheen light, smoothed plate light (client px)
   addEventListener('pointermove', function (e) {
-    tx = e.clientX; ty = e.clientY;
-    if (raf === null) raf = requestAnimationFrame(frame);
+    if (e.pointerType === 'touch') return;
+    P.x = e.clientX; P.y = e.clientY; P.t = performance.now(); wake();
   }, { passive: true });
+
+  function moveSheen(x, y) {
+    if (!sheen) return;
+    var m = med.getBoundingClientRect(), r = m.width;
+    var lx = Math.max(-.15 * r, Math.min(1.15 * r, x - m.left)), ly = Math.max(-.15 * r, Math.min(1.15 * r, y - m.top));
+    sheen.style.transform = 'translate3d(' + lx.toFixed(1) + 'px,' + ly.toFixed(1) + 'px,0)';
+  }
+
+  var tiles = rows.map(function (r) { return r.querySelector('.tile'); });
+  function lightTiles(x, y) {
+    for (var i = 0; i < tiles.length; i++) {
+      var b = tiles[i].getBoundingClientRect();
+      if (!b.width) continue;
+      var lx = Math.max(-60, Math.min(160, (x - b.left) / b.width * 100));
+      var ly = Math.max(-60, Math.min(160, (y - b.top) / b.height * 100));
+      tiles[i].style.setProperty('--lx', lx.toFixed(1) + '%');
+      tiles[i].style.setProperty('--ly', ly.toFixed(1) + '%');
+    }
+  }
+
+  var plates = [];
+  function lightPlates(x, y) {
+    for (var i = 0; i < plates.length; i++) {
+      var c = plates[i].canvas.getBoundingClientRect();
+      if (!c.width) continue;
+      plates[i].draw((x - c.left) / c.width, 1 - (y - c.top) / c.height);
+    }
+  }
+
+  /* ── the dock ──────────────────────────────────────────────────────────── */
+  var D = { on: false, y: 0, s: rows.map(function () { return 1; }), v: rows.map(function () { return 0; }), live: false };
+  var dockable = fine && !reduce && rows.length > 1;
+  if (dockable) {
+    days.addEventListener('pointermove', function (e) {
+      D.y = e.clientY - days.getBoundingClientRect().top; D.on = true; D.live = true; wake();
+    });
+    days.addEventListener('pointerleave', function () { D.on = false; wake(); });
+  }
+  function dockStep(dt) {
+    if (!D.live) return false;
+    var RANGE = 150, MAX = .42, K = 420, C = 2 * Math.sqrt(K) * .84, moving = false, i;
+    // fixed small substeps: a spring integrated with a long frame gap (a busy or throttled tab) explodes
+    var steps = Math.max(1, Math.ceil(dt / (1 / 240))), h = dt / steps;
+    for (i = 0; i < rows.length; i++) {
+      var r = rows[i], c = r.offsetTop + r.offsetHeight / 2, d = Math.abs(D.y - c);
+      var target = D.on && d < RANGE ? 1 + MAX * (.5 + .5 * Math.cos(Math.PI * d / RANGE)) : 1;
+      for (var n = 0; n < steps; n++) {
+        D.v[i] += (K * (target - D.s[i]) - C * D.v[i]) * h;
+        D.s[i] += D.v[i] * h;
+      }
+      if (Math.abs(target - D.s[i]) > .0006 || Math.abs(D.v[i]) > .002) moving = true;
+    }
+    var grow = rows.map(function (r, j) { return (D.s[j] - 1) * r.querySelector('.tile').offsetWidth; });
+    var above = 0, total = grow.reduce(function (a, b) { return a + b; }, 0);
+    for (i = 0; i < rows.length; i++) {
+      var shift = (above - (total - above - grow[i])) / 2;
+      above += grow[i];
+      if (!moving && !D.on) {
+        rows[i].style.transform = ''; rows[i].querySelector('.tile').style.transform = ''; rows[i].querySelector('.txt').style.transform = '';
+      } else {
+        rows[i].style.transform = 'translate3d(0,' + shift.toFixed(2) + 'px,0)';
+        rows[i].querySelector('.tile').style.transform = 'scale(' + D.s[i].toFixed(4) + ')';
+        rows[i].querySelector('.txt').style.transform = 'translate3d(' + grow[i].toFixed(2) + 'px,0,0)';
+      }
+    }
+    if (!moving && !D.on) D.live = false;
+    return D.live;
+  }
+
+  /* ── the window ────────────────────────────────────────────────────────── */
+  var covers = {}, current = null, open = false, tIntent = 0, tClose = 0;
+  function coverFor(url) {
+    if (!url) return null;
+    if (!covers[url]) {
+      var im = new Image();
+      im.className = 'cover'; im.alt = ''; im.decoding = 'async'; im.src = url;
+      win.appendChild(im); covers[url] = im;
+    }
+    return covers[url];
+  }
+  function show(row) {
+    clearTimeout(tClose);
+    if (current === row) return;
+    var url = row.getAttribute('data-cover');
+    if (!url) { hide(); return; }
+    if (current) current.classList.remove('is-on');
+    current = row; row.classList.add('is-on');
+    var im = coverFor(url);
+    for (var k in covers) covers[k].classList.toggle('is-on', covers[k] === im);
+    if (!open) {
+      open = true; win.classList.add('is-open'); med.classList.add('is-preview');
+      if (!reduce) fly(row.querySelector('.tile'), row === rows[0]);
+    }
+  }
+  function hide() {
+    clearTimeout(tIntent);
+    if (current) current.classList.remove('is-on');
+    current = null;
+    if (!open) return;
+    open = false; win.classList.remove('is-open'); med.classList.remove('is-preview');
+    for (var k in covers) covers[k].classList.remove('is-on');
+  }
+  function fly(tile, isNew) {
+    var a = tile.getBoundingClientRect(), b = win.getBoundingClientRect(), base = tile.offsetWidth;
+    if (!a.width || !b.width || !base) return;
+    var g = tile.cloneNode(true);
+    g.removeAttribute('style'); g.setAttribute('aria-hidden', 'true');
+    g.classList.add('ghost'); if (isNew) g.classList.add('is-new');
+    g.style.width = g.style.height = base + 'px';
+    g.style.left = (a.left + a.width / 2 - base / 2) + 'px';
+    g.style.top = (a.top + a.height / 2 - base / 2) + 'px';
+    doc.body.appendChild(g);
+    var s0 = a.width / base, dx = b.left + b.width / 2 - (a.left + a.width / 2), dy = b.top + b.height / 2 - (a.top + a.height / 2);
+    var s1 = (b.width * .86) / base;
+    var anim = g.animate([
+      { transform: 'translate(0,0) scale(' + s0 + ')', opacity: 1, filter: 'blur(0px)' },
+      { transform: 'translate(' + (dx * .62).toFixed(1) + 'px,' + (dy * .62).toFixed(1) + 'px) scale(' + (s0 + (s1 - s0) * .5).toFixed(3) + ')', opacity: 1, filter: 'blur(0px)', offset: .58 },
+      { transform: 'translate(' + dx.toFixed(1) + 'px,' + dy.toFixed(1) + 'px) scale(' + s1.toFixed(3) + ')', opacity: 0, filter: 'blur(8px)' }
+    ], { duration: 560, easing: 'cubic-bezier(.77,0,.175,1)' });
+    anim.onfinish = anim.oncancel = function () { g.remove(); };
+  }
+  rows.forEach(function (row) {
+    row.addEventListener('pointerenter', function () {
+      if (!fine) return;
+      clearTimeout(tIntent); clearTimeout(tClose);
+      tIntent = setTimeout(function () { show(row); }, open ? 40 : 130);
+    });
+    row.addEventListener('focus', function () { clearTimeout(tClose); show(row); });
+    row.addEventListener('blur', function () { tClose = setTimeout(hide, 200); });
+  });
+  if (days) days.addEventListener('pointerleave', function () { clearTimeout(tIntent); tClose = setTimeout(hide, 260); });
+  // covers load in the background after the page has loaded, so the first preview is instant
+  // and the previews never hold up the page itself
+  function preload() {
+    (window.requestIdleCallback || function (f) { return setTimeout(f, 600); })(function () {
+      rows.forEach(function (r) { coverFor(r.getAttribute('data-cover')); });
+    });
+  }
+  if (doc.readyState === 'complete') preload(); else addEventListener('load', preload);
+
+  /* ── one loop, asleep when nothing moves ───────────────────────────────── */
+  var running = false, last = 0, lastPlate = 0, visible = true;
+  function wake() {
+    if (running || !visible || doc.hidden) return;
+    running = true; last = performance.now(); requestAnimationFrame(tick);
+  }
+  function ease(cur, tx, ty, rate, dt) {
+    var k = 1 - Math.exp(-dt * rate);
+    cur.x += (tx - cur.x) * k; cur.y += (ty - cur.y) * k;
+    return Math.abs(tx - cur.x) + Math.abs(ty - cur.y) > .4;
+  }
+  function tick(now) {
+    var dt = Math.min(.05, (now - last) / 1000); last = now;
+    var busy = false, active = now - P.t < 2600;
+    var m = med.getBoundingClientRect();
+    // sheen: the pointer, or its resting place on the upper-left petals
+    var rx = m.left + m.width * .3, ry = m.top + m.height * .26;
+    if (!S) S = { x: m.left - m.width * .2, y: m.top - m.height * .25 };   // first frame: the light rises in
+    if (ease(S, active ? P.x : rx, active ? P.y : ry, active ? 8 : 1.6, dt)) busy = true;
+    moveSheen(S.x, S.y);
+    lightTiles(S.x, S.y);
+    // plates: the pointer, or a slow drift around them (about 24 fps is plenty for a drift)
+    if (plates.length) {
+      var e = emblem.getBoundingClientRect(), t = now / 1000, drift = !active && !reduce;
+      var fx = active ? P.x : e.left + e.width * (.5 + .46 * Math.cos(t * .27));
+      var fy = active ? P.y : e.top + e.height * (.78 + .16 * Math.sin(t * .21));
+      if (!F) F = { x: fx, y: fy };
+      var moving = ease(F, fx, fy, active ? 8 : 3, dt);
+      if (moving || drift) {
+        busy = true;
+        if (active || now - lastPlate > 40) { lightPlates(F.x, F.y); lastPlate = now; }
+      }
+    }
+    if (dockStep(dt)) busy = true;
+    if (busy && visible && !doc.hidden) requestAnimationFrame(tick); else running = false;
+  }
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (es) { visible = es[0].isIntersecting; if (visible) wake(); }).observe(emblem);
+  }
+  doc.addEventListener('visibilitychange', function () { if (!doc.hidden) wake(); });
+  addEventListener('resize', function () { plates.forEach(function (p) { p.size(); }); wake(); });
+
+  /* ── the plates ────────────────────────────────────────────────────────── */
+  if (window.Glaze) {
+    [].forEach.call(doc.querySelectorAll('.plate'), function (fig) {
+      var s = fig.querySelector('svg'), c = fig.querySelector('canvas');
+      if (!s || !c) return;
+      var p = Glaze.plate(c, s.outerHTML, fig.classList.contains('ar') ? 14 / 9 : 1.5);
+      if (!p) return;
+      p.then(function (pl) { plates.push(pl); c.classList.add('is-live'); wake(); }, function () {});
+    });
+  }
+  wake();
 })();
+
 </script>
 </body>
 </html>
