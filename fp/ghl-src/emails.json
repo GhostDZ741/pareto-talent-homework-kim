@@ -1,0 +1,56 @@
+{
+ "delivery": {
+  "name": "FP | Abdelhakim Boukeffoussa | Delivery Email",
+  "subject": "Your 40-Hour Handoff Plan",
+  "html": "<p>Hi {{contact.first_name}},</p><p>Here's your plan: <a href=\"https://ghostdz741.github.io/pareto-talent-homework-kim/handoff-plan/\">Open my 40-Hour Handoff Plan</a></p><p>Take 7 minutes, tick the tasks still on your plate, and you'll get:<br>- the hours a week you can hand off, and what they cost you<br>- a week-by-week plan for your first 30 days<br>- a ready-to-send brief for every task</p><p>Start with Week 1. Those are the green tasks: routine work with clear rules, the safest place to begin.</p><p>Talk soon,<br>The Pareto Talent team</p>",
+  "text": "Hi {{contact.first_name}},\n\nHere's your plan: https://ghostdz741.github.io/pareto-talent-homework-kim/handoff-plan/\n\nTake 7 minutes, tick the tasks still on your plate, and you'll get:\n- the hours a week you can hand off, and what they cost you\n- a week-by-week plan for your first 30 days\n- a ready-to-send brief for every task\n\nStart with Week 1. Those are the green tasks: routine work with clear rules, the safest place to begin.\n\nTalk soon,\nThe Pareto Talent team"
+ },
+ "q1": {
+  "name": "FP | Abdelhakim Boukeffoussa | Qualified Email 1",
+  "subject": "The first handoff that usually fails",
+  "html": "<p>Hi {{contact.first_name}},</p><p>Most first hires don't fail because the person is bad. They fail because the task was handed off without the context.</p><p>That's why every task in your plan comes with a brief: the goal, the context, the constraints, what \"done\" looks like, and how much they can decide alone. Pareto calls it the Black Box method. You define what goes in and what comes out. What happens in the middle is their job.</p><p>If your plan showed 10+ hours a week, that's a full-time Right Hand's job. A 20-minute Matching Call turns your plan into a profile: <a href=\"https://sites.leadconnectorhq.com/preview/R4aTFYee3kxjcN0Wc8gw\">Book a 20-minute Matching Call</a></p><p>The Pareto Talent team</p>",
+  "text": "Hi {{contact.first_name}},\n\nMost first hires don't fail because the person is bad. They fail because the task was handed off without the context.\n\nThat's why every task in your plan comes with a brief: the goal, the context, the constraints, what \"done\" looks like, and how much they can decide alone. Pareto calls it the Black Box method. You define what goes in and what comes out. What happens in the middle is their job.\n\nIf your plan showed 10+ hours a week, that's a full-time Right Hand's job. A 20-minute Matching Call turns your plan into a profile: https://sites.leadconnectorhq.com/preview/R4aTFYee3kxjcN0Wc8gw\n\nThe Pareto Talent team"
+ },
+ "q2": {
+  "name": "FP | Abdelhakim Boukeffoussa | Qualified Email 2",
+  "subject": "\"I thought it was me\"",
+  "html": "<p>Hi {{contact.first_name}},</p><p>Eric Ritter had three executive assistants before Pareto. In his words: \"I thought it was me, right? I was burning through them.\"</p><p>It usually isn't the founder. It's the selection and the handoff. Pareto Right Hands are chosen from 1,000+ applicants per placement and trained on AI tools before day one. Then they run plans like the one you just built.</p><p>You'll see 3 hand-picked profiles within 24 hours of the call, and no contract until you find your person: <a href=\"https://sites.leadconnectorhq.com/preview/R4aTFYee3kxjcN0Wc8gw\">Book a 20-minute Matching Call</a></p><p>The Pareto Talent team</p>",
+  "text": "Hi {{contact.first_name}},\n\nEric Ritter had three executive assistants before Pareto. In his words: \"I thought it was me, right? I was burning through them.\"\n\nIt usually isn't the founder. It's the selection and the handoff. Pareto Right Hands are chosen from 1,000+ applicants per placement and trained on AI tools before day one. Then they run plans like the one you just built.\n\nYou'll see 3 hand-picked profiles within 24 hours of the call, and no contract until you find your person: https://sites.leadconnectorhq.com/preview/R4aTFYee3kxjcN0Wc8gw\n\nThe Pareto Talent team"
+ },
+ "q3": {
+  "name": "FP | Abdelhakim Boukeffoussa | Qualified Email 3",
+  "subject": "40 hours back, or next month is free",
+  "html": "<p>Hi {{contact.first_name}},</p><p>One last note on your plan.</p><p>Pareto backs it with a guarantee called Freedom 40. Attend the Delegation Mastermind, follow the onboarding plan, and meet your Right Hand 10 minutes a day. If you don't get at least 40 hours back in your first 30 days, your next month is free.</p><p>If that's worth 20 minutes, pick a time here: <a href=\"https://sites.leadconnectorhq.com/preview/R4aTFYee3kxjcN0Wc8gw\">Book a 20-minute Matching Call</a></p><p>If not now, keep the plan. It works with any assistant.</p><p>The Pareto Talent team</p>",
+  "text": "Hi {{contact.first_name}},\n\nOne last note on your plan.\n\nPareto backs it with a guarantee called Freedom 40. Attend the Delegation Mastermind, follow the onboarding plan, and meet your Right Hand 10 minutes a day. If you don't get at least 40 hours back in your first 30 days, your next month is free.\n\nIf that's worth 20 minutes, pick a time here: https://sites.leadconnectorhq.com/preview/R4aTFYee3kxjcN0Wc8gw\n\nIf not now, keep the plan. It works with any assistant.\n\nThe Pareto Talent team"
+ },
+ "n1": {
+  "name": "FP | Abdelhakim Boukeffoussa | Nurture Email 1",
+  "subject": "How to brief a task in 2 minutes",
+  "html": "<p>Hi {{contact.first_name}},</p><p>The plan gave you a brief for each task. Here's how to use them well:</p><ol><li>Fill the [brackets] with your real details. Specifics beat good intentions.</li><li>Send one brief at a time, starting with Week 1.</li><li>Agree on the \"definition of done\" before the work starts, not after.</li></ol><p>Your plan, anytime: <a href=\"https://ghostdz741.github.io/pareto-talent-homework-kim/handoff-plan/\">Open my 40-Hour Handoff Plan</a></p><p>The Pareto Talent team</p>",
+  "text": "Hi {{contact.first_name}},\n\nThe plan gave you a brief for each task. Here's how to use them well:\n\n1. Fill the [brackets] with your real details. Specifics beat good intentions.\n2. Send one brief at a time, starting with Week 1.\n3. Agree on the \"definition of done\" before the work starts, not after.\n\nYour plan, anytime: https://ghostdz741.github.io/pareto-talent-homework-kim/handoff-plan/\n\nThe Pareto Talent team"
+ },
+ "n2": {
+  "name": "FP | Abdelhakim Boukeffoussa | Nurture Email 2",
+  "subject": "The 3 things you should never hand off",
+  "html": "<p>Hi {{contact.first_name}},</p><p>Your plan marked some tasks red. Those stay with you: vision and strategy, your key client relationships, and the final call on pricing and hiring.</p><p>Everything else can move with the right brief. Most founders find their red list is much shorter than they expected.</p><p>Check yours: <a href=\"https://ghostdz741.github.io/pareto-talent-homework-kim/handoff-plan/\">Open my 40-Hour Handoff Plan</a></p><p>The Pareto Talent team</p>",
+  "text": "Hi {{contact.first_name}},\n\nYour plan marked some tasks red. Those stay with you: vision and strategy, your key client relationships, and the final call on pricing and hiring.\n\nEverything else can move with the right brief. Most founders find their red list is much shorter than they expected.\n\nCheck yours: https://ghostdz741.github.io/pareto-talent-homework-kim/handoff-plan/\n\nThe Pareto Talent team"
+ },
+ "n3": {
+  "name": "FP | Abdelhakim Boukeffoussa | Nurture Email 3",
+  "subject": "Check the work without micromanaging",
+  "html": "<p>Hi {{contact.first_name}},</p><p>The fastest way to kill a handoff is to redo the work. The second fastest is to never check it.</p><p>The middle path: 10 minutes a day. Ask three things. What got done? What's blocked? What needs my decision?</p><p>When your plan grows past 10 hours a week, that's a full-time Right Hand's job. That's the moment to talk to Pareto: <a href=\"https://sites.leadconnectorhq.com/preview/R4aTFYee3kxjcN0Wc8gw\">Book a 20-minute Matching Call</a></p><p>The Pareto Talent team</p>",
+  "text": "Hi {{contact.first_name}},\n\nThe fastest way to kill a handoff is to redo the work. The second fastest is to never check it.\n\nThe middle path: 10 minutes a day. Ask three things. What got done? What's blocked? What needs my decision?\n\nWhen your plan grows past 10 hours a week, that's a full-time Right Hand's job. That's the moment to talk to Pareto: https://sites.leadconnectorhq.com/preview/R4aTFYee3kxjcN0Wc8gw\n\nThe Pareto Talent team"
+ },
+ "confirm": {
+  "name": "FP | Abdelhakim Boukeffoussa | Booking Confirmation",
+  "subject": "Your Matching Call is booked",
+  "html": "<p>Hi {{contact.first_name}},</p><p>You're booked: {{appointment.start_time}} ({{appointment.timezone}}). Join here: {{appointment.meeting_location}}</p><p>To make the 20 minutes count, open your plan before the call: <a href=\"https://ghostdz741.github.io/pareto-talent-homework-kim/handoff-plan/\">Open my 40-Hour Handoff Plan</a><br>We'll go through it with you and turn it into a Right Hand profile.</p><p>Need another time? Reschedule here: {{appointment.reschedule_link}}</p><p>The Pareto Talent team</p>",
+  "text": "Hi {{contact.first_name}},\n\nYou're booked: {{appointment.start_time}} ({{appointment.timezone}}). Join here: {{appointment.meeting_location}}\n\nTo make the 20 minutes count, open your plan before the call: https://ghostdz741.github.io/pareto-talent-homework-kim/handoff-plan/\nWe'll go through it with you and turn it into a Right Hand profile.\n\nNeed another time? Reschedule here: {{appointment.reschedule_link}}\n\nThe Pareto Talent team"
+ },
+ "remind": {
+  "name": "FP | Abdelhakim Boukeffoussa | Booking Reminder",
+  "subject": "Tomorrow: your Matching Call",
+  "html": "<p>Hi {{contact.first_name}},</p><p>Quick reminder: your Matching Call is tomorrow at {{appointment.start_time}}.</p><p>One thing to bring: the 3 tasks from your plan you'd hand off first.</p><p>See you there,<br>The Pareto Talent team</p>",
+  "text": "Hi {{contact.first_name}},\n\nQuick reminder: your Matching Call is tomorrow at {{appointment.start_time}}.\n\nOne thing to bring: the 3 tasks from your plan you'd hand off first.\n\nSee you there,\nThe Pareto Talent team"
+ }
+}
