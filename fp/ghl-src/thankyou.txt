@@ -1,0 +1,72 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=DM+Sans:wght@400;600&display=swap');
+#ptp{--bg:#050a0e;--surface:#0b1119;--elev:#0f1923;--card:#ffffff06;--card2:#ffffff0b;--line:#ffffff0f;--line2:#ffffff1a;--line3:#ffffff29;--green:#10b981;--green-l:#34d399;--green-b:#6ee7b7;--green-m:#10b98114;--t1:#f0f4f8;--t2:#94a3b8;--t3:#64748b;--ease:cubic-bezier(.16,1,.3,1);
+ background:var(--bg);color:var(--t1);font:400 17px/1.6 'DM Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;position:relative;overflow:hidden}
+#ptp *{box-sizing:border-box}
+#ptp::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(900px 520px at 85% -8%,#10b98117,transparent 60%),radial-gradient(700px 420px at -10% 40%,#6366f10d,transparent 60%)}
+#ptp .wrap{max-width:1140px;margin:0 auto;padding:0 24px;position:relative}
+#ptp h1,#ptp h2,#ptp h3{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:800;letter-spacing:-.02em;margin:0;color:var(--t1)}
+#ptp p{margin:0}
+#ptp a{color:inherit}
+#ptp .top{display:flex;justify-content:space-between;align-items:center;height:68px;border-bottom:1px solid var(--line)}
+#ptp .brand{font:800 18px 'Plus Jakarta Sans',sans-serif}
+#ptp .brand span{color:var(--green-l)}
+#ptp .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--green);color:#03140e;border:0;border-radius:999px;padding:15px 26px;font-weight:600;font-size:16.5px;text-decoration:none;transition:transform .16s var(--ease),background .2s;cursor:pointer;white-space:nowrap}
+#ptp .btn:hover{background:var(--green-l)}
+#ptp .btn:active{transform:scale(.97)}
+#ptp .btn.ghost{background:transparent;color:var(--t1);border:1px solid var(--line3)}
+#ptp .muted{color:var(--t2)}
+#ptp .glass{background:var(--card);border:1px solid var(--line2);border-radius:20px}
+#ptp section{border-top:1px solid var(--line)}
+#ptp section.wrap{padding-top:72px;padding-bottom:72px}
+#ptp .foot{border-top:1px solid var(--line);padding:26px 0 40px;color:var(--t3);font-size:13.5px}
+@media (max-width:860px){#ptp section.wrap{padding-top:52px;padding-bottom:52px}}
+@media (max-width:600px){#ptp .wrap{padding:0 16px}#ptp .top small{display:none}}
+@media (prefers-reduced-motion:reduce){#ptp *{animation:none!important;transition:none!important}}
+
+html,body{margin:0;background:#050a0e}
+
+#ptp section.ty{display:grid;grid-template-columns:1.1fr .9fr;gap:52px;align-items:start;padding-top:64px;padding-bottom:64px;border-top:0}
+#ptp .ty h1{font-size:clamp(34px,4.2vw,50px);line-height:1.08}
+#ptp .ty .sub{color:var(--t2);font-size:19px;margin:16px 0 28px;max-width:40ch}
+#ptp .ok{display:inline-flex;align-items:center;gap:8px;background:var(--green-m);border:1px solid #10b98140;color:var(--green-b);border-radius:999px;padding:5px 14px;font-size:14px;font-weight:600;margin-bottom:18px}
+#ptp .next{padding:26px}
+#ptp .next h2{font-size:20px;margin-bottom:6px}
+#ptp .next ol{margin:12px 0 0;padding:0;list-style:none;counter-reset:n}
+#ptp .next li{counter-increment:n;display:grid;grid-template-columns:30px 1fr;gap:12px;padding:12px 0;border-top:1px solid var(--line)}
+#ptp .next li:first-child{border-top:0}
+#ptp .next li::before{content:counter(n);width:28px;height:28px;border-radius:9px;background:var(--card2);border:1px solid var(--line2);display:grid;place-items:center;font:800 14px 'Plus Jakarta Sans'}
+#ptp .next li span{color:var(--t2);font-size:15.5px}
+#ptp .faq{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+#ptp .faq div{padding:24px}
+#ptp .faq h3{font-size:17px;margin-bottom:6px}
+#ptp .faq p{color:var(--t2);font-size:15.5px}
+@media (max-width:860px){#ptp .ty,#ptp .faq{grid-template-columns:1fr}#ptp .ty{padding:40px 0;gap:28px}}
+</style>
+<div id="ptp">
+ <header class="wrap top"><div class="brand">Pareto <span>Talent</span></div><small class="muted">The 40-Hour Handoff Plan</small></header>
+ <section class="wrap ty">
+  <div>
+   <span class="ok">You're in. Check your inbox.</span>
+   <h1>Your 40-Hour Handoff Plan is ready.</h1>
+   <p class="sub">Open it now and tick the tasks still on your plate. In 7 minutes you'll know exactly what to hand off first.</p>
+   <a class="btn" href="https://ghostdz741.github.io/pareto-talent-homework-kim/handoff-plan/">Open my plan</a>
+   <p class="muted" style="margin-top:14px;font-size:15px">We also emailed you the link, so you can come back to it anytime.</p>
+  </div>
+  <div class="next glass">
+   <h2>What happens next</h2>
+   <ol>
+    <li><div><b>Today</b><br><span>Build your plan and copy the Week 1 briefs.</span></div></li>
+    <li><div><b>This week</b><br><span>Three short emails: how to brief, what to never delegate, and how to check work without micromanaging.</span></div></li>
+    <li><div><b>When it hits 10+ hours a week</b><br><span>That's a full-time Right Hand's job. Book a Matching Call from your plan and get 3 profiles within 24 hours.</span></div></li>
+   </ol>
+  </div>
+ </section>
+ <section class="wrap">
+  <div class="faq">
+   <div class="glass"><h3>"Isn't it faster to just do it myself?"</h3><p>For one task, once, yes. For the same tasks every week, no. The briefs exist so you explain each task one time.</p></div>
+   <div class="glass"><h3>Didn't get the email?</h3><p>Check spam or promotions, or just use the button above. Questions? Just reply to the email.</p></div>
+  </div>
+ </section>
+ <div class="wrap foot">Concept built by Abdelhakim Boukeffoussa for the Pareto Talent Bootcamp final project.</div>
+</div>
