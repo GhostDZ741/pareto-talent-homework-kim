@@ -84,7 +84,7 @@ html,body{margin:0;background:#050a0e}
    <p class="sub">The 40-Hour Handoff Plan maps your first 30 days of delegation, with a ready-to-send brief for every task. Free. 7 minutes.</p>
    <a class="btn" href="#get-plan">Get my free plan</a>
   </div>
-  <div class="shot"><img src="https://ghostdz741.github.io/pareto-talent-homework-kim/handoff-plan/assets/plan-preview.png" alt="A sample 40-Hour Handoff Plan: hours a week to hand off, monthly value, and a week-by-week plan with briefs"></div>
+  <div class="shot"><img src="https://ghostdz741.github.io/pareto-talent-homework-kim/handoff-plan/assets/plan-preview.png?v=2" alt="A sample 40-Hour Handoff Plan: hours a week to hand off, monthly value, and a week-by-week plan with briefs"></div>
  </section>
 
  <section class="wrap inside">
