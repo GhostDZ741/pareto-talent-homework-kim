@@ -26,7 +26,7 @@
 
 html,body{margin:0;background:#050a0e}
 
-#ptp section.bk{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:start;padding-top:60px;padding-bottom:60px;border-top:0}
+#ptp section.bk{display:grid;grid-template-columns:.8fr 1.2fr;gap:40px;align-items:start;padding-top:60px;padding-bottom:60px;border-top:0}
 #ptp .bk h1{font-size:clamp(32px,3.8vw,46px);line-height:1.08}
 #ptp .bk .sub{color:var(--t2);font-size:18px;margin:16px 0 24px;max-width:40ch}
 #ptp .ok{display:inline-flex;align-items:center;gap:8px;background:var(--green-m);border:1px solid #10b98140;color:var(--green-b);border-radius:999px;padding:5px 14px;font-size:14px;font-weight:600;margin-bottom:18px}
@@ -37,7 +37,7 @@ html,body{margin:0;background:#050a0e}
 #ptp .f40{margin-top:22px;padding:20px 22px;background:linear-gradient(135deg,#10b9811c,#10b98105 70%);border:1px solid #10b98140;border-radius:18px}
 #ptp .f40 b{font-family:'Plus Jakarta Sans';font-weight:800;font-size:18px;display:block;margin-bottom:4px}
 #ptp .f40 p{color:#cbd5e1;font-size:15px}
-#ptp .cal{padding:14px;min-height:640px}
+#ptp .cal{padding:0;min-height:640px;overflow:hidden}
 #ptp .alt{margin-top:18px;font-size:15px}
 @media (max-width:900px){#ptp .bk{grid-template-columns:1fr;padding:40px 0;gap:28px}}
 </style>
