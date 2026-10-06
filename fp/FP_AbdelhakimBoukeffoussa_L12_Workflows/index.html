@@ -1,0 +1,149 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FP | Abdelhakim Boukeffoussa | Workflows</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=DM+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050a0e;--surface:#0b1119;--line:#ffffff1a;--green:#10b981;--green-l:#34d399;--t1:#f0f4f8;--t2:#94a3b8;--t3:#64748b}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:#cbd5e1;font:400 16.5px/1.65 'DM Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.top{max-width:860px;margin:0 auto;padding:22px 24px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;font:800 16px 'Plus Jakarta Sans',sans-serif;color:var(--t1)}
+.top span{color:var(--green-l)} .top small{font:400 13px 'DM Sans';color:var(--t3)}
+main{max-width:860px;margin:0 auto;padding:36px 24px 80px}
+h1,h2,h3{font-family:'Plus Jakarta Sans',sans-serif;color:var(--t1);letter-spacing:-.01em;line-height:1.2}
+h1{font-size:clamp(28px,4vw,40px);font-weight:800;margin:0 0 10px}
+h2{font-size:24px;font-weight:800;margin:44px 0 12px;padding-top:20px;border-top:1px solid var(--line)}
+h3{font-size:18px;font-weight:700;margin:28px 0 8px;color:#e2e8f0}
+a{color:var(--green-l)} strong{color:var(--t1)}
+p,li{max-width:72ch} li{margin:4px 0}
+code{background:#ffffff0d;border:1px solid var(--line);border-radius:6px;padding:1px 6px;font-size:.92em;color:#e2e8f0}
+table{border-collapse:collapse;width:100%;margin:14px 0;font-size:14.5px;display:block;overflow-x:auto}
+th{text-align:left;color:var(--t2);font-weight:600;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid #ffffff29;padding:8px 10px 8px 0}
+td{border-bottom:1px solid var(--line);padding:9px 10px 9px 0;vertical-align:top}
+blockquote{margin:14px 0;padding:10px 16px;border-left:3px solid var(--green);background:#10b98110;border-radius:0 10px 10px 0}
+hr{border:0;border-top:1px solid var(--line);margin:32px 0}
+footer{max-width:860px;margin:0 auto;padding:0 24px 40px;color:var(--t3);font-size:13px}
+@media(max-width:600px){main,.top,footer{padding-left:16px;padding-right:16px}}
+main img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line);margin:14px 0}
+main{max-width:1040px}.top{max-width:1040px}
+</style></head><body>
+<div class="top"><div>Pareto <span>Talent</span></div><small>FP | Abdelhakim Boukeffoussa | Workflows</small></div>
+<main><h1 id="four-workflows-tested-end-to-end">Four workflows, tested end to end</h1>
+<p><strong>FP | Abdelhakim Boukeffoussa | …</strong> · GoHighLevel · all four published · tested Oct 5, 2026</p>
+<table>
+<thead>
+<tr>
+<th>Workflow</th>
+<th>Trigger</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Opt-in Workflow</strong></td>
+<td>Form submitted, filtered to <em>FP | Abdelhakim Boukeffoussa | Qualifying Form</em> only</td>
+<td>Sends the plan (Delivery Email) → creates the opportunity in <strong>Opted In</strong> → notifies the owner (one named user, followers off) → scores the lead → tag + stage <strong>Qualified</strong> or <strong>Unqualified</strong></td>
+</tr>
+<tr>
+<td><strong>Qualified Follow-up</strong></td>
+<td>Tag added: <code>fp ab qualified</code></td>
+<td>Wait 1 day → Q1 · wait 2 days → Q2 · wait 3 days → Q3</td>
+</tr>
+<tr>
+<td><strong>Unqualified Nurture</strong></td>
+<td>Tag added: <code>fp ab unqualified</code></td>
+<td>Wait 1 day → N1 · wait 2 days → N2 · wait 3 days → N3</td>
+</tr>
+<tr>
+<td><strong>Booking Workflow</strong></td>
+<td>Customer booked appointment, filtered to <em>FP | Abdelhakim Boukeffoussa | Matching Call</em> only</td>
+<td>Booking Confirmation → opportunity to <strong>Call Booked</strong> → removes the contact from the follow-up and the nurture → waits until 24 h before the call → Booking Reminder</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The scoring rule (If/else "FP AB | Qualified?").</strong> Qualified = monthly revenue is not "Under $25K" and not "$25K–$50K" <strong>and</strong> admin hours are not "Under 5" and not "5–10". Everything else goes to the Unqualified branch. The same rule sends the form to the booking page or to the thank-you page, so the page a lead sees always matches the emails they get.</p>
+<p><strong>Decisions and why.</strong>
+- <strong>Every trigger is filtered</strong> to this project's form, tags and calendar. The account is shared by every bootcamp student, so an unfiltered trigger would email other students' leads.
+- <strong>The follow-up stops the moment a call is booked.</strong> Nobody gets "book a call" emails after booking.
+- <strong>3 qualified + 3 unqualified emails.</strong> The Day 10 slides and the guidelines doc disagree (3 + 1 vs 2 + 3); 3 + 3 satisfies both.
+- <strong>Re-entry is on for the Opt-in Workflow.</strong> Someone who submits again gets the plan again. The follow-ups are tag-triggered, so they don't restart.
+- <strong>Reminder 24 h before, skipped if the call is booked for the next few hours.</strong> A same-day booking already got the confirmation; a second email would be noise.
+- <strong>Plain emails, one link each, from "The Pareto Talent team".</strong> They read like a person wrote them, and every link goes to one place: the plan or the booking page.</p>
+<h2 id="how-it-was-tested">How it was tested</h2>
+<p>Two fresh contacts through the live form on Oct 5: one qualified ($100K–$250K, 20+ hours) and one unqualified (under $25K, 5–10 hours). The day-long waits were set to minutes for the test, then put back to 1, 2 and 3 days. The qualified contact then booked a Matching Call through the booking page.</p>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Qualified lead redirected to the booking page</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Unqualified lead redirected to the thank-you page</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Delivery Email sent to both</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Tags, stages and owner notification</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Q1 → Q2 → Q3 sent in order</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>N1 → N2 → N3 sent in order</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Booking: confirmation with time, video link, plan link and reschedule link</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Booking: stage moved to Call Booked, sequences stopped</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Booking: reminder</td>
+<td>⏳ fires Oct 7, 11:00 (24 h before the test call on Oct 8)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Two findings a real launch would fix first.</strong>
+1. <strong>The emails land in Gmail's Spam folder.</strong> They go out from the shared bootcamp sender with no custom domain. For Pareto's launch: send from a paretotalent.com subdomain with SPF, DKIM and DMARC set up and a short warm-up before any ad spend.
+2. <strong>Other students' workflows also fired on the test contacts</strong> (three extra emails from unfiltered triggers in the shared account). This project's workflows don't do that in the other direction: every trigger above is filtered.</p>
+<hr />
+<h2 id="workflow-1-opt-in-full-view">Workflow 1 · Opt-in (full view)</h2>
+<p><img src="FP_AbdelhakimBoukeffoussa_Workflow1_OptIn.jpg" alt="Opt-in Workflow, full canvas"></p>
+<h3 id="opt-in-closer">Opt-in, closer</h3>
+<p><img src="FP_AbdelhakimBoukeffoussa_Workflow1_OptIn_Detail.jpg" alt="Opt-in Workflow, actions and branches"></p>
+<h3 id="the-qualified-rule">The qualified rule</h3>
+<p><img src="FP_AbdelhakimBoukeffoussa_Workflow1_QualifiedRule.jpg" alt="If/else conditions for the qualified branch"></p>
+<h2 id="workflow-2-qualified-follow-up">Workflow 2 · Qualified Follow-up</h2>
+<p><img src="FP_AbdelhakimBoukeffoussa_Workflow2_QualifiedFollowUp.jpg" alt="Qualified Follow-up canvas"></p>
+<h2 id="workflow-3-unqualified-nurture">Workflow 3 · Unqualified Nurture</h2>
+<p><img src="FP_AbdelhakimBoukeffoussa_Workflow3_UnqualifiedNurture.jpg" alt="Unqualified Nurture canvas"></p>
+<h2 id="workflow-4-booking">Workflow 4 · Booking</h2>
+<p><img src="FP_AbdelhakimBoukeffoussa_Workflow4_Booking.jpg" alt="Booking Workflow canvas"></p>
+<hr />
+<h2 id="test-evidence">Test evidence</h2>
+<h3 id="opt-in-log-both-test-leads">Opt-in log (both test leads)</h3>
+<p><img src="FP_AbdelhakimBoukeffoussa_Test1_OptInLog.jpg" alt="Opt-in execution log"></p>
+<h3 id="qualified-follow-up-log-q1-q2-q3-sent">Qualified Follow-up log (Q1, Q2, Q3 sent)</h3>
+<p><img src="FP_AbdelhakimBoukeffoussa_Test2_QualifiedLog.jpg" alt="Qualified Follow-up execution log"></p>
+<h3 id="unqualified-nurture-log-n1-n2-sent-n3-next">Unqualified Nurture log (N1, N2 sent, N3 next)</h3>
+<p><img src="FP_AbdelhakimBoukeffoussa_Test3_NurtureLog.jpg" alt="Unqualified Nurture execution log"></p>
+<h3 id="booking-workflow-log">Booking Workflow log</h3>
+<p><img src="FP_AbdelhakimBoukeffoussa_Test4_BookingLog.jpg" alt="Booking Workflow execution log"></p>
+<h3 id="what-the-lead-sees-after-booking">What the lead sees after booking</h3>
+<p><img src="FP_AbdelhakimBoukeffoussa_Test5_BookingConfirmed.jpg" alt="Booking confirmed page with video link"></p>
+<h3 id="the-inbox-all-9-emails-received">The inbox: all 9 emails received</h3>
+<p><img src="FP_AbdelhakimBoukeffoussa_Test6_InboxAllEmails.jpg" alt="Gmail search showing the delivery, Q1–Q3, N1–N3 and booking confirmation emails"></p></main>
+<footer>Built by Abdelhakim Boukeffoussa for the Pareto Talent Bootcamp final project.</footer>
+</body></html>
