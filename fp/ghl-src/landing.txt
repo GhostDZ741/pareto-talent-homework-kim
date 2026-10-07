@@ -82,6 +82,7 @@
 @keyframes ptpprog{to{transform:scaleX(1)}}
 
 html,body{margin:0;background:#050a0e}
+.c-section.fullSection{display:none!important}
 
 /* ---------- hero ---------- */
 #ptp .herozone{position:relative;overflow:hidden}

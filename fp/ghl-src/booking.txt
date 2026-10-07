@@ -82,6 +82,7 @@
 @keyframes ptpprog{to{transform:scaleX(1)}}
 
 html,body{margin:0;background:#050a0e}
+.c-section.fullSection{display:none!important}
 
 #ptp .herozone{position:relative;overflow:hidden}
 #ptp section.bk{display:grid;grid-template-columns:.95fr 1.05fr;gap:52px;align-items:start;padding-top:56px;padding-bottom:90px;border-top:0}
