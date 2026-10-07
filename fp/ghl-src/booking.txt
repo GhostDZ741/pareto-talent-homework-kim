@@ -144,8 +144,8 @@ html,body{margin:0;background:#050a0e}
      <li><i>3</i><div><b>You interview and choose</b><span>No contract until you find your person.</span></div></li>
     </ol>
     <div class="video glass rv">
-     <div class="frame"><iframe src="https://www.youtube-nocookie.com/embed/2PkgO_1CxjM?rel=0&amp;modestbranding=1" title="Full Client Testimonial Deep Dive, Pareto Talent" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
-     <div class="cap"><span><b>Hear it from a founder</b> who went through the match</span><span>Pareto Talent client</span></div>
+     <div class="frame"><iframe src="https://www.youtube-nocookie.com/embed/2PkgO_1CxjM?rel=0&amp;modestbranding=1" title="Client Testimonial: JV from Advance Soccer, Pareto Talent" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+     <div class="cap"><span><b>Hear it from a Pareto client:</b> JV, Advance Soccer</span><span>From Pareto Talent</span></div>
     </div>
     <div class="f40 rv">
      <div class="dial" aria-hidden="true"><svg viewBox="0 0 92 92"><defs><linearGradient id="g40" x1="0" x2="1"><stop offset="0" stop-color="#10b981"/><stop offset="1" stop-color="#6ee7b7"/></linearGradient></defs><circle class="bgc" cx="46" cy="46" r="40"/><circle class="fg" cx="46" cy="46" r="40"/></svg><b>40h</b></div>
