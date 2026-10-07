@@ -87,7 +87,7 @@ html,body{margin:0;background:#050a0e}
 #ptp .herozone{position:relative;overflow:hidden}
 #ptp section.bk{display:grid;grid-template-columns:.95fr 1.05fr;gap:52px;align-items:start;padding-top:56px;padding-bottom:90px;border-top:0}
 #ptp .bk h1{font-size:clamp(34px,3.6vw,50px);line-height:1.06;margin-top:20px}
-#ptp .bk h1 em{font-style:normal;background:linear-gradient(92deg,#34d399,#6ee7b7 60%,#a7f3d0);-webkit-background-clip:text;background-clip:text;color:transparent}
+#ptp .bk h1 em{font-style:normal;color:#4ee0a8;text-shadow:0 0 40px #10b98155}
 #ptp .bk .sub{color:#b6c2d1;font-size:18.5px;margin:18px 0 30px;max-width:42ch}
 #ptp .flow{position:relative;margin:0;padding:0;list-style:none}
 #ptp .flow::before{content:"";position:absolute;left:17px;top:18px;bottom:18px;width:2px;background:linear-gradient(var(--green),#10b98122);transform-origin:top;transform:scaleY(0);transition:transform 1.4s var(--ease) .3s}

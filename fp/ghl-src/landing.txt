@@ -88,7 +88,7 @@ html,body{margin:0;background:#050a0e}
 #ptp .herozone{position:relative;overflow:hidden}
 #ptp section.hero{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center;padding-top:72px;padding-bottom:96px;border-top:0;min-height:calc(100dvh - 68px)}
 #ptp .hero h1{font-size:clamp(36px,3.6vw,52px);line-height:1.05;margin-top:18px}
-#ptp .hero h1 em{font-style:normal;background:linear-gradient(92deg,#34d399,#6ee7b7 60%,#a7f3d0);-webkit-background-clip:text;background-clip:text;color:transparent}
+#ptp .hero h1 em{font-style:normal;color:#4ee0a8;text-shadow:0 0 40px #10b98155}
 #ptp .hero .sub{font-size:19px;color:#b6c2d1;margin:22px 0 32px;max-width:42ch}
 #ptp .hero .cta{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
 #ptp .hero .cta small{color:var(--t2);font-size:14.5px}
