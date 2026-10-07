@@ -1,9 +1,9 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=DM+Sans:wght@400;600&display=swap');
 #ptp{--bg:#050a0e;--surface:#0b1119;--elev:#0f1923;--card:#ffffff06;--card2:#ffffff0b;--line:#ffffff0f;--line2:#ffffff1a;--line3:#ffffff29;--green:#10b981;--green-l:#34d399;--green-b:#6ee7b7;--green-m:#10b98114;--t1:#f0f4f8;--t2:#94a3b8;--t3:#64748b;--ease:cubic-bezier(.16,1,.3,1);
- background:var(--bg);color:var(--t1);font:400 17px/1.6 'DM Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;position:relative;overflow:hidden}
+ background:var(--bg);color:var(--t1);font:400 17px/1.6 'DM Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;position:relative;overflow-x:clip}
 #ptp *{box-sizing:border-box}
-#ptp::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(900px 520px at 85% -8%,#10b98117,transparent 60%),radial-gradient(700px 420px at -10% 40%,#6366f10d,transparent 60%)}
+#ptp::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(900px 520px at 85% -8%,#10b98114,transparent 60%),radial-gradient(700px 420px at -10% 40%,#14b8a60a,transparent 60%)}
 #ptp .wrap{max-width:1140px;margin:0 auto;padding:0 24px;position:relative}
 #ptp h1,#ptp h2,#ptp h3{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:800;letter-spacing:-.02em;margin:0;color:var(--t1)}
 #ptp p{margin:0}
@@ -22,43 +22,178 @@
 #ptp .foot{border-top:1px solid var(--line);padding:26px 0 40px;color:var(--t3);font-size:13.5px}
 @media (max-width:860px){#ptp section.wrap{padding-top:52px;padding-bottom:52px}}
 @media (max-width:600px){#ptp .wrap{padding:0 16px}#ptp .top small{display:none}}
-@media (prefers-reduced-motion:reduce){#ptp *{animation:none!important;transition:none!important}}
+
+
+/* ===== Motion system ===== */
+@property --ang{syntax:'<angle>';initial-value:0deg;inherits:false}
+#ptp{--glow:#10b9814d}
+#ptp .top{position:sticky;top:0;z-index:30;max-width:none;margin:0;padding:0 max(24px,calc((100% - 1092px)/2));background:transparent;transition:background .4s,border-color .4s,backdrop-filter .4s}
+#ptp .top.scrolled{background:#050a0ecc;backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);border-bottom-color:var(--line2)}
+#ptp .top .btn{padding:10px 18px;font-size:15px}
+#ptp .brand{display:flex;align-items:center;gap:10px}
+#ptp .brand i{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px #10b98122,0 0 18px var(--green)}
+#ptp .progress{display:none;position:fixed;left:0;top:0;height:2px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--green),var(--green-b));z-index:40;pointer-events:none}
+/* light: aurora + grid */
+#ptp .aurora{position:absolute;inset:-20% -10% auto;height:900px;pointer-events:none;filter:blur(70px);opacity:.75;z-index:0}
+#ptp .aurora span{position:absolute;border-radius:50%;mix-blend-mode:screen}
+#ptp .aurora span:nth-child(1){width:620px;height:420px;left:48%;top:4%;background:radial-gradient(closest-side,#10b98155,transparent);animation:au1 18s ease-in-out infinite alternate}
+#ptp .aurora span:nth-child(2){width:520px;height:380px;left:66%;top:22%;background:radial-gradient(closest-side,#14b8a640,transparent);animation:au2 22s ease-in-out infinite alternate}
+#ptp .aurora span:nth-child(3){width:480px;height:340px;left:8%;top:30%;background:radial-gradient(closest-side,#34d39924,transparent);animation:au3 26s ease-in-out infinite alternate}
+@keyframes au1{to{transform:translate(-120px,80px) scale(1.15)}}
+@keyframes au2{to{transform:translate(90px,-60px) scale(.9)}}
+@keyframes au3{to{transform:translate(140px,40px) scale(1.2)}}
+#ptp .gridbg{position:absolute;inset:0;height:980px;pointer-events:none;z-index:0;background-image:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px);background-size:64px 64px;-webkit-mask-image:radial-gradient(ellipse 70% 60% at 60% 30%,#000 30%,transparent 75%);mask-image:radial-gradient(ellipse 70% 60% at 60% 30%,#000 30%,transparent 75%)}
+#ptp .beam{position:absolute;top:0;left:62%;width:1px;height:720px;background:linear-gradient(#10b98100,#34d39980,#10b98100);pointer-events:none;z-index:0;transform:rotate(18deg);transform-origin:top;opacity:.5}
+#ptp .beam.b2{left:78%;transform:rotate(26deg);opacity:.25}
+#ptp .cursorglow{position:absolute;left:0;top:0;width:520px;height:520px;margin:-260px 0 0 -260px;border-radius:50%;pointer-events:none;background:radial-gradient(closest-side,#10b98122,transparent);transform:translate(var(--cx,60vw),var(--cy,300px));transition:transform .5s var(--ease);z-index:0}
+#ptp .z{position:relative;z-index:1}
+/* reveal */
+#ptp.fx .rv{opacity:0;transform:translateY(26px);filter:blur(6px);transition:opacity .9s var(--ease),transform .9s var(--ease),filter .9s var(--ease);transition-delay:calc(var(--i,0)*90ms)}
+#ptp.fx .rv.in{opacity:1;transform:none;filter:none}
+#ptp.fx .words .w{display:inline-block;opacity:0;transform:translateY(.5em);filter:blur(8px);transition:opacity .8s var(--ease),transform .8s var(--ease),filter .8s var(--ease);transition-delay:calc(var(--i)*55ms + 120ms)}
+#ptp.fx .words.in .w{opacity:1;transform:none;filter:none}
+/* spotlight cards */
+#ptp .spot{position:relative;isolation:isolate}
+#ptp .spot::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .4s;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),#10b9811f,transparent 45%);z-index:-1}
+#ptp .spot::before{content:"";position:absolute;inset:-1px;border-radius:inherit;pointer-events:none;padding:1px;opacity:0;transition:opacity .4s;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),#34d399aa,transparent 60%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+#ptp .spot:hover::after,#ptp .spot:hover::before{opacity:1}
+/* glowing rotating border */
+#ptp .ring{position:relative;isolation:isolate}
+#ptp .ring::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:conic-gradient(from var(--ang),transparent 0 60%,#34d399 75%,#6ee7b7 80%,transparent 92%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:spin 6s linear infinite;pointer-events:none}
+#ptp .ring::after{content:"";position:absolute;inset:10%;border-radius:inherit;background:radial-gradient(closest-side,#10b98126,transparent);filter:blur(40px);z-index:-1;pointer-events:none}
+@keyframes spin{to{--ang:360deg}}
+/* buttons */
+#ptp .btn{position:relative;overflow:hidden;box-shadow:0 0 0 1px #34d39955,0 10px 30px -10px #10b981aa}
+#ptp .btn::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,#ffffff70 50%,transparent 70%);transform:translateX(-120%);transition:transform .8s var(--ease)}
+#ptp .btn:hover::after{transform:translateX(120%)}
+#ptp .btn:hover{transform:translateY(-1px);box-shadow:0 0 0 1px #6ee7b7,0 16px 40px -10px #10b981cc}
+#ptp .btn .ar{transition:transform .3s var(--ease)}
+#ptp .btn:hover .ar{transform:translateX(4px)}
+#ptp .btn.pulse{animation:pulse 2.8s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 1px #34d39955,0 10px 30px -10px #10b981aa,0 0 0 0 #10b98155}50%{box-shadow:0 0 0 1px #34d39955,0 10px 30px -10px #10b981aa,0 0 0 12px #10b98100}}
+#ptp .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--green-b)}
+#ptp .ok{display:inline-flex;align-items:center;gap:9px;background:var(--green-m);border:1px solid #10b98140;color:var(--green-b);border-radius:999px;padding:6px 15px 6px 10px;font-size:14px;font-weight:600}
+#ptp .ok .live{width:8px;height:8px;border-radius:50%;background:var(--green-l);box-shadow:0 0 0 0 #34d39999;animation:live 2s infinite}
+@keyframes live{70%{box-shadow:0 0 0 9px #34d39900}100%{box-shadow:0 0 0 0 #34d39900}}
+#ptp .glass{background:linear-gradient(180deg,#ffffff0a,#ffffff04);border:1px solid var(--line2);border-radius:20px;box-shadow:inset 0 1px 0 #ffffff12,0 30px 80px -30px #000000cc;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+#ptp .foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+@media (prefers-reduced-motion:reduce){#ptp *,#ptp *::before,#ptp *::after{animation:none!important;transition:none!important}#ptp .cursorglow{display:none}}
+@supports (animation-timeline:scroll()){#ptp .progress{display:block;animation:ptpprog linear both;animation-timeline:scroll(root)}}
+@keyframes ptpprog{to{transform:scaleX(1)}}
 
 html,body{margin:0;background:#050a0e}
 
-#ptp section.bk{display:grid;grid-template-columns:.8fr 1.2fr;gap:40px;align-items:start;padding-top:60px;padding-bottom:60px;border-top:0}
-#ptp .bk h1{font-size:clamp(32px,3.8vw,46px);line-height:1.08}
-#ptp .bk .sub{color:var(--t2);font-size:18px;margin:16px 0 24px;max-width:40ch}
-#ptp .ok{display:inline-flex;align-items:center;gap:8px;background:var(--green-m);border:1px solid #10b98140;color:var(--green-b);border-radius:999px;padding:5px 14px;font-size:14px;font-weight:600;margin-bottom:18px}
-#ptp .call ul{margin:0;padding:0;list-style:none}
-#ptp .call li{padding:12px 0 12px 28px;border-top:1px solid var(--line);position:relative;color:var(--t2);font-size:15.5px}
-#ptp .call li b{color:var(--t1);font-weight:600}
-#ptp .call li::before{content:"";position:absolute;left:3px;top:20px;width:12px;height:7px;border-left:2px solid var(--green-l);border-bottom:2px solid var(--green-l);transform:rotate(-45deg)}
-#ptp .f40{margin-top:22px;padding:20px 22px;background:linear-gradient(135deg,#10b9811c,#10b98105 70%);border:1px solid #10b98140;border-radius:18px}
-#ptp .f40 b{font-family:'Plus Jakarta Sans';font-weight:800;font-size:18px;display:block;margin-bottom:4px}
+#ptp .herozone{position:relative;overflow:hidden}
+#ptp section.bk{display:grid;grid-template-columns:.95fr 1.05fr;gap:52px;align-items:start;padding-top:56px;padding-bottom:90px;border-top:0}
+#ptp .bk h1{font-size:clamp(34px,3.6vw,50px);line-height:1.06;margin-top:20px}
+#ptp .bk h1 em{font-style:normal;background:linear-gradient(92deg,#34d399,#6ee7b7 60%,#a7f3d0);-webkit-background-clip:text;background-clip:text;color:transparent}
+#ptp .bk .sub{color:#b6c2d1;font-size:18.5px;margin:18px 0 30px;max-width:42ch}
+#ptp .flow{position:relative;margin:0;padding:0;list-style:none}
+#ptp .flow::before{content:"";position:absolute;left:17px;top:18px;bottom:18px;width:2px;background:linear-gradient(var(--green),#10b98122);transform-origin:top;transform:scaleY(0);transition:transform 1.4s var(--ease) .3s}
+#ptp .flow.in::before{transform:scaleY(1)}
+#ptp .flow li{display:grid;grid-template-columns:36px 1fr;gap:16px;padding:10px 0;align-items:start}
+#ptp .flow li i{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;font:800 14px 'Plus Jakarta Sans';font-style:normal;background:#0b1119;border:1px solid #10b98166;color:var(--green-b);position:relative;z-index:1}
+#ptp .flow b{display:block;font-weight:600;color:var(--t1);font-size:17px}
+#ptp .flow span{color:var(--t2);font-size:15.5px}
+#ptp .video{margin-top:30px;padding:10px;border-radius:22px}
+#ptp .video .frame{position:relative;border-radius:15px;overflow:hidden;aspect-ratio:16/9;background:#000}
+#ptp .video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+#ptp .video .cap{display:flex;justify-content:space-between;gap:12px;padding:12px 8px 4px;font-size:14px;color:var(--t2)}
+#ptp .video .cap b{color:var(--t1);font-weight:600}
+#ptp .f40{margin-top:22px;padding:22px;border-radius:22px;display:grid;grid-template-columns:92px 1fr;gap:20px;align-items:center;background:linear-gradient(135deg,#10b9811f,#10b98105 70%);border:1px solid #10b98147}
+#ptp .dial{position:relative;width:92px;height:92px}
+#ptp .dial svg{width:92px;height:92px;transform:rotate(-90deg)}
+#ptp .dial circle{fill:none;stroke-width:7}
+#ptp .dial .bgc{stroke:#ffffff12}
+#ptp .dial .fg{stroke:url(#g40);stroke-linecap:round;stroke-dasharray:252;stroke-dashoffset:252;transition:stroke-dashoffset 2s var(--ease) .2s}
+#ptp .f40.in .dial .fg{stroke-dashoffset:0}
+#ptp .dial b{position:absolute;inset:0;display:grid;place-items:center;font:800 24px 'Plus Jakarta Sans';letter-spacing:-.02em}
+#ptp .f40 h3{font-size:18px;margin-bottom:4px}
 #ptp .f40 p{color:#cbd5e1;font-size:15px}
-#ptp .cal{padding:0;min-height:640px;overflow:hidden}
-#ptp .alt{margin-top:18px;font-size:15px}
-@media (max-width:900px){#ptp .bk{grid-template-columns:1fr;padding:40px 0;gap:28px}}
+#ptp .calwrap{position:sticky;top:90px}
+#ptp .cal{padding:8px;min-height:660px;overflow:hidden;border-radius:24px;background:#0b1119}
+#ptp .calhd{display:flex;justify-content:space-between;align-items:center;padding:12px 14px 14px;font-size:14px;color:var(--t2)}
+#ptp .calhd b{font:800 16px 'Plus Jakarta Sans';color:var(--t1)}
+#ptp .alt{margin-top:16px;font-size:15px;text-align:center}
+#ptp .alt a{color:var(--green-b)}
+#ptp .stats3{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);padding:46px 0 56px}
+#ptp .stats3 div{padding:0 24px;border-left:1px solid var(--line)}
+#ptp .stats3 div:first-child{border-left:0;padding-left:0}
+#ptp .stats3 b{display:block;font:800 clamp(34px,3.8vw,48px)/1 'Plus Jakarta Sans';letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+#ptp .stats3 span{color:var(--t2);font-size:15px;display:block;margin-top:8px}
+@media (max-width:980px){#ptp section.bk{grid-template-columns:1fr;padding-top:36px;padding-bottom:56px;gap:36px}#ptp .calwrap{position:static}}
+@media (max-width:600px){#ptp .stats3{grid-template-columns:1fr;gap:24px}#ptp .stats3 div{border-left:0;padding-left:0}#ptp .f40{grid-template-columns:1fr}}
 </style>
 <div id="ptp">
- <header class="wrap top"><div class="brand">Pareto <span>Talent</span></div><small class="muted">Matching Call</small></header>
- <section class="wrap bk">
-  <div>
-   <span class="ok">You qualify for a Matching Call</span>
-   <h1>Your plan is a Right Hand's job. Let's find yours.</h1>
-   <p class="sub">Pick a time for a 20-minute call. Your 40-Hour Handoff Plan link is already in your inbox.</p>
-   <div class="call">
-    <ul>
-     <li><b>We read your plan with you</b> and turn it into a Right Hand profile.</li>
-     <li><b>3 hand-picked, pre-trained profiles</b> within 24 hours of the call.</li>
-     <li><b>You interview and choose.</b> No contract until you find your person.</li>
-    </ul>
+ <div class="progress" aria-hidden="true"></div>
+ <header class="top"><div class="brand"><i aria-hidden="true"></i>Pareto <span>Talent</span></div><small class="muted">Matching Call</small></header>
+ <div class="sentinel" aria-hidden="true" style="position:absolute;top:0;height:20px;width:1px"></div>
+ <div class="herozone">
+  <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="gridbg" aria-hidden="true"></div>
+  <div class="cursorglow" aria-hidden="true"></div>
+  <section class="wrap bk z">
+   <div>
+    <span class="ok rv"><span class="live" aria-hidden="true"></span>You qualify for a Matching Call</span>
+    <h1 class="words">Your plan is a Right Hand's job. <em>Let's find yours.</em></h1>
+    <p class="sub rv" style="--i:3">Pick a time for a 20-minute call. Your 40-Hour Handoff Plan link is already in your inbox.</p>
+    <ol class="flow rv" style="--i:4">
+     <li><i>1</i><div><b>We read your plan with you</b><span>and turn it into a Right Hand profile.</span></div></li>
+     <li><i>2</i><div><b>3 hand-picked, pre-trained profiles</b><span>within 24 hours of the call.</span></div></li>
+     <li><i>3</i><div><b>You interview and choose</b><span>No contract until you find your person.</span></div></li>
+    </ol>
+    <div class="video glass rv">
+     <div class="frame"><iframe src="https://www.youtube-nocookie.com/embed/2PkgO_1CxjM?rel=0&amp;modestbranding=1" title="Full Client Testimonial Deep Dive, Pareto Talent" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+     <div class="cap"><span><b>Hear it from a founder</b> who went through the match</span><span>Pareto Talent client</span></div>
+    </div>
+    <div class="f40 rv">
+     <div class="dial" aria-hidden="true"><svg viewBox="0 0 92 92"><defs><linearGradient id="g40" x1="0" x2="1"><stop offset="0" stop-color="#10b981"/><stop offset="1" stop-color="#6ee7b7"/></linearGradient></defs><circle class="bgc" cx="46" cy="46" r="40"/><circle class="fg" cx="46" cy="46" r="40"/></svg><b>40h</b></div>
+     <div><h3>Freedom 40</h3><p>Attend the Delegation Mastermind, follow the onboarding plan and meet your Right Hand 10 minutes a day. If you don't get at least 40 hours back in your first 30 days, your next month is free.</p></div>
+    </div>
    </div>
-   <div class="f40"><b>Freedom 40</b><p>Attend the Delegation Mastermind, follow the onboarding plan and meet your Right Hand 10 minutes a day. If you don't get at least 40 hours back in your first 30 days, your next month is free.</p></div>
-   <p class="alt muted">Not ready yet? <a href="https://ghostdz741.github.io/pareto-talent-homework-kim/handoff-plan/">Open your plan first</a> and book when you are.</p>
-  </div>
-  <div class="cal glass"><iframe src="https://api.leadconnectorhq.com/widget/booking/ZA6cONaXvHQyinXRx7T7" style="width:100%;border:none;overflow:hidden;min-height:640px" scrolling="no" id="ptp-cal"></iframe><script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript"></script></div>
- </section>
- <div class="wrap foot">Concept built by Abdelhakim Boukeffoussa for the Pareto Talent Bootcamp final project.</div>
+   <div class="calwrap rv" style="--i:2">
+    <div class="cal ring">
+     <div class="calhd"><b>Book your Matching Call</b><span>20 min · Google Meet</span></div>
+     <iframe src="https://api.leadconnectorhq.com/widget/booking/ZA6cONaXvHQyinXRx7T7" style="width:100%;border:none;overflow:hidden;min-height:640px" scrolling="no" id="ptp-cal"></iframe><script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript"></script>
+    </div>
+    <p class="alt muted">Not ready yet? <a href="https://ghostdz741.github.io/pareto-talent-homework-kim/handoff-plan/">Open your plan first</a> and book when you are.</p>
+   </div>
+  </section>
+ </div>
+ <div class="wrap stats3">
+  <div class="rv"><b data-count="1000" data-suf="+">0</b><span>applicants for every placement</span></div>
+  <div class="rv" style="--i:1"><b data-count="24" data-suf=" h">0</b><span>to your first three profiles</span></div>
+  <div class="rv" style="--i:2"><b data-count="93" data-suf="%">0</b><span>still with Pareto after 12 months</span></div>
+ </div>
+ <div class="wrap foot"><span>Pareto <span style="color:var(--green-l)">Talent</span></span><span>Concept built by Abdelhakim Boukeffoussa for the Pareto Talent Bootcamp final project.</span></div>
 </div>
+<script>
+(function(){
+var R=document.getElementById('ptp');if(!R)return;
+var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+var io='IntersectionObserver' in window;
+if(!reduce&&io)R.classList.add('fx');
+// split headline words
+[].forEach.call(R.querySelectorAll('.words'),function(h){var i=0;(function walk(n){[].slice.call(n.childNodes).forEach(function(c){if(c.nodeType===3){var f=document.createDocumentFragment();c.textContent.split(/(\s+)/).forEach(function(t){if(!t)return;if(/^\s+$/.test(t)){f.appendChild(document.createTextNode(t));return}var s=document.createElement('span');s.className='w';s.style.setProperty('--i',i++);s.textContent=t;f.appendChild(s)});n.replaceChild(f,c)}else if(c.nodeType===1&&c.className!=='w')walk(c)})})(h)});
+// count-up
+function count(el){var to=parseFloat(el.getAttribute('data-count')),dec=(el.getAttribute('data-count').split('.')[1]||'').length,pre=el.getAttribute('data-pre')||'',suf=el.getAttribute('data-suf')||'',t0=null,d=1600;
+ if(reduce){el.textContent=pre+to.toLocaleString('en-US',{minimumFractionDigits:dec,maximumFractionDigits:dec})+suf;return}
+ function step(t){if(!t0)t0=t;var p=Math.min(1,(t-t0)/d),e=1-Math.pow(1-p,4);el.textContent=pre+(to*e).toLocaleString('en-US',{minimumFractionDigits:dec,maximumFractionDigits:dec})+suf;if(p<1)requestAnimationFrame(step)}requestAnimationFrame(step)}
+var els=R.querySelectorAll('.rv,.words,[data-count]');
+if(io){var ob=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');if(e.target.hasAttribute('data-count'))count(e.target);ob.unobserve(e.target)}})},{threshold:.18,rootMargin:'0px 0px -6% 0px'});[].forEach.call(els,function(e){ob.observe(e)})}
+else{[].forEach.call(els,function(e){e.classList.add('in');if(e.hasAttribute('data-count'))count(e)})}
+// sticky nav state
+var top=R.querySelector('.top'),sen=R.querySelector('.sentinel');
+if(top&&sen&&io){new IntersectionObserver(function(es){top.classList.toggle('scrolled',!es[0].isIntersecting)}).observe(sen)}
+// spotlight + cursor glow (pointer only)
+if(!reduce&&matchMedia('(pointer:fine)').matches){
+ R.addEventListener('pointermove',function(e){var c=e.target.closest&&e.target.closest('.spot');if(c){var r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px')}});
+ var hero=R.querySelector('.herozone'),g=R.querySelector('.cursorglow');
+ if(hero&&g)hero.addEventListener('pointermove',function(e){var r=hero.getBoundingClientRect();g.style.setProperty('--cx',(e.clientX-r.left)+'px');g.style.setProperty('--cy',(e.clientY-r.top)+'px')});
+}
+window.PTP={reduce:reduce,count:count};
+})();
+
+(function(){var R=document.getElementById('ptp');if(!R||!('IntersectionObserver' in window)){[].forEach.call(document.querySelectorAll('#ptp .flow,#ptp .f40'),function(e){e.classList.add('in')});return}
+[].forEach.call(R.querySelectorAll('.flow,.f40'),function(e){new IntersectionObserver(function(es,o){if(es[0].isIntersecting){e.classList.add('in');o.disconnect()}},{threshold:.3}).observe(e)})})();
+</script>
