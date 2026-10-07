@@ -80,6 +80,18 @@
 @media (prefers-reduced-motion:reduce){#ptp *,#ptp *::before,#ptp *::after{animation:none!important;transition:none!important}#ptp .cursorglow{display:none}}
 @supports (animation-timeline:scroll()){#ptp .progress{display:block;animation:ptpprog linear both;animation-timeline:scroll(root)}}
 @keyframes ptpprog{to{transform:scaleX(1)}}
+/* ===== Scroll guide: a rail with a comet that travels with you ===== */
+#ptp .guide{position:absolute;left:calc(50% + 590px);width:2px;pointer-events:none;z-index:2;display:none}
+#ptp .guide .rail{position:absolute;inset:0;background:linear-gradient(#ffffff00,#ffffff14 6%,#ffffff14 94%,#ffffff00)}
+#ptp .guide .trail{position:absolute;left:0;top:0;width:2px;height:var(--gp,0px);background:linear-gradient(#10b98100,#10b981 30%,#6ee7b7);box-shadow:0 0 12px #10b981aa}
+#ptp .guide .comet{position:absolute;left:1px;top:0;width:52px;height:52px;margin:-26px 0 0 -26px;border-radius:50%;transform:translateY(var(--gp,0px));background:radial-gradient(circle,#ecfdf5 0 3px,#6ee7b7 4px,#10b98166 9px,#10b98100 26px);filter:drop-shadow(0 0 10px #34d399)}
+#ptp .guide .comet::after{content:"";position:absolute;left:50%;bottom:50%;width:2px;height:90px;margin-left:-1px;background:linear-gradient(#10b98100,#a7f3d0);opacity:.9}
+#ptp .guide .node{position:absolute;left:-6px;width:14px;height:14px;margin-top:-7px;border-radius:50%;border:1.5px solid #ffffff2e;background:#050a0e;transition:all .5s var(--ease)}
+#ptp .guide .node.lit{border-color:var(--green-l);background:#0b1119;box-shadow:0 0 0 4px #10b98122,0 0 16px #10b981aa}
+#ptp .guide .node.lit::after{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--green-b)}
+@media (min-width:1100px){#ptp .guide{display:block}}
+@media (max-width:1259px){#ptp .guide{left:auto;right:18px}}
+@media (prefers-reduced-motion:reduce){#ptp .guide .comet{display:none}}
 
 html,body{margin:0;background:#050a0e}
 .c-section.fullSection{display:none!important}
@@ -124,9 +136,32 @@ html,body{margin:0;background:#050a0e}
 #ptp .stats3 span{color:var(--t2);font-size:15px;display:block;margin-top:8px}
 @media (max-width:980px){#ptp section.bk{grid-template-columns:1fr;padding-top:36px;padding-bottom:56px;gap:36px}#ptp .calwrap{position:static}}
 @media (max-width:600px){#ptp .stats3{grid-template-columns:1fr;gap:24px}#ptp .stats3 div{border-left:0;padding-left:0}#ptp .f40{grid-template-columns:1fr}}
+
+#ptp .seals3{margin-top:22px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+#ptp .seals3 div{padding:16px 14px;border-radius:18px;text-align:left}
+#ptp .seals3 .r{position:relative;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font:800 15px 'Plus Jakarta Sans';margin-bottom:12px}
+#ptp .seals3 .r::before{content:"";position:absolute;inset:0;border-radius:50%;background:conic-gradient(from var(--ang),#10b981,#6ee7b7,#10b98122,#10b981);animation:spin 6s linear infinite;-webkit-mask:radial-gradient(farthest-side,#0000 calc(100% - 2.5px),#000 calc(100% - 2px));mask:radial-gradient(farthest-side,#0000 calc(100% - 2.5px),#000 calc(100% - 2px))}
+#ptp .seals3 b{display:block;font:800 15px 'Plus Jakarta Sans'}
+#ptp .seals3 span{display:block;font-size:13px;color:var(--t2);margin-top:4px;line-height:1.35}
+#ptp section.price{padding-top:90px;padding-bottom:40px}
+#ptp .price h2{font-size:clamp(28px,3vw,42px);line-height:1.08}
+#ptp .price .lede{color:#b6c2d1;margin-top:14px}
+#ptp .plans{margin-top:34px;display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:14px}
+#ptp .plan{border-radius:22px;padding:26px 24px}
+#ptp .plan .nm{font:800 19px 'Plus Jakarta Sans'}
+#ptp .plan .pm{margin-top:16px;font:800 clamp(38px,3.6vw,50px)/1 'Plus Jakarta Sans';letter-spacing:-.04em}
+#ptp .plan .pm small{display:block;font-size:.3em;color:var(--t2);letter-spacing:0;margin-top:8px;font-weight:600}
+#ptp .plan dl{margin:18px 0 0;display:grid;gap:8px;font-size:14.5px}
+#ptp .plan dl div{display:flex;justify-content:space-between;gap:12px;padding-top:8px;border-top:1px solid var(--line2)}
+#ptp .plan dt{color:var(--t3)}#ptp .plan dd{margin:0}
+#ptp .plan.best{background:radial-gradient(500px circle at 100% 0%,#10b98138,transparent 60%),linear-gradient(160deg,#0f1f1a,#0b1119);border-color:#10b98166}
+#ptp .plan .tag{display:inline-block;padding:5px 11px;border-radius:999px;background:var(--green);color:#03140e;font-weight:700;font-size:12px;margin-bottom:10px}
+@media (max-width:980px){#ptp .plans{grid-template-columns:1fr}}
+@media (max-width:600px){#ptp .seals3{grid-template-columns:1fr}}
 </style>
 <div id="ptp">
  <div class="progress" aria-hidden="true"></div>
+ <div class="guide" aria-hidden="true"><i class="rail"></i><i class="trail"></i><i class="comet"></i></div>
  <header class="top"><div class="brand"><i aria-hidden="true"></i>Pareto <span>Talent</span></div><small class="muted">Matching Call</small></header>
  <div class="sentinel" aria-hidden="true" style="position:absolute;top:0;height:20px;width:1px"></div>
  <div class="herozone">
@@ -147,9 +182,10 @@ html,body{margin:0;background:#050a0e}
      <div class="frame"><iframe src="https://www.youtube-nocookie.com/embed/2PkgO_1CxjM?rel=0&amp;modestbranding=1" title="Client Testimonial: JV from Advance Soccer, Pareto Talent" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
      <div class="cap"><span><b>Hear it from a Pareto client:</b> JV, Advance Soccer</span><span>From Pareto Talent</span></div>
     </div>
-    <div class="f40 rv">
-     <div class="dial" aria-hidden="true"><svg viewBox="0 0 92 92"><defs><linearGradient id="g40" x1="0" x2="1"><stop offset="0" stop-color="#10b981"/><stop offset="1" stop-color="#6ee7b7"/></linearGradient></defs><circle class="bgc" cx="46" cy="46" r="40"/><circle class="fg" cx="46" cy="46" r="40"/></svg><b>40h</b></div>
-     <div><h3>Freedom 40</h3><p>Attend the Delegation Mastermind, follow the onboarding plan and meet your Right Hand 10 minutes a day. If you don't get at least 40 hours back in your first 30 days, your next month is free.</p></div>
+    <div class="seals3">
+     <div class="glass spot rv"><span class="r">40</span><b>Freedom 40</b><span>At least 40 hours back in your first 30 days, or your next month is free.</span></div>
+     <div class="glass spot rv" style="--i:1"><span class="r">0</span><b>Matching</b><span>No match you're excited about, no contract. You owe nothing.</span></div>
+     <div class="glass spot rv" style="--i:2"><span class="r">&#8734;</span><b>Lifetime Replacement</b><span>Not the right fit, any time, for any reason: replaced at no cost.</span></div>
     </div>
    </div>
    <div class="calwrap rv" style="--i:2">
@@ -161,12 +197,21 @@ html,body{margin:0;background:#050a0e}
    </div>
   </section>
  </div>
- <div class="wrap stats3">
+ <section class="wrap price" data-node data-guide-start>
+  <h2 class="words">Priced against your hour, not a salary.</h2>
+  <p class="lede rv">Every plan adds a one-time $3,000 placement fee, already counted in year one below. We go through it on the call.</p>
+  <div class="plans">
+   <div class="plan glass best rv"><span class="tag">Best value. Saves $7,200</span><p class="nm">Annual</p><p class="pm">$3,000<small>a month, effective</small></p><dl><div><dt>Billed</dt><dd>$36,000 a year</dd></div><div><dt>Year one, all-in</dt><dd>$39,000</dd></div></dl></div>
+   <div class="plan glass rv" style="--i:1"><p class="nm">Quarterly</p><p class="pm">$10,000<small>a quarter</small></p><dl><div><dt>Year one, all-in</dt><dd>$43,000</dd></div></dl></div>
+   <div class="plan glass rv" style="--i:2"><p class="nm">Monthly</p><p class="pm">$3,600<small>a month</small></p><dl><div><dt>Year one, all-in</dt><dd>$46,200</dd></div><div><dt>Contract</dt><dd>No long-term contract</dd></div></dl></div>
+  </div>
+ </section>
+ <div class="wrap stats3" data-node>
   <div class="rv"><b data-count="1000" data-suf="+">0</b><span>applicants for every placement</span></div>
   <div class="rv" style="--i:1"><b data-count="24" data-suf=" h">0</b><span>to your first three profiles</span></div>
   <div class="rv" style="--i:2"><b data-count="93" data-suf="%">0</b><span>still with Pareto after 12 months</span></div>
  </div>
- <div class="wrap foot"><span>Pareto <span style="color:var(--green-l)">Talent</span></span><span>Concept built by Abdelhakim Boukeffoussa for the Pareto Talent Bootcamp final project.</span></div>
+ <div class="wrap foot" data-guide-end><span>Pareto <span style="color:var(--green-l)">Talent</span></span><span>Concept built by Abdelhakim Boukeffoussa for the Pareto Talent Bootcamp final project.</span></div>
 </div>
 <script>
 (function(){
@@ -192,6 +237,16 @@ if(!reduce&&matchMedia('(pointer:fine)').matches){
  var hero=R.querySelector('.herozone'),g=R.querySelector('.cursorglow');
  if(hero&&g)hero.addEventListener('pointermove',function(e){var r=hero.getBoundingClientRect();g.style.setProperty('--cx',(e.clientX-r.left)+'px');g.style.setProperty('--cy',(e.clientY-r.top)+'px')});
 }
+
+// scroll guide: rail + comet + section nodes
+(function(){var g=R.querySelector('.guide');if(!g)return;var start=R.querySelector('[data-guide-start]'),end=R.querySelector('[data-guide-end]');var nodesEls=[].slice.call(R.querySelectorAll('[data-node]')),nodes=[],top=0,h=0,tick=false;
+ function layout(){var rr=R.getBoundingClientRect(),y0=rr.top+scrollY;var a=(start?start.getBoundingClientRect().top+scrollY:y0)-y0,b=(end?end.getBoundingClientRect().top+scrollY:y0+R.offsetHeight)-y0;top=a;h=Math.max(0,b-a);g.style.top=a+'px';g.style.height=h+'px';
+  nodes.forEach(function(n){n.el.remove()});nodes=nodesEls.map(function(s){var d=document.createElement('i');d.className='node';var y=s.getBoundingClientRect().top+scrollY-y0-a+40;d.style.top=y+'px';g.appendChild(d);return {el:d,y:y}});upd()}
+ function upd(){tick=false;var rr=R.getBoundingClientRect();var pos=-rr.top+innerHeight*.5-top;pos=Math.max(0,Math.min(h,pos));g.style.setProperty('--gp',pos+'px');nodes.forEach(function(n){n.el.classList.toggle('lit',n.y<=pos)})}
+ addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(upd)}},{passive:true});
+ addEventListener('resize',function(){clearTimeout(g._t);g._t=setTimeout(layout,200)});
+ layout();setTimeout(layout,1200);setTimeout(layout,3500);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(layout);
+})();
 window.PTP={reduce:reduce,count:count};
 })();
 

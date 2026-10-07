@@ -80,25 +80,118 @@
 @media (prefers-reduced-motion:reduce){#ptp *,#ptp *::before,#ptp *::after{animation:none!important;transition:none!important}#ptp .cursorglow{display:none}}
 @supports (animation-timeline:scroll()){#ptp .progress{display:block;animation:ptpprog linear both;animation-timeline:scroll(root)}}
 @keyframes ptpprog{to{transform:scaleX(1)}}
+/* ===== Scroll guide: a rail with a comet that travels with you ===== */
+#ptp .guide{position:absolute;left:calc(50% + 590px);width:2px;pointer-events:none;z-index:2;display:none}
+#ptp .guide .rail{position:absolute;inset:0;background:linear-gradient(#ffffff00,#ffffff14 6%,#ffffff14 94%,#ffffff00)}
+#ptp .guide .trail{position:absolute;left:0;top:0;width:2px;height:var(--gp,0px);background:linear-gradient(#10b98100,#10b981 30%,#6ee7b7);box-shadow:0 0 12px #10b981aa}
+#ptp .guide .comet{position:absolute;left:1px;top:0;width:52px;height:52px;margin:-26px 0 0 -26px;border-radius:50%;transform:translateY(var(--gp,0px));background:radial-gradient(circle,#ecfdf5 0 3px,#6ee7b7 4px,#10b98166 9px,#10b98100 26px);filter:drop-shadow(0 0 10px #34d399)}
+#ptp .guide .comet::after{content:"";position:absolute;left:50%;bottom:50%;width:2px;height:90px;margin-left:-1px;background:linear-gradient(#10b98100,#a7f3d0);opacity:.9}
+#ptp .guide .node{position:absolute;left:-6px;width:14px;height:14px;margin-top:-7px;border-radius:50%;border:1.5px solid #ffffff2e;background:#050a0e;transition:all .5s var(--ease)}
+#ptp .guide .node.lit{border-color:var(--green-l);background:#0b1119;box-shadow:0 0 0 4px #10b98122,0 0 16px #10b981aa}
+#ptp .guide .node.lit::after{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--green-b)}
+@media (min-width:1100px){#ptp .guide{display:block}}
+@media (max-width:1259px){#ptp .guide{left:auto;right:18px}}
+@media (prefers-reduced-motion:reduce){#ptp .guide .comet{display:none}}
 
 html,body{margin:0;background:#050a0e}
 .c-section.fullSection{display:none!important}
 
 /* ---------- hero ---------- */
 #ptp .herozone{position:relative;overflow:hidden}
-#ptp section.hero{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center;padding-top:72px;padding-bottom:96px;border-top:0;min-height:calc(100dvh - 68px)}
-#ptp .hero h1{font-size:clamp(36px,3.6vw,52px);line-height:1.05;margin-top:18px}
+#ptp section.hero{display:grid;grid-template-columns:1fr 1.08fr;gap:40px;align-items:center;padding-top:56px;padding-bottom:80px;border-top:0;min-height:calc(100dvh - 68px)}
+#ptp .hero h1{font-size:clamp(36px,3.7vw,54px);line-height:1.05;margin-top:18px}
 #ptp .hero h1 em{font-style:normal;color:#4ee0a8;text-shadow:0 0 40px #10b98155}
-#ptp .hero .sub{font-size:19px;color:#b6c2d1;margin:22px 0 32px;max-width:42ch}
+#ptp .hero .sub{font-size:19px;color:#b6c2d1;margin:20px 0 30px;max-width:42ch}
 #ptp .hero .cta{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
 #ptp .hero .cta small{color:var(--t2);font-size:14.5px}
-/* live demo card */
-#ptp .demo{padding:24px;border-radius:24px;transform:perspective(1600px) rotateY(-7deg) rotateX(3deg);transition:transform .9s var(--ease)}
-#ptp .demo:hover{transform:perspective(1600px) rotateY(0) rotateX(0)}
+#ptp .f40{display:flex;align-items:center;gap:14px;margin-top:30px;padding:12px 18px 12px 12px;border-radius:18px;max-width:470px;background:linear-gradient(120deg,#10b9811f,#10b98105 70%);border:1px solid #10b98147}
+#ptp .f40 .seal{flex:none;width:54px;height:54px;border-radius:50%;display:grid;place-items:center;font:800 15px 'Plus Jakarta Sans';color:var(--t1);position:relative}
+#ptp .f40 .seal::before{content:"";position:absolute;inset:0;border-radius:50%;background:conic-gradient(from var(--ang),#10b981,#6ee7b7,#10b98133,#10b981);animation:spin 5s linear infinite;-webkit-mask:radial-gradient(farthest-side,#0000 calc(100% - 3px),#000 calc(100% - 2px));mask:radial-gradient(farthest-side,#0000 calc(100% - 3px),#000 calc(100% - 2px))}
+#ptp .f40 p{font-size:14.5px;line-height:1.45;color:#cbd5e1}
+#ptp .f40 p b{color:var(--t1);font-weight:600}
+#ptp .stage{position:relative;height:min(72vh,640px);min-height:440px}
+#ptp .stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+#ptp .stage .halo{position:absolute;inset:8% 4% 4%;border-radius:50%;background:radial-gradient(closest-side,#10b98130,#14b8a610 55%,transparent 75%);filter:blur(10px);pointer-events:none}
+#ptp .readout{position:absolute;right:2%;bottom:5%;text-align:right;pointer-events:none}
+#ptp .readout .n{font:800 clamp(56px,6vw,92px)/.85 'Plus Jakarta Sans';letter-spacing:-.04em;color:#fff;text-shadow:0 0 40px #10b98188;font-variant-numeric:tabular-nums}
+#ptp .readout .n small{font-size:.32em;letter-spacing:0;margin-left:6px;color:var(--t2);text-shadow:none}
+#ptp .readout .l{margin-top:10px;font-size:14px;line-height:1.35;color:var(--t2);max-width:24ch;margin-left:auto}
+#ptp .stage.nogl .fallback{display:grid}
+#ptp .fallback{display:none;position:absolute;inset:0;place-items:center}
+#ptp .fallback b{font:800 140px/1 'Plus Jakarta Sans';color:#10b98140}
+/* ---------- names ---------- */
+#ptp .names{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:26px 0;overflow:hidden;position:relative;background:#ffffff03}
+#ptp .names p{text-align:center;color:var(--t3);font-size:14px;margin-bottom:16px}
+#ptp .mq{display:flex;gap:72px;width:max-content;animation:mq 34s linear infinite}
+#ptp .mq span{font:800 26px 'Plus Jakarta Sans',sans-serif;color:#cbd5e1;opacity:.55;white-space:nowrap;letter-spacing:-.01em}
+#ptp .mq span:nth-child(4n+2){font-weight:700;font-style:italic}
+#ptp .mq span:nth-child(4n+3){text-transform:uppercase;letter-spacing:.12em;font-size:20px}
+#ptp .names::before,#ptp .names::after{content:"";position:absolute;top:0;bottom:0;width:140px;z-index:2;pointer-events:none}
+#ptp .names::before{left:0;background:linear-gradient(90deg,#050a0e,transparent)}
+#ptp .names::after{right:0;background:linear-gradient(-90deg,#050a0e,transparent)}
+@keyframes mq{to{transform:translateX(-50%)}}
+/* ---------- shared section ---------- */
+#ptp .sec{padding-top:110px;padding-bottom:110px}
+#ptp .sec h2{font-size:clamp(30px,3.4vw,48px);line-height:1.07;max-width:22ch}
+#ptp .sec .lede{color:#b6c2d1;font-size:18.5px;margin-top:18px;max-width:56ch}
+/* ---------- week ---------- */
+#ptp .week{margin-top:44px;border-radius:24px;overflow:hidden;background:#0b1119;border:1px solid var(--line2);box-shadow:0 40px 100px -40px #000}
+#ptp .wk-top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 18px;border-bottom:1px solid var(--line2)}
+#ptp .wk-title{font-weight:600;font-size:14px;color:var(--t2)}
+#ptp .legend{display:flex;gap:16px;font-size:13px;color:var(--t2)}
+#ptp .legend span{display:inline-flex;align-items:center;gap:7px}
+#ptp .legend i{width:12px;height:12px;border-radius:4px;display:inline-block}
+#ptp .legend .k-you{background:#243042}
+#ptp .legend .k-rh{background:linear-gradient(160deg,#34d399,#059669)}
+#ptp .legend .k-back{background:repeating-linear-gradient(135deg,#6ee7b766 0 2px,transparent 2px 5px);box-shadow:inset 0 0 0 1px #6ee7b755}
+#ptp .grid{--hr:44px;display:grid;grid-template-columns:56px repeat(5,minmax(0,1fr));position:relative}
+#ptp .dh{grid-row:1;padding:11px 10px 10px;border-left:1px solid var(--line2);font-weight:600;font-size:13px;color:var(--t2);display:flex;justify-content:space-between;gap:6px}
+#ptp .dh em{font-style:normal;font-weight:400;color:var(--t3)}
+#ptp .ruler{grid-row:2;grid-column:1;position:relative;height:calc(var(--hr)*10)}
+#ptp .ruler span{position:absolute;right:9px;transform:translateY(-50%);font-size:11.5px;color:var(--t3)}
+#ptp .col{grid-row:2;position:relative;height:calc(var(--hr)*10);border-left:1px solid var(--line2);background-image:linear-gradient(var(--line) 1px,transparent 1px);background-size:100% var(--hr)}
+#ptp .col::after{content:"";position:absolute;top:0;bottom:0;left:50%;border-left:1px dashed var(--line2)}
+#ptp .blk,#ptp .back{position:absolute;left:3px;width:calc(50% - 5px);border-radius:8px}
+#ptp .back{background:repeating-linear-gradient(135deg,#6ee7b740 0 2px,transparent 2px 6px);box-shadow:inset 0 0 0 1px #6ee7b744;opacity:0;transform:scale(.96);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+#ptp .back.on{opacity:1;transform:none}
+#ptp .blk{z-index:2;padding:6px 8px;overflow:hidden;background:#1b2533;color:#d6dde7;font-weight:600;font-size:12.5px;line-height:1.2;box-shadow:inset 0 0 0 1px #ffffff10;transition:transform .9s var(--ease),background .6s,box-shadow .6s}
+#ptp .blk b{display:block;font-weight:400;opacity:.72;font-size:11.5px;margin-top:2px}
+#ptp .blk.keep{width:calc(100% - 6px);background:#263246;color:#fff;box-shadow:inset 0 0 0 1px #ffffff26}
+#ptp .blk.go{transform:translateX(calc(100% + 4px));background:linear-gradient(160deg,#34d399,#059669);color:#022c22;box-shadow:0 8px 22px -10px #10b981}
+#ptp .wk-foot{display:flex;justify-content:space-between;gap:12px;padding:11px 18px;border-top:1px solid var(--line2);font-size:13px;color:var(--t3)}
+#ptp .wk-foot b{color:var(--green-b);font-weight:600}
+/* ---------- hub diagram ---------- */
+#ptp section.hub{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:center}
+#ptp .hub blockquote{margin:26px 0 0;padding:4px 0 4px 20px;border-left:2px solid var(--green)}
+#ptp .hub blockquote p{font:700 19px/1.4 'Plus Jakarta Sans';color:var(--t1)}
+#ptp .hub blockquote cite{display:block;margin-top:8px;font-style:normal;font-size:14px;color:var(--t2)}
+#ptp .diag{padding:22px;border-radius:24px}
+#ptp .diag .lg{display:flex;justify-content:space-between;font-weight:600;font-size:14px;padding:0 6px 8px}
+#ptp .diag .lg span:first-child{color:#fbbf24}
+#ptp .diag .lg span:last-child{color:var(--green-b)}
+#ptp .diag svg{width:100%;height:auto;display:block;overflow:visible}
+#ptp .diag svg text{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800}
+#ptp .diag figcaption{margin-top:12px;font-size:14.5px;color:var(--t2);line-height:1.5}
+/* ---------- steps (sticky) ---------- */
+#ptp section.steps{display:grid;grid-template-columns:.8fr 1.2fr;gap:64px}
+#ptp .steps .stick{position:sticky;top:120px;align-self:start}
+#ptp .steps .stick p{color:var(--t2);margin-top:16px;max-width:34ch}
+#ptp .rail2{margin-top:34px;display:grid;gap:14px}
+#ptp .rail2 div{display:flex;align-items:center;gap:14px;color:var(--t3);font-weight:600;transition:color .4s}
+#ptp .rail2 div i{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;border:1px solid var(--line2);font:800 14px 'Plus Jakarta Sans';font-style:normal;transition:all .4s var(--ease)}
+#ptp .rail2 div.on{color:var(--t1)}
+#ptp .rail2 div.on i{background:var(--green);border-color:var(--green);color:#03140e;box-shadow:0 0 24px -4px var(--green)}
+#ptp .panels{display:grid;gap:28px}
+#ptp .panel{padding:30px;border-radius:24px;display:flex;flex-direction:column;gap:22px}
+#ptp .panel h3{font-size:26px;letter-spacing:-.015em}
+#ptp .panel p{color:var(--t2);margin-top:8px;max-width:46ch}
+#ptp .panel .img{border-radius:16px;overflow:hidden;border:1px solid var(--line2)}
+#ptp .panel .img img{display:block;width:100%;height:auto}
+/* demo */
 #ptp .demo .hd{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
-#ptp .demo .hd b{font:800 17px 'Plus Jakarta Sans',sans-serif}
+#ptp .demo .hd b{font:800 16px 'Plus Jakarta Sans',sans-serif}
 #ptp .demo .hd span{font-size:13px;color:var(--t3)}
-#ptp .chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 18px}
+#ptp .chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 16px}
 #ptp .chip{appearance:none;font:600 13.5px 'DM Sans',sans-serif;color:var(--t2);background:#ffffff06;border:1px solid var(--line2);border-radius:999px;padding:7px 12px 7px 10px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:all .3s var(--ease)}
 #ptp .chip i{width:15px;height:15px;border-radius:5px;border:1.5px solid var(--line3);position:relative;transition:all .3s var(--ease);flex:none}
 #ptp .chip i::after{content:"";position:absolute;left:4px;top:1px;width:4px;height:8px;border:solid #03140e;border-width:0 2px 2px 0;transform:rotate(45deg) scale(0);transition:transform .3s var(--ease)}
@@ -112,61 +205,21 @@ html,body{margin:0;background:#050a0e}
 #ptp .nums b.g{color:var(--green-l)}
 #ptp .nums span{font-size:13px;color:var(--t2)}
 #ptp .weeks{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
-#ptp .wk{background:#050a0e99;border:1px solid var(--line);border-radius:14px;padding:10px 9px;min-height:132px}
-#ptp .wk h5{margin:0 0 8px;font:700 12px 'Plus Jakarta Sans',sans-serif;color:var(--t2);letter-spacing:.02em}
+#ptp .wk{background:#050a0e99;border:1px solid var(--line);border-radius:14px;padding:10px 9px;min-height:124px}
+#ptp .wk h5{margin:0 0 8px;font:700 12px 'Plus Jakarta Sans',sans-serif;color:var(--t2)}
 #ptp .tk{font-size:11.5px;line-height:1.3;padding:6px 7px;border-radius:8px;margin-bottom:6px;background:#10b98117;border:1px solid #10b98140;color:#d1fae5;animation:pop .55s var(--ease) both}
 #ptp .tk.y{background:#f59e0b14;border-color:#f59e0b40;color:#fde68a}
 #ptp .wk .empty{font-size:11.5px;color:var(--t3)}
 @keyframes pop{from{opacity:0;transform:translateY(8px) scale(.96)}}
 #ptp .demo .note{font-size:12.5px;color:var(--t3);margin-top:12px}
-/* ---------- logos ---------- */
-#ptp .names{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:26px 0;overflow:hidden;position:relative;background:#ffffff03}
-#ptp .names p{text-align:center;color:var(--t3);font-size:14px;margin-bottom:16px}
-#ptp .mq{display:flex;gap:72px;width:max-content;animation:mq 34s linear infinite}
-#ptp .mq span{font:800 26px 'Plus Jakarta Sans',sans-serif;color:#cbd5e1;opacity:.55;white-space:nowrap;letter-spacing:-.01em}
-#ptp .mq span:nth-child(4n+2){font-weight:700;font-style:italic}
-#ptp .mq span:nth-child(4n+3){text-transform:uppercase;letter-spacing:.12em;font-size:20px}
-#ptp .names::before,#ptp .names::after{content:"";position:absolute;top:0;bottom:0;width:140px;z-index:2;pointer-events:none}
-#ptp .names::before{left:0;background:linear-gradient(90deg,#050a0e,transparent)}
-#ptp .names::after{right:0;background:linear-gradient(-90deg,#050a0e,transparent)}
-@keyframes mq{to{transform:translateX(-50%)}}
-/* ---------- problem ---------- */
-#ptp section.problem{display:grid;grid-template-columns:1.15fr .85fr;gap:64px;align-items:center;padding-top:120px;padding-bottom:110px;border-top:0}
-#ptp .photo{border-radius:24px;overflow:hidden;position:relative;border:1px solid var(--line2);box-shadow:0 40px 100px -30px #000}
-#ptp .photo img{display:block;width:100%;height:auto;transform:scale(1.06);transition:transform 1.6s var(--ease)}
-#ptp .photo.in img{transform:scale(1)}
-#ptp .photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,#050a0e99);pointer-events:none}
-#ptp .problem h2,#ptp .steps h2,#ptp .calc h2,#ptp .who h2,#ptp .proof h2,#ptp .getit h2{font-size:clamp(30px,3.4vw,46px);line-height:1.07}
-#ptp .problem p{color:#b6c2d1;font-size:18.5px;margin-top:20px;max-width:40ch}
-#ptp .problem p b{color:var(--t1);font-weight:600}
-/* ---------- steps (sticky) ---------- */
-#ptp section.steps{display:grid;grid-template-columns:.8fr 1.2fr;gap:64px;padding-top:110px;padding-bottom:110px}
-#ptp .steps .stick{position:sticky;top:120px;align-self:start}
-#ptp .steps .stick p{color:var(--t2);margin-top:16px;max-width:34ch}
-#ptp .rail{margin-top:34px;display:grid;gap:14px}
-#ptp .rail div{display:flex;align-items:center;gap:14px;color:var(--t3);font-weight:600;transition:color .4s}
-#ptp .rail div i{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;border:1px solid var(--line2);font:800 14px 'Plus Jakarta Sans';font-style:normal;transition:all .4s var(--ease)}
-#ptp .rail div.on{color:var(--t1)}
-#ptp .rail div.on i{background:var(--green);border-color:var(--green);color:#03140e;box-shadow:0 0 24px -4px var(--green)}
-#ptp .panels{display:grid;gap:28px}
-#ptp .panel{padding:32px;border-radius:24px;display:flex;flex-direction:column;justify-content:space-between;gap:24px}
-#ptp .panel h3{font-size:26px;letter-spacing:-.015em}
-#ptp .panel p{color:var(--t2);margin-top:8px;max-width:46ch}
-#ptp .big{display:flex;gap:28px;align-items:flex-end;flex-wrap:wrap}
-#ptp .big b{font:800 clamp(48px,6vw,72px)/1 'Plus Jakarta Sans';letter-spacing:-.03em;color:var(--green-l);font-variant-numeric:tabular-nums}
-#ptp .big small{display:block;color:var(--t2);font-size:14px;margin-top:6px}
-#ptp .panel .img{border-radius:16px;overflow:hidden;border:1px solid var(--line2)}
-#ptp .panel .img img{display:block;width:100%;height:auto}
-#ptp .brief{font:400 14px/1.55 'DM Sans',sans-serif;background:#050a0ecc;border:1px solid var(--line2);border-radius:16px;padding:18px 20px}
+#ptp .brief{font-size:14px;line-height:1.55;background:#050a0ecc;border:1px solid var(--line2);border-radius:16px;padding:18px 20px}
 #ptp .brief .t{font:700 13px 'Plus Jakarta Sans';color:var(--green-b);margin-bottom:10px;display:flex;justify-content:space-between}
 #ptp .brief .t span{color:var(--t3);font-weight:600}
 #ptp .brief div{display:grid;grid-template-columns:140px 1fr;gap:12px;padding:7px 0;border-top:1px solid var(--line)}
 #ptp .brief div b{color:var(--t1);font-weight:600}
 #ptp .brief div span{color:var(--t2)}
 /* ---------- calculator ---------- */
-#ptp section.calc{padding-top:110px;padding-bottom:110px;text-align:center}
-#ptp .calc .lead{color:var(--t2);margin:14px auto 0;max-width:52ch}
-#ptp .calcbox{margin:44px auto 0;max-width:920px;padding:40px;border-radius:28px;display:grid;grid-template-columns:1fr 1fr;gap:40px;text-align:left}
+#ptp .calcbox{margin-top:44px;padding:40px;border-radius:28px;display:grid;grid-template-columns:1fr 1.1fr;gap:44px}
 #ptp .sl label{display:flex;justify-content:space-between;font-weight:600;margin-bottom:14px}
 #ptp .sl label output{font:800 22px 'Plus Jakarta Sans';color:var(--t1);font-variant-numeric:tabular-nums}
 #ptp .sl+.sl{margin-top:30px}
@@ -175,14 +228,49 @@ html,body{margin:0;background:#050a0e}
 #ptp input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:#f0f4f8;border:5px solid var(--green);box-shadow:0 0 0 6px #10b98126}
 #ptp input[type=range]:active::-webkit-slider-thumb{transform:scale(1.15)}
 #ptp input[type=range]:focus-visible{box-shadow:0 0 0 3px #34d39966}
-#ptp .res{border-left:1px solid var(--line2);padding-left:40px;display:flex;flex-direction:column;justify-content:center}
-#ptp .res span{color:var(--t2);font-size:15px}
-#ptp .res b{display:block;font:800 clamp(44px,5vw,64px)/1.05 'Plus Jakarta Sans';letter-spacing:-.03em;font-variant-numeric:tabular-nums;margin:4px 0 2px}
-#ptp .res b.g{color:var(--green-l)}
-#ptp .res em{font-style:normal;color:var(--t1);font-weight:600}
-#ptp .res .btn{margin-top:24px;align-self:flex-start}
+#ptp .bars{display:grid;gap:14px}
+#ptp .bar{position:relative;height:64px;border-radius:14px;background:#ffffff06;border:1px solid var(--line);overflow:hidden}
+#ptp .bar i{position:absolute;left:0;top:0;bottom:0;width:var(--w,50%);transition:width .6s var(--ease)}
+#ptp .bar.v i{background:linear-gradient(90deg,#10b98155,#34d399cc)}
+#ptp .bar.c i{background:linear-gradient(90deg,#ffffff14,#ffffff2a)}
+#ptp .bar span{position:absolute;left:16px;top:10px;font-size:13px;color:var(--t2);z-index:1}
+#ptp .bar strong{position:absolute;left:16px;bottom:8px;font:800 22px 'Plus Jakarta Sans';z-index:1;font-variant-numeric:tabular-nums}
+#ptp .verdict{margin-top:18px;font-size:17px;color:#cbd5e1}
+#ptp .verdict b{color:var(--green-b)}
+#ptp .fine{margin-top:10px;font-size:13px;color:var(--t3)}
+/* ---------- system bento ---------- */
+#ptp .bento{margin-top:44px;display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:minmax(170px,auto);gap:14px}
+#ptp .tile{position:relative;padding:24px;border-radius:22px;background:#0b1119;border:1px solid var(--line2);overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;gap:6px}
+#ptp .tile .w{font-size:12.5px;font-weight:600;color:var(--green-b);letter-spacing:.06em;text-transform:uppercase}
+#ptp .tile h3{font-size:20px;line-height:1.2}
+#ptp .tile p{color:var(--t2);font-size:15px}
+#ptp .tile.t1{grid-column:span 2;grid-row:span 2;background:radial-gradient(600px circle at 100% 0%,#10b98130,transparent 60%),#0b1119;border-color:#10b98147}
+#ptp .tile.t1 .bigx{position:absolute;top:22px;left:24px;font:800 clamp(56px,6vw,88px)/1 'Plus Jakarta Sans';letter-spacing:-.04em;color:#10b98140}
+#ptp .tile.t1 h3{font-size:28px}
+#ptp .tile.t2{grid-column:span 2}
+#ptp .tile.t7{grid-column:span 2;background:linear-gradient(120deg,#10b98126,#0b1119 70%);border-color:#10b98147}
+/* ---------- guarantees ---------- */
+#ptp .seals{margin-top:44px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+#ptp .sealc{position:relative;border-radius:24px;padding:32px 28px}
+#ptp .sealc .ring2{position:relative;width:78px;height:78px;border-radius:50%;display:grid;place-items:center;margin-bottom:26px;font:800 26px 'Plus Jakarta Sans';letter-spacing:-.03em}
+#ptp .sealc .ring2::before{content:"";position:absolute;inset:0;border-radius:50%;background:conic-gradient(from var(--ang),#10b981,#6ee7b7,#10b98122,#10b981);animation:spin 6s linear infinite;-webkit-mask:radial-gradient(farthest-side,#0000 calc(100% - 3px),#000 calc(100% - 2px));mask:radial-gradient(farthest-side,#0000 calc(100% - 3px),#000 calc(100% - 2px))}
+#ptp .sealc .ring2::after{content:"";position:absolute;inset:8px;border-radius:50%;background:radial-gradient(circle,#10b98133,transparent 70%)}
+#ptp .sealc h3{font-size:clamp(22px,2.2vw,28px)}
+#ptp .sealc .subx{display:block;margin-top:6px;font-weight:600;font-size:14px;color:var(--green-b)}
+#ptp .sealc q{display:block;margin-top:14px;color:var(--t2);font-size:15.5px;quotes:"\201C" "\201D"}
+/* ---------- pricing ---------- */
+#ptp .plans{margin-top:44px;display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:14px;align-items:stretch}
+#ptp .plan{border-radius:24px;padding:30px 26px;display:flex;flex-direction:column;gap:6px}
+#ptp .plan .nm{font:800 21px 'Plus Jakarta Sans';letter-spacing:-.02em}
+#ptp .plan .pm{margin-top:20px;font:800 clamp(42px,4.2vw,58px)/1 'Plus Jakarta Sans';letter-spacing:-.04em}
+#ptp .plan .pm small{display:block;font-size:.28em;color:var(--t2);letter-spacing:0;margin-top:8px;font-weight:600}
+#ptp .plan dl{margin:22px 0 0;display:grid;gap:8px;font-size:15px;color:var(--t2)}
+#ptp .plan dl div{display:flex;justify-content:space-between;gap:12px;padding-top:8px;border-top:1px solid var(--line2)}
+#ptp .plan dt{color:var(--t3)}#ptp .plan dd{margin:0;color:var(--t1)}
+#ptp .plan.best{background:radial-gradient(500px circle at 100% 0%,#10b98138,transparent 60%),linear-gradient(160deg,#0f1f1a,#0b1119);border-color:#10b98166}
+#ptp .plan .tag{align-self:flex-start;padding:6px 12px;border-radius:999px;background:var(--green);color:#03140e;font-weight:700;font-size:12.5px;margin-bottom:8px}
+#ptp .pricefoot{margin-top:18px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center;color:var(--t2);font-size:15px}
 /* ---------- who ---------- */
-#ptp section.who{padding-top:110px;padding-bottom:110px}
 #ptp .who .cols{display:grid;grid-template-columns:1.35fr 1fr;gap:20px;margin-top:34px}
 #ptp .who .yes{padding:34px;background:linear-gradient(140deg,#10b98124,#10b98106 65%);border:1px solid #10b98147;border-radius:24px}
 #ptp .who .no{padding:34px;border-radius:24px}
@@ -194,24 +282,22 @@ html,body{margin:0;background:#050a0e}
 #ptp .who .no li{color:var(--t2)}
 #ptp .who .no li::before{content:"";position:absolute;left:4px;top:23px;width:14px;height:2px;background:var(--t3)}
 /* ---------- proof ---------- */
-#ptp section.proof{padding-top:110px;padding-bottom:110px}
 #ptp .stats{display:grid;grid-template-columns:repeat(4,1fr);margin:40px 0 44px;border-top:1px solid var(--line2);border-bottom:1px solid var(--line2)}
 #ptp .stats div{padding:30px 22px;border-left:1px solid var(--line)}
 #ptp .stats div:first-child{border-left:0;padding-left:0}
 #ptp .stats b{display:block;font:800 clamp(36px,4.2vw,56px)/1 'Plus Jakarta Sans';letter-spacing:-.03em;font-variant-numeric:tabular-nums}
 #ptp .stats span{color:var(--t2);font-size:15px;display:block;margin-top:10px}
-#ptp .quotes{display:grid;grid-template-columns:1.3fr 1fr 1fr;grid-template-rows:auto auto;gap:18px}
+#ptp .quotes{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:18px}
 #ptp .quotes blockquote{margin:0;padding:28px;border-radius:22px;display:flex;flex-direction:column;justify-content:space-between;gap:20px}
 #ptp .quotes .q1{grid-row:span 2;background:linear-gradient(160deg,#10b9811f,#ffffff05 60%);border-color:#10b98140}
 #ptp .quotes .q1 p{font:700 clamp(22px,2.3vw,30px)/1.3 'Plus Jakarta Sans';letter-spacing:-.015em}
 #ptp .quotes p{font-size:17px;line-height:1.5}
 #ptp .quotes footer{display:flex;align-items:center;gap:12px;color:var(--t2);font-size:14px}
 #ptp .quotes footer b{color:var(--t1);display:block;font-weight:600}
-#ptp .av{width:40px;height:40px;border-radius:50%;flex:none;display:grid;place-items:center;font:800 14px 'Plus Jakarta Sans';color:#03140e;background:linear-gradient(135deg,#6ee7b7,#10b981)}
+#ptp .av{width:44px;height:44px;border-radius:50%;flex:none;object-fit:cover;background:#10b98133;border:1px solid #10b98155}
 #ptp .quotes .q4{grid-column:span 2}
 /* ---------- get it ---------- */
-#ptp section.getit{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center;padding-top:110px;padding-bottom:120px}
-#ptp .getit .lead{color:var(--t2);margin-top:16px;max-width:40ch;font-size:18px}
+#ptp section.getit{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center;padding-bottom:120px}
 #ptp .getit ul{list-style:none;margin:26px 0 0;padding:0}
 #ptp .getit li{padding:9px 0 9px 30px;position:relative;color:#cbd5e1}
 #ptp .getit li::before{content:"";position:absolute;left:2px;top:17px;width:12px;height:7px;border-left:2px solid var(--green-l);border-bottom:2px solid var(--green-l);transform:rotate(-45deg)}
@@ -219,39 +305,46 @@ html,body{margin:0;background:#050a0e}
 #ptp .formbox .small{font-size:13.5px;color:var(--t3);margin-top:12px;text-align:center}
 /* ---------- responsive ---------- */
 @media (max-width:980px){
- #ptp section.hero,#ptp section.problem,#ptp section.steps,#ptp section.getit{grid-template-columns:1fr;gap:40px;min-height:0}
- #ptp section.hero{padding-top:44px;padding-bottom:64px}
- #ptp .demo{transform:none}
- #ptp .steps .stick{position:static}
- #ptp .rail{display:none}
- #ptp .calcbox{grid-template-columns:1fr;padding:28px}
- #ptp .res{border-left:0;border-top:1px solid var(--line2);padding:28px 0 0}
+ #ptp section.hero,#ptp section.hub,#ptp section.steps,#ptp section.getit{grid-template-columns:1fr;gap:36px;min-height:0}
+ #ptp section.hero{padding-top:36px;padding-bottom:56px}
+ #ptp .stage{height:380px;min-height:0;order:-1;margin:0 -16px}
+ #ptp .steps .stick{position:static}#ptp .rail2{display:none}
+ #ptp .calcbox{grid-template-columns:1fr;padding:26px}
+ #ptp .bento{grid-template-columns:1fr 1fr}
+ #ptp .tile.t1,#ptp .tile.t2,#ptp .tile.t7{grid-column:span 2}#ptp .tile.t1{grid-row:auto;min-height:260px}
+ #ptp .seals,#ptp .plans{grid-template-columns:1fr}
  #ptp .who .cols{grid-template-columns:1fr}
  #ptp .stats{grid-template-columns:1fr 1fr}
  #ptp .stats div:nth-child(3){border-left:0;padding-left:0}
  #ptp .stats div:nth-child(n+3){border-top:1px solid var(--line)}
- #ptp .quotes{grid-template-columns:1fr}
- #ptp .quotes .q1{grid-row:auto}#ptp .quotes .q4{grid-column:auto}
- #ptp section.problem,#ptp section.steps,#ptp section.calc,#ptp section.who,#ptp section.proof,#ptp section.getit{padding-top:72px;padding-bottom:72px}
+ #ptp .quotes{grid-template-columns:1fr}#ptp .quotes .q1{grid-row:auto}#ptp .quotes .q4{grid-column:auto}
+ #ptp .sec{padding-top:72px;padding-bottom:72px}
+ #ptp .grid{--hr:34px;grid-template-columns:36px repeat(5,minmax(0,1fr))}
+ #ptp .blk{font-size:0;padding:0;border-radius:5px}#ptp .blk b{display:none}
+ #ptp .blk.keep{font-size:9.5px;padding:4px;line-height:1.15;overflow-wrap:anywhere}
+ #ptp .dh{padding:8px 3px;justify-content:center}#ptp .dh em{display:none}
+ #ptp .ruler span{right:5px;font-size:10px}
+ #ptp .wk-title{display:none}#ptp .wk-foot{flex-direction:column}
 }
 @media (max-width:600px){
  #ptp .top .btn{display:none}
  #ptp .weeks{grid-template-columns:1fr 1fr}
  #ptp .brief div{grid-template-columns:1fr;gap:2px}
  #ptp .panel{padding:22px}
- #ptp .demo{padding:18px}
  #ptp .mq span{font-size:21px}
+ #ptp .bento{grid-template-columns:1fr}#ptp .tile.t1,#ptp .tile.t2,#ptp .tile.t7{grid-column:auto}
+ #ptp .legend{gap:10px;font-size:12px}
 }
 </style>
 <div id="ptp">
  <div class="progress" aria-hidden="true"></div>
+ <div class="guide" aria-hidden="true"><i class="rail"></i><i class="trail"></i><i class="comet"></i></div>
  <header class="top"><div class="brand"><i aria-hidden="true"></i>Pareto <span>Talent</span></div><a class="btn" href="#get-plan">Get my free plan</a></header>
  <div class="sentinel" aria-hidden="true" style="position:absolute;top:0;height:20px;width:1px"></div>
 
  <div class="herozone">
   <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
   <div class="gridbg" aria-hidden="true"></div>
-  <div class="beam" aria-hidden="true"></div><div class="beam b2" aria-hidden="true"></div>
   <div class="cursorglow" aria-hidden="true"></div>
   <section class="wrap hero z">
    <div>
@@ -259,44 +352,60 @@ html,body{margin:0;background:#050a0e}
     <h1 class="words">You're not bad at delegating. Nobody told you <em>what to hand off first.</em></h1>
     <p class="sub rv" style="--i:3">The 40-Hour Handoff Plan maps your first 30 days of delegation, with a ready-to-send brief for every task.</p>
     <div class="cta rv" style="--i:4"><a class="btn pulse" href="#get-plan">Get my free plan <span class="ar" aria-hidden="true">&rarr;</span></a><small>Free. Takes 7 minutes.</small></div>
+    <div class="f40 rv" style="--i:5"><span class="seal">40h</span><p><b>Backed by Freedom 40.</b> Get 40 hours back in your first 30 days with a Pareto Right Hand, or your next month is free.</p></div>
    </div>
-   <div class="demo glass ring rv" style="--i:2" id="demo">
-    <div class="hd"><b>Try it: what's still on your plate?</b><span>Live preview</span></div>
-    <div class="chips" id="chips" role="group" aria-label="Tasks still on your plate"></div>
-    <div class="nums">
-     <div><b id="dh">0 h</b><span>a week you can hand off</span></div>
-     <div><b class="g" id="dm">$0</b><span>a month of your time</span></div>
-    </div>
-    <div class="weeks" id="weeks"></div>
-    <p class="note">Example at $200 an hour. Your plan uses your own tasks, hours and rate.</p>
+   <div class="stage rv" style="--i:2" id="stage" role="img" aria-label="A glass hourglass releases 40 glowing hour blocks that fly into a 5 by 8 calendar grid: your Right Hand's week.">
+    <div class="halo" aria-hidden="true"></div>
+    <canvas id="gl" aria-hidden="true"></canvas>
+    <div class="fallback" aria-hidden="true"><b>40h</b></div>
+    <div class="readout" aria-live="polite"><p class="n"><span id="hcount">0</span><small>hrs</small></p><p class="l">handed to your Right Hand, guaranteed in the first 30 days</p></div>
    </div>
   </section>
  </div>
 
- <div class="names" aria-label="Pareto Right Hands work with founders from Genius Network, Lifestyle Investor, Front Row Dads and Driven Mastermind">
+ <div class="names" data-guide-start aria-label="Pareto Right Hands work with founders from Genius Network, Lifestyle Investor, Front Row Dads and Driven Mastermind">
   <p>Pareto Right Hands work with founders from</p>
   <div class="mq" aria-hidden="true"><span>Genius Network</span><span>Lifestyle Investor</span><span>Front Row Dads</span><span>Driven Mastermind</span><span>Genius Network</span><span>Lifestyle Investor</span><span>Front Row Dads</span><span>Driven Mastermind</span><span>Genius Network</span><span>Lifestyle Investor</span><span>Front Row Dads</span><span>Driven Mastermind</span><span>Genius Network</span><span>Lifestyle Investor</span><span>Front Row Dads</span><span>Driven Mastermind</span></div>
  </div>
 
- <section class="wrap problem">
-  <div class="photo rv"><img src="https://ghostdz741.github.io/pareto-talent-homework-kim/handoff-plan/assets/lp-redo.webp" alt="A laptop at night with an email draft full of red edits and a sticky note that says: Can you redo this?" loading="lazy" width="1122" height="760"></div>
-  <div>
-   <h2 class="words">You hired help. You still did the work twice.</h2>
-   <p class="rv" style="--i:2">It wasn't you, and it wasn't them. Nobody handed off the context: <b>the goal, the limits, what done looks like.</b></p>
-   <p class="rv" style="--i:3">The plan writes that part for you, task by task.</p>
+ <section class="wrap sec" data-node id="week">
+  <h2 class="words">You don't have a people problem. You have a delegation problem.</h2>
+  <p class="lede rv">Watch an example week. Everything a Right Hand can own moves out of your column. What only you can do stays.</p>
+  <div class="week rv" id="wkbox">
+   <div class="wk-top"><p class="wk-title">Example founder week, 8 am to 6 pm</p><p class="legend" aria-hidden="true"><span><i class="k-you"></i>You</span><span><i class="k-rh"></i>Your Right Hand</span><span><i class="k-back"></i>Back to you</span></p></div>
+   <div class="grid" id="wgrid" role="img" aria-label="An example week: about 30 hours of inbox, calendar, follow-up and ops work move from the founder's column to the Right Hand's column. Strategy, key clients and team leadership stay with the founder."></div>
+   <p class="wk-foot"><span>Illustration. Tasks and times are an example, not a client's real calendar.</span><b id="wkhrs">0 hours back this week</b></p>
   </div>
  </section>
 
- <section class="wrap steps" id="steps">
+ <section class="wrap sec hub" data-node>
+  <div>
+   <h2 class="words">You don't have a workload problem. You're the bottleneck.</h2>
+   <p class="lede rv">Every decision, approval and "quick thing" still routes through you. You hired people, and the business still can't run a day without you in the middle of it.</p>
+   <blockquote class="rv"><p>"Talent is the leverage. Find the right people. Give them ownership. Get out of the way."</p><cite>Kasim Aslam, co-founder of Pareto Talent</cite></blockquote>
+  </div>
+  <figure class="diag glass rv" style="margin:0" aria-label="Diagram: today every task routes through you; with a Right Hand, tasks route through them and only one calm line reaches you.">
+   <div class="lg" aria-hidden="true"><span>Today</span><span>With a Right Hand</span></div>
+   <svg viewBox="0 0 640 360" id="hubsvg" aria-hidden="true"></svg>
+   <figcaption>Left: every task waits on you. Right: your Right Hand runs the day, and you get a 10-minute daily check-in instead of a hundred interruptions.</figcaption>
+  </figure>
+ </section>
+
+ <section class="wrap sec steps" id="steps" data-node>
   <div class="stick">
    <h2 class="words">What you get in 7 minutes</h2>
    <p class="rv">You tick the tasks still on your plate. The plan does the thinking most founders skip.</p>
-   <div class="rail" aria-hidden="true"><div data-s="0"><i>1</i>Your real number</div><div data-s="1"><i>2</i>A week-by-week plan</div><div data-s="2"><i>3</i>A brief for every task</div></div>
+   <div class="rail2" aria-hidden="true"><div data-s="0"><i>1</i>Your real number</div><div data-s="1"><i>2</i>A week-by-week plan</div><div data-s="2"><i>3</i>A brief for every task</div></div>
   </div>
   <div class="panels">
-   <article class="panel glass spot rv" data-p="0">
-    <div><h3>Your real number</h3><p>The hours a week you can hand off, and what they cost you each month at your own hourly value.</p></div>
-    <div class="big"><div><b data-count="18" data-suf=" h">0 h</b><small>a week, back on your calendar</small></div><div><b data-count="15588" data-pre="$">$0</b><small>a month of your time, at $200 an hour</small></div></div>
+   <article class="panel glass spot rv demo" data-p="0">
+    <div><h3>Your real number</h3><p>Try it: tick what's still on your plate.</p></div>
+    <div>
+     <div class="chips" id="chips" role="group" aria-label="Tasks still on your plate"></div>
+     <div class="nums"><div><b id="dh">0 h</b><span>a week you can hand off</span></div><div><b class="g" id="dm">$0</b><span>a month of your time</span></div></div>
+     <div class="weeks" id="weeks"></div>
+     <p class="note">Example at $200 an hour. Your plan uses your own tasks, hours and rate.</p>
+    </div>
    </article>
    <article class="panel glass spot rv" data-p="1">
     <div><h3>A week-by-week plan</h3><p>Green tasks first, then yellow, so your first handoffs are the safe, high-hour ones. You keep the red ones.</p></div>
@@ -315,24 +424,62 @@ html,body{margin:0;background:#050a0e}
   </div>
  </section>
 
- <section class="wrap calc">
-  <span class="eyebrow rv">The cost of doing it yourself</span>
+ <section class="wrap sec" data-node>
+  <span class="eyebrow rv">Do the math</span>
   <h2 class="words" style="margin-top:14px">What your busy work really costs</h2>
-  <p class="lead rv">Move the sliders. This is what the hours you could hand off are worth at your own rate.</p>
+  <p class="lede rv">Move the sliders. Compare the hours you could hand off with what a Right Hand costs, not with a salary.</p>
   <div class="calcbox glass ring rv">
    <div>
     <div class="sl"><label for="ch">Hours a week on admin <output id="chv">12 h</output></label><input type="range" id="ch" min="2" max="30" step="1" value="12"></div>
     <div class="sl"><label for="cr">Your hour is worth <output id="crv">$200</output></label><input type="range" id="cr" min="50" max="500" step="25" value="200"></div>
+    <a class="btn" href="#get-plan" style="margin-top:34px">Get my free plan <span class="ar" aria-hidden="true">&rarr;</span></a>
    </div>
-   <div class="res" aria-live="polite">
-    <span>Every month, that's</span><b class="g" id="cm">$10,392</b>
-    <span>Every year: <em id="cy">$124,704</em> of founder time.</span>
-    <a class="btn" href="#get-plan">Get my free plan <span class="ar" aria-hidden="true">&rarr;</span></a>
+   <div aria-live="polite">
+    <div class="bars">
+     <div class="bar v" id="bv"><i></i><span>Your admin hours, every month</span><strong id="cm">$10,392</strong></div>
+     <div class="bar c" id="bc"><i></i><span>A Right Hand, annual plan, per month</span><strong>$3,000</strong></div>
+    </div>
+    <p class="verdict" id="verdict">That's <b>3.5×</b> what a Right Hand costs.</p>
+    <p class="fine">Hours × 4.33 weeks × your rate. Compared with the annual plan's effective $3,000 a month; the one-time $3,000 placement fee comes on top.</p>
    </div>
   </div>
  </section>
 
- <section class="wrap who">
+ <section class="wrap sec" data-node>
+  <h2 class="words">Not a placement. A complete delegation system.</h2>
+  <p class="lede rv">The free plan shows you what to hand off. When the hours get big, this is who takes them.</p>
+  <div class="bento">
+   <div class="tile t1 spot rv"><span class="bigx" aria-hidden="true">1 of 1,000</span><p class="w">Full time</p><h3>A dedicated Right Hand</h3><p>Based in Latin America, chosen from 1,000+ applicants, trained on AI before day one. Owns your inbox, calendar, follow-ups and ops.</p></div>
+   <div class="tile t2 spot rv" style="--i:1"><p class="w">Every week</p><h3>Delegation Mastermind with Kasim Aslam</h3><p>"I would not be nearly as efficient with my assistant if it wasn't for the Delegation Mastermind." Kevin, client.</p></div>
+   <div class="tile spot rv" style="--i:2"><p class="w">Before day one</p><h3>10-day AI bootcamp</h3></div>
+   <div class="tile spot rv" style="--i:3"><p class="w">Always on</p><h3>Pareto Second Brain OS</h3></div>
+   <div class="tile spot rv"><p class="w">Always on</p><h3>250+ Right Hand community</h3></div>
+   <div class="tile spot rv" style="--i:1"><p class="w">Ongoing</p><h3>Client Success Manager</h3></div>
+   <div class="tile t7 spot rv" style="--i:2"><p class="w">From day one</p><h3>Three guarantees: Freedom 40, Matching and Lifetime Replacement.</h3></div>
+  </div>
+ </section>
+
+ <section class="wrap sec" data-node>
+  <h2 class="words">The risk moves from you to them.</h2>
+  <div class="seals">
+   <div class="sealc glass spot rv"><span class="ring2">40</span><h3>Freedom 40</h3><span class="subx">40 hours back, or next month free</span><q>Attend the Delegation Mastermind, follow the onboarding plan, and meet with your Right Hand 10 minutes daily. If you don't get at least 40 hours back within your first 30 days, your next month is on us.</q></div>
+   <div class="sealc glass spot rv" style="--i:1"><span class="ring2">0</span><h3>Matching</h3><span class="subx">No match, no contract</span><q>If we don't find a match you're truly excited about, you owe nothing. No contracts until you find your person.</q></div>
+   <div class="sealc glass spot rv" style="--i:2"><span class="ring2">&#8734;</span><h3>Lifetime Replacement</h3><span class="subx">Any reason, any time</span><q>If the match is ever not right, for any reason, at any time, we replace your Right Hand at no cost.</q></div>
+  </div>
+ </section>
+
+ <section class="wrap sec" data-node id="pricing">
+  <h2 class="words">Priced against your hour, not a salary.</h2>
+  <p class="lede rv">Every plan adds a one-time $3,000 placement fee, already counted in year one below.</p>
+  <div class="plans">
+   <div class="plan glass best rv"><span class="tag">Best value. Saves $7,200</span><p class="nm">Annual</p><p class="pm">$3,000<small>a month, effective</small></p><dl><div><dt>Billed</dt><dd>$36,000 a year</dd></div><div><dt>Year one, all-in</dt><dd>$39,000</dd></div></dl></div>
+   <div class="plan glass rv" style="--i:1"><p class="nm">Quarterly</p><p class="pm">$10,000<small>a quarter</small></p><dl><div><dt>Year one, all-in</dt><dd>$43,000</dd></div></dl></div>
+   <div class="plan glass rv" style="--i:2"><p class="nm">Monthly</p><p class="pm">$3,600<small>a month</small></p><dl><div><dt>Year one, all-in</dt><dd>$46,200</dd></div><div><dt>Contract</dt><dd>No long-term contract</dd></div></dl></div>
+  </div>
+  <div class="pricefoot rv"><span>Not sure yet? Start with the free plan. It tells you if a Right Hand pays for itself.</span><a class="btn" href="#get-plan">Get my free plan <span class="ar" aria-hidden="true">&rarr;</span></a></div>
+ </section>
+
+ <section class="wrap sec who" data-node>
   <h2 class="words">Built for founders who are the bottleneck</h2>
   <div class="cols">
    <div class="yes spot rv"><h3>This is for you if</h3><ul>
@@ -347,7 +494,7 @@ html,body{margin:0;background:#050a0e}
   </div>
  </section>
 
- <section class="wrap proof">
+ <section class="wrap sec proof" data-node>
   <h2 class="words">From the team that places Right Hands with 100+ founders</h2>
   <div class="stats">
    <div class="rv"><b data-count="100" data-suf="+">0</b><span>founders served</span></div>
@@ -356,17 +503,17 @@ html,body{margin:0;background:#050a0e}
    <div class="rv" style="--i:3"><b data-count="1000" data-suf="+">0</b><span>applicants per placement</span></div>
   </div>
   <div class="quotes">
-   <blockquote class="glass spot q1 rv"><p>"I've had three different executive assistants before, and I thought it was me, right? I was burning through them."</p><footer><span class="av">ER</span><span><b>Eric Ritter</b>Matched with his Right Hand, Agustina</span></footer></blockquote>
-   <blockquote class="glass spot rv" style="--i:1"><p>"I just can't even imagine not having my EA right now."</p><footer><span class="av">JV</span><span><b>Jon Vroman</b>Founder, Front Row Dads</span></footer></blockquote>
-   <blockquote class="glass spot rv" style="--i:2"><p>"My executive assistant runs point on critical projects and keeps track of so many endless opportunities."</p><footer><span class="av">JP</span><span><b>Joe Polish</b>Founder, Genius Network</span></footer></blockquote>
-   <blockquote class="glass spot q4 rv" style="--i:3"><p>"My executive assistant Marina came from Pareto Talent and is just a world-beater. The best EA I have ever had."</p><footer><span class="av">JD</span><span><b>Justin Donald</b>Founder, Lifestyle Investor</span></footer></blockquote>
+   <blockquote class="glass spot q1 rv"><p>"I've had three different executive assistants before, and I thought it was me, right? I was burning through them."</p><footer><img class="av" src="https://paretotalent.com/img/eric.png" alt="" loading="lazy" width="44" height="44"><span><b>Eric Ritter</b>Matched with his Right Hand, Agustina</span></footer></blockquote>
+   <blockquote class="glass spot rv" style="--i:1"><p>"I just can't even imagine not having my EA right now."</p><footer><img class="av" src="https://paretotalent.com/img/john-roman.png" alt="" loading="lazy" width="44" height="44"><span><b>Jon Vroman</b>Founder, Front Row Dads</span></footer></blockquote>
+   <blockquote class="glass spot rv" style="--i:2"><p>"My executive assistant runs point on critical projects and keeps track of so many endless opportunities."</p><footer><img class="av" src="https://paretotalent.com/img/joe-polish.png" alt="" loading="lazy" width="44" height="44"><span><b>Joe Polish</b>Founder, Genius Network</span></footer></blockquote>
+   <blockquote class="glass spot q4 rv" style="--i:3"><p>"My executive assistant Marina came from Pareto Talent and is just a world-beater. The best EA I have ever had."</p><footer><img class="av" src="https://paretotalent.com/img/justin-donald.png" alt="" loading="lazy" width="44" height="44"><span><b>Justin Donald</b>Founder, Lifestyle Investor</span></footer></blockquote>
   </div>
  </section>
 
- <section class="wrap getit" id="get-plan">
+ <section class="wrap sec getit" id="get-plan" data-node>
   <div>
    <h2 class="words">Get your plan in your inbox</h2>
-   <p class="lead rv">Three quick questions so the plan fits your business. Your link arrives by email right away.</p>
+   <p class="lede rv">Three quick questions so the plan fits your business. Your link arrives by email right away.</p>
    <ul class="rv" style="--i:2">
     <li>Your hours and their real cost</li>
     <li>A 30-day, week-by-week handoff order</li>
@@ -377,7 +524,7 @@ html,body{margin:0;background:#050a0e}
   <div class="formbox ring rv" style="--i:1"><iframe src="https://api.leadconnectorhq.com/widget/form/swQkYUuEFYaa1aXgAuUI" style="width:100%;height:620px;border:none;border-radius:12px;background:transparent" id="inline-swQkYUuEFYaa1aXgAuUI" data-layout="{'id':'INLINE'}" data-trigger-type="alwaysShow" data-activation-type="alwaysActivated" data-deactivation-type="neverDeactivate" data-form-name="FP | Abdelhakim Boukeffoussa | Qualifying Form" data-height="620" data-layout-iframe-id="inline-swQkYUuEFYaa1aXgAuUI" data-form-id="swQkYUuEFYaa1aXgAuUI" title="FP | Abdelhakim Boukeffoussa | Qualifying Form"></iframe><script src="https://link.msgsndr.com/js/form_embed.js"></script><p class="small">No spam. One email with your plan, then a few short ones on delegating well.</p></div>
  </section>
 
- <div class="wrap foot"><span>Pareto <span style="color:var(--green-l)">Talent</span></span><span>Concept built by Abdelhakim Boukeffoussa for the Pareto Talent Bootcamp final project.</span></div>
+ <div class="wrap foot" data-guide-end><span>Pareto <span style="color:var(--green-l)">Talent</span></span><span>Concept built by Abdelhakim Boukeffoussa for the Pareto Talent Bootcamp final project.</span></div>
 </div>
 <script>
 (function(){
@@ -403,43 +550,193 @@ if(!reduce&&matchMedia('(pointer:fine)').matches){
  var hero=R.querySelector('.herozone'),g=R.querySelector('.cursorglow');
  if(hero&&g)hero.addEventListener('pointermove',function(e){var r=hero.getBoundingClientRect();g.style.setProperty('--cx',(e.clientX-r.left)+'px');g.style.setProperty('--cy',(e.clientY-r.top)+'px')});
 }
+
+// scroll guide: rail + comet + section nodes
+(function(){var g=R.querySelector('.guide');if(!g)return;var start=R.querySelector('[data-guide-start]'),end=R.querySelector('[data-guide-end]');var nodesEls=[].slice.call(R.querySelectorAll('[data-node]')),nodes=[],top=0,h=0,tick=false;
+ function layout(){var rr=R.getBoundingClientRect(),y0=rr.top+scrollY;var a=(start?start.getBoundingClientRect().top+scrollY:y0)-y0,b=(end?end.getBoundingClientRect().top+scrollY:y0+R.offsetHeight)-y0;top=a;h=Math.max(0,b-a);g.style.top=a+'px';g.style.height=h+'px';
+  nodes.forEach(function(n){n.el.remove()});nodes=nodesEls.map(function(s){var d=document.createElement('i');d.className='node';var y=s.getBoundingClientRect().top+scrollY-y0-a+40;d.style.top=y+'px';g.appendChild(d);return {el:d,y:y}});upd()}
+ function upd(){tick=false;var rr=R.getBoundingClientRect();var pos=-rr.top+innerHeight*.5-top;pos=Math.max(0,Math.min(h,pos));g.style.setProperty('--gp',pos+'px');nodes.forEach(function(n){n.el.classList.toggle('lit',n.y<=pos)})}
+ addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(upd)}},{passive:true});
+ addEventListener('resize',function(){clearTimeout(g._t);g._t=setTimeout(layout,200)});
+ layout();setTimeout(layout,1200);setTimeout(layout,3500);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(layout);
+})();
 window.PTP={reduce:reduce,count:count};
 })();
 
 (function(){
 var R=document.getElementById('ptp');if(!R)return;
-// ---- hero live demo ----
+var reduce=window.PTP&&PTP.reduce;
+var fmt=function(n){return '$'+Math.round(n).toLocaleString('en-US')};
+// ---- example week ----
+var W=[[0,8,1.5,'Inbox triage'],[0,9.5,1,'Calendar reshuffle'],[0,10.5,2,'Strategy',1],[0,12.5,1.5,'Vendor follow-ups'],[0,14,1,'Travel booking'],[0,15,1.5,'Invoices and expenses'],[0,16.5,1.5,'CRM and meeting notes'],
+ [1,8,1.5,'Inbox triage'],[1,9.5,2,'Key client calls',1],[1,11.5,1.5,'Follow-up emails'],[1,13,1.5,'Hiring logistics'],[1,14.5,1,'Scheduling'],[1,15.5,1,'Research'],[1,16.5,1.5,'Ops checklist'],
+ [2,8,1,'Inbox'],[2,9,1,'Calendar'],[2,10,2,'Team leadership',1],[2,12,1.5,'Partner follow-ups'],[2,13.5,1.5,'Project tracking'],[2,15,1.5,'Docs and SOPs'],[2,16.5,1.5,'CRM updates'],
+ [3,8,1.5,'Inbox triage'],[3,9.5,2,'Product decisions',1],[3,11.5,1,'Event logistics'],[3,12.5,1.5,'Vendor calls'],[3,14,1.5,'Reports'],[3,15.5,1,'Scheduling'],[3,16.5,1.5,'Follow-ups'],
+ [4,8,1,'Inbox'],[4,9,1.5,'Weekly ops review'],[4,10.5,2,'Deep work',1],[4,12.5,1.5,'Expense reports'],[4,14,1.5,"Next week's calendar"],[4,15.5,1,'Follow-ups'],[4,16.5,1.5,'Loose ends']];
+var DAYS=['Mon','Tue','Wed','Thu','Fri'],grid=document.getElementById('wgrid'),mv=[],hrsEl=document.getElementById('wkhrs');
+if(grid){
+ var c0=document.createElement('div');c0.style.gridRow='1';grid.appendChild(c0);
+ DAYS.forEach(function(d,i){var h=document.createElement('div');h.className='dh';h.style.gridColumn=i+2;h.innerHTML=d+' <em>you · RH</em>';grid.appendChild(h)});
+ var ru=document.createElement('div');ru.className='ruler';for(var t=9;t<=17;t++){var sp=document.createElement('span');sp.style.top=((t-8)*10)+'%';sp.textContent=(t>12?t-12:t)+(t>=12?'pm':'am');ru.appendChild(sp)}grid.appendChild(ru);
+ var cols=DAYS.map(function(_,i){var c=document.createElement('div');c.className='col';c.style.gridColumn=i+2;grid.appendChild(c);return c});
+ W.forEach(function(w){var top=((w[1]-8)*10)+'%',ht='calc('+(w[2]*10)+'% - 3px)',bk=null;
+  if(!w[4]){bk=document.createElement('div');bk.className='back';bk.style.top='calc('+top+' + 1.5px)';bk.style.height=ht;cols[w[0]].appendChild(bk)}
+  var b=document.createElement('div');b.className='blk'+(w[4]?' keep':'');b.style.top='calc('+top+' + 1.5px)';b.style.height=ht;b.innerHTML=w[3]+'<b>'+(w[2]===1?'1 hr':w[2]+' hrs')+'</b>';cols[w[0]].appendChild(b);
+  if(!w[4])mv.push({b:b,bk:bk,s:w[1],d:w[0],h:w[2]})});
+ mv.sort(function(a,b){return a.s-b.s||a.d-b.d});
+ var done=false,sum=0;
+ function run(){mv.forEach(function(m,i){setTimeout(function(){m.b.classList.add('go');m.bk.classList.add('on');sum+=m.h;hrsEl.textContent=(Math.round(sum*2)/2)+' hours back this week'},reduce?0:300+i*85)})}
+ if('IntersectionObserver' in window){new IntersectionObserver(function(en,o){if(en[0].isIntersecting&&!done){done=true;run();o.disconnect()}},{threshold:.35}).observe(document.getElementById('wkbox'))}else run();
+}
+// ---- hub diagram ----
+(function(){var svg=document.getElementById('hubsvg');if(!svg)return;var NS='http://www.w3.org/2000/svg';
+ function el(n,a,p){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);(p||svg).appendChild(e);return e}
+ var tasks=['Inbox','Calendar','Clients','Invoices','Hiring','Travel','CRM','Reports'];
+ el('line',{x1:320,y1:14,x2:320,y2:346,stroke:'#ffffff22','stroke-dasharray':'4 6'});
+ // left: everything routes to YOU
+ var L={x:160,y:190},R2={x:480,y:205},Y2={x:480,y:58};
+ function ring(c,r,i,n,off){var a=-Math.PI/2+(i/n)*Math.PI*2+(off||0);return {x:c.x+Math.cos(a)*r,y:c.y+Math.sin(a)*r*.92}}
+ var gl=el('g',{});var dots=el('g',{});
+ tasks.forEach(function(t,i){var p=ring(L,128,i,8,.2);var id='hl'+i;
+  el('path',{id:id,d:'M'+p.x.toFixed(1)+' '+p.y.toFixed(1)+' L'+L.x+' '+L.y,stroke:'#fbbf24','stroke-opacity':'.35','stroke-width':1.4},gl);
+  el('circle',{cx:p.x,cy:p.y,r:22,fill:'#0b1119',stroke:'#ffffff30','stroke-width':1.2});
+  el('text',{x:p.x,y:p.y+3.5,'text-anchor':'middle',fill:'#cbd5e1','font-size':9.5}).textContent=t;
+  for(var k=0;k<2;k++){var c=el('circle',{r:3.2,fill:'#fbbf24'},dots);var am=el('animateMotion',{dur:(1.1+((i*7+k*3)%6)/10)+'s',begin:(k*.6+i*.13)+'s',repeatCount:'indefinite'},c);el('mpath',{href:'#'+id},am)}});
+ var pulse=el('circle',{cx:L.x,cy:L.y,r:46,fill:'#fbbf24','fill-opacity':'.14'});el('animate',{attributeName:'r',values:'38;56;38',dur:'1.4s',repeatCount:'indefinite'},pulse);
+ el('circle',{cx:L.x,cy:L.y,r:36,fill:'#3b2f12',stroke:'#fbbf24','stroke-width':2});
+ el('text',{x:L.x,y:L.y+5,'text-anchor':'middle',fill:'#fde68a','font-size':14}).textContent='YOU';
+ // right: tasks route to the Right Hand, one calm line to YOU
+ var dots2=el('g',{});
+ tasks.slice(0,6).forEach(function(t,i){var a=Math.PI*(0.08+i*0.168),p={x:R2.x+Math.cos(a)*118,y:R2.y+Math.sin(a)*92};if(i===0||i===5){p.y-=6}
+  var id='hr'+i;el('path',{id:id,d:'M'+p.x.toFixed(1)+' '+p.y.toFixed(1)+' L'+R2.x+' '+R2.y,stroke:'#34d399','stroke-opacity':'.35','stroke-width':1.4});
+  el('circle',{cx:p.x,cy:p.y,r:22,fill:'#0b1119',stroke:'#10b98166','stroke-width':1.2});
+  el('text',{x:p.x,y:p.y+3.5,'text-anchor':'middle',fill:'#a7f3d0','font-size':9.5}).textContent=t;
+  var c=el('circle',{r:3,fill:'#6ee7b7'},dots2);var am=el('animateMotion',{dur:(2.3+i*.12)+'s',begin:(i*.35)+'s',repeatCount:'indefinite'},c);el('mpath',{href:'#'+id},am)});
+ el('path',{id:'hc',d:'M'+R2.x+' '+(R2.y-38)+' L'+Y2.x+' '+(Y2.y+24),stroke:'#6ee7b7','stroke-width':2,'stroke-dasharray':'3 5'});
+ var c3=el('circle',{r:3.8,fill:'#a7f3d0'});var am3=el('animateMotion',{dur:'4s',repeatCount:'indefinite'},c3);el('mpath',{href:'#hc'},am3);
+ var g2=el('circle',{cx:R2.x,cy:R2.y,r:48,fill:'#10b981','fill-opacity':'.12'});el('animate',{attributeName:'r',values:'42;50;42',dur:'3s',repeatCount:'indefinite'},g2);
+ el('circle',{cx:R2.x,cy:R2.y,r:38,fill:'#064e3b',stroke:'#34d399','stroke-width':2});
+ el('text',{x:R2.x,y:R2.y-2,'text-anchor':'middle',fill:'#ecfdf5','font-size':11.5}).textContent='RIGHT';
+ el('text',{x:R2.x,y:R2.y+12,'text-anchor':'middle',fill:'#ecfdf5','font-size':11.5}).textContent='HAND';
+ el('circle',{cx:Y2.x,cy:Y2.y,r:24,fill:'#10b981'});
+ el('text',{x:Y2.x,y:Y2.y+4.5,'text-anchor':'middle',fill:'#022c22','font-size':12}).textContent='YOU';
+ el('text',{x:Y2.x+34,y:Y2.y+4,fill:'#94a3b8','font-size':9.5,'font-weight':600}).textContent='10 min a day';
+ if(reduce&&svg.pauseAnimations)svg.pauseAnimations();
+})();
+// ---- live demo ----
 var T=[["Triage the inbox",5,"g"],["Schedule meetings",3,"g"],["Update the CRM",3,"g"],["Book travel",2,"g"],["Chase late invoices",2,"y"],["Follow up quiet leads",3,"y"],["Weekly status report",2,"g"],["Proposals from templates",2,"y"]];
 var on={},chipsEl=document.getElementById('chips'),weeks=document.getElementById('weeks'),dh=document.getElementById('dh'),dm=document.getElementById('dm');
-var fmt=function(n){return '$'+Math.round(n).toLocaleString('en-US')};
 var shown={h:0,m:0};
-function tween(el,from,to,f){if(window.PTP&&PTP.reduce){el.textContent=f(to);return}var t0=null;function s(t){if(!t0)t0=t;var p=Math.min(1,(t-t0)/600),e=1-Math.pow(1-p,3);el.textContent=f(from+(to-from)*e);if(p<1)requestAnimationFrame(s)}requestAnimationFrame(s)}
-function render(){
- var h=0,G=[],Y=[];T.forEach(function(t,i){if(on[i]){h+=t[1];(t[2]==='g'?G:Y).push(t)}});
- G.sort(function(a,b){return b[1]-a[1]});
- var m=h*4.33*200;
- tween(dh,shown.h,h,function(v){return Math.round(v)+' h'});tween(dm,shown.m,m,fmt);shown={h:h,m:m};
- var W=[[],[],[],[]];G.forEach(function(t,i){W[i<2?0:1].push(t)});Y.forEach(function(t,i){W[i<2?2:3].push(t)});
- var names=['Week 1','Week 2','Week 3','Week 4'];
- weeks.innerHTML=W.map(function(w,i){return '<div class="wk"><h5>'+names[i]+'</h5>'+(w.length?w.map(function(t,j){return '<div class="tk '+(t[2]==='y'?'y':'')+'" style="animation-delay:'+(j*70)+'ms">'+t[0]+'</div>'}).join(''):'<div class="empty">'+(i===3?'You check in 10 min a day':'Tick a task')+'</div>')+'</div>'}).join('');
-}
+function tween(el,from,to,f){if(reduce){el.textContent=f(to);return}var t0=null;function s(t){if(!t0)t0=t;var p=Math.min(1,(t-t0)/600),e=1-Math.pow(1-p,3);el.textContent=f(from+(to-from)*e);if(p<1)requestAnimationFrame(s)}requestAnimationFrame(s)}
+function render(){var h=0,G=[],Y=[];T.forEach(function(t,i){if(on[i]){h+=t[1];(t[2]==='g'?G:Y).push(t)}});G.sort(function(a,b){return b[1]-a[1]});
+ var m=h*4.33*200;tween(dh,shown.h,h,function(v){return Math.round(v)+' h'});tween(dm,shown.m,m,fmt);shown={h:h,m:m};
+ var Wk=[[],[],[],[]];G.forEach(function(t,i){Wk[i<2?0:1].push(t)});Y.forEach(function(t,i){Wk[i<2?2:3].push(t)});
+ weeks.innerHTML=Wk.map(function(w,i){return '<div class="wk"><h5>Week '+(i+1)+'</h5>'+(w.length?w.map(function(t,j){return '<div class="tk '+(t[2]==='y'?'y':'')+'" style="animation-delay:'+(j*70)+'ms">'+t[0]+'</div>'}).join(''):'<div class="empty">'+(i===3?'You check in 10 min a day':'Tick a task')+'</div>')+'</div>'}).join('')}
+var timers=[];function stopAuto(){timers.forEach(clearTimeout);timers=[]}
 T.forEach(function(t,i){var b=document.createElement('button');b.type='button';b.className='chip';b.setAttribute('aria-pressed','false');b.innerHTML='<i aria-hidden="true"></i>'+t[0];b.onclick=function(){on[i]=!on[i];b.setAttribute('aria-pressed',on[i]);stopAuto();render()};chipsEl.appendChild(b)});
 render();
-var auto=[0,1,2,4,6],timers=[];
-function stopAuto(){timers.forEach(clearTimeout);timers=[]}
-function runAuto(){auto.forEach(function(i,k){timers.push(setTimeout(function(){on[i]=true;chipsEl.children[i].setAttribute('aria-pressed','true');render()},700+k*650))})}
-if(window.PTP&&PTP.reduce){auto.forEach(function(i){on[i]=true;chipsEl.children[i].setAttribute('aria-pressed','true')});render()}else{runAuto()}
+var auto=[0,1,2,4,6],dem=document.querySelector('#ptp .demo'),started=false;
+function runAuto(){auto.forEach(function(i,k){timers.push(setTimeout(function(){on[i]=true;chipsEl.children[i].setAttribute('aria-pressed','true');render()},reduce?0:400+k*600))})}
+if('IntersectionObserver' in window){new IntersectionObserver(function(en,o){if(en[0].isIntersecting&&!started){started=true;runAuto();o.disconnect()}},{threshold:.4}).observe(dem)}else runAuto();
 // ---- calculator ----
-var ch=document.getElementById('ch'),cr=document.getElementById('cr'),cm=document.getElementById('cm'),cy=document.getElementById('cy');
-function calc(){var h=+ch.value,r=+cr.value,m=h*4.33*r;
+var ch=document.getElementById('ch'),cr=document.getElementById('cr'),cm=document.getElementById('cm'),bv=document.getElementById('bv'),bc=document.getElementById('bc'),ver=document.getElementById('verdict');
+function calc(){var h=+ch.value,r=+cr.value,m=h*4.33*r,mx=Math.max(m,3000);
  document.getElementById('chv').textContent=h+' h';document.getElementById('crv').textContent='$'+r;
  ch.style.setProperty('--p',((h-2)/28*100)+'%');cr.style.setProperty('--p',((r-50)/450*100)+'%');
- cm.textContent=fmt(m);cy.textContent=fmt(m*12)}
+ cm.textContent=fmt(m);bv.style.setProperty('--w',(m/mx*100)+'%');bc.style.setProperty('--w',(3000/mx*100)+'%');
+ var x=Math.round(m/300)/10;ver.innerHTML=x<1?'Below the line, the math doesn\'t work yet. <b>The free plan still shows you what to hand off first.</b>':'That\'s <b>'+x+'×</b> what a Right Hand costs each month.'}
 ch.oninput=calc;cr.oninput=calc;calc();
 // ---- sticky rail ----
-var rail=R.querySelectorAll('.rail div');
+var rail=R.querySelectorAll('.rail2 div');
 if('IntersectionObserver' in window&&rail.length){var po=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var k=e.target.getAttribute('data-p');[].forEach.call(rail,function(r){r.classList.toggle('on',r.getAttribute('data-s')===k)})}})},{rootMargin:'-45% 0px -45% 0px'});[].forEach.call(R.querySelectorAll('.panel'),function(p){po.observe(p)})}
-// photo zoom-in
-[].forEach.call(R.querySelectorAll('.photo'),function(p){if('IntersectionObserver' in window){new IntersectionObserver(function(es,o){if(es[0].isIntersecting){p.classList.add('in');o.disconnect()}},{threshold:.3}).observe(p)}else p.classList.add('in')});
 })();
+</script>
+<script type="module">
+/* HERO 3D: a glass hourglass releases 40 hour-cubes into a 5 x 8 week grid (Pareto green) */
+const stage=document.getElementById('stage'), canvas=document.getElementById('gl'), countEl=document.getElementById('hcount');
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches, small=matchMedia('(max-width: 900px)').matches;
+function fallback(){stage.classList.add('nogl');countEl.textContent='40'}
+let THREE;
+try{ THREE=await import('https://cdn.jsdelivr.net/npm/three@0.160.0/+esm'); }catch(e){ fallback(); }
+if(THREE){ try{ start(); }catch(e){ console.warn(e); fallback(); } }
+function start(){
+ const renderer=new THREE.WebGLRenderer({canvas,antialias:!small,alpha:true,powerPreference:'high-performance'});
+ renderer.setPixelRatio(Math.min(devicePixelRatio,small?1.5:2));
+ renderer.outputColorSpace=THREE.SRGBColorSpace; renderer.toneMapping=THREE.ACESFilmicToneMapping; renderer.toneMappingExposure=1.15;
+ const scene=new THREE.Scene(), camera=new THREE.PerspectiveCamera(32,1,.1,100);
+ const env=new THREE.Scene();
+ env.add(new THREE.Mesh(new THREE.SphereGeometry(20,32,16),new THREE.MeshBasicMaterial({color:0x050a0e,side:THREE.BackSide})));
+ const panel=(r,g,b,w,h,x,y,z)=>{const m=new THREE.Mesh(new THREE.PlaneGeometry(w,h),new THREE.MeshBasicMaterial({side:THREE.DoubleSide}));m.material.color.setRGB(r,g,b);m.position.set(x,y,z);m.lookAt(0,0,0);env.add(m)};
+ panel(6,6.4,6.4,6,2.2,-4,6,4); panel(.6,4.5,2.6,2.4,8,8,0,2); panel(.5,2.2,2.4,2.4,8,-8,-1,-2); panel(2.4,2.8,2.7,10,1.2,0,-7,3);
+ const pmrem=new THREE.PMREMGenerator(renderer); scene.environment=pmrem.fromScene(env,.03).texture;
+ const world=new THREE.Group(); scene.add(world);
+ const hg=new THREE.Group(); world.add(hg);
+ const prof=[]; for(let i=0;i<=64;i++){const y=-1.6+3.2*i/64, r=.07+.86*Math.pow(Math.sin(Math.PI*Math.abs(y)/1.6),.85); prof.push(new THREE.Vector2(Math.max(r,.02),y));}
+ const glass=new THREE.MeshPhysicalMaterial({color:0xDFFFF2,metalness:.05,roughness:.03,clearcoat:1,clearcoatRoughness:.02,envMapIntensity:2.4,transparent:true,opacity:.2,depthWrite:false,side:THREE.DoubleSide});
+ hg.add(new THREE.Mesh(new THREE.LatheGeometry(prof,96),glass));
+ const metal=new THREE.MeshStandardMaterial({color:0x9fb3c8,metalness:1,roughness:.22,envMapIntensity:1.4});
+ [-1.72,1.72].forEach(y=>{const c=new THREE.Mesh(new THREE.CylinderGeometry(1.18,1.18,.16,96),metal);c.position.y=y;hg.add(c);
+  const lip=new THREE.Mesh(new THREE.TorusGeometry(1.18,.035,16,96),metal);lip.rotation.x=Math.PI/2;lip.position.y=y+(y>0?-.08:.08);hg.add(lip)});
+ for(let k=0;k<3;k++){const a=k/3*Math.PI*2+.4,p=new THREE.Mesh(new THREE.CylinderGeometry(.045,.045,3.3,24),metal);p.position.set(Math.cos(a)*1.06,0,Math.sin(a)*1.06);hg.add(p)}
+ const N=40, cubeGeo=new THREE.BoxGeometry(.15,.15,.15);
+ const cubeMat=new THREE.MeshStandardMaterial({color:0x34D399,emissive:0x059669,emissiveIntensity:1.2,roughness:.28,metalness:.2,toneMapped:false});
+ const cubes=new THREE.InstancedMesh(cubeGeo,cubeMat,N); world.add(cubes);
+ const glowTex=(()=>{const c=document.createElement('canvas');c.width=c.height=64;const g=c.getContext('2d'),gr=g.createRadialGradient(32,32,0,32,32,32);gr.addColorStop(0,'rgba(167,243,208,1)');gr.addColorStop(.3,'rgba(16,185,129,.55)');gr.addColorStop(1,'rgba(16,185,129,0)');g.fillStyle=gr;g.fillRect(0,0,64,64);return new THREE.CanvasTexture(c)})();
+ const glowGeo=new THREE.BufferGeometry(), glowPos=new Float32Array(N*3); glowGeo.setAttribute('position',new THREE.BufferAttribute(glowPos,3));
+ const glow=new THREE.Points(glowGeo,new THREE.PointsMaterial({map:glowTex,size:.9,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,color:0xffffff}));
+ glow.frustumCulled=false; cubes.frustumCulled=false; world.add(glow);
+ const D=small?160:320, dGeo=new THREE.BufferGeometry(), dPos=new Float32Array(D*3);
+ for(let i=0;i<D;i++){dPos[i*3]=(Math.random()-.5)*12;dPos[i*3+1]=(Math.random()-.5)*8;dPos[i*3+2]=(Math.random()-.5)*6-1}
+ dGeo.setAttribute('position',new THREE.BufferAttribute(dPos,3));
+ const dust=new THREE.Points(dGeo,new THREE.PointsMaterial({size:.025,color:0x6EE7B7,transparent:true,opacity:.5,depthWrite:false,blending:THREE.AdditiveBlending}));
+ scene.add(dust);
+ const gridG=new THREE.Group(); world.add(gridG);
+ const COLS=5,ROWS=8,SP=.3, gx0=0, gy0=1.05;
+ const lineMat=new THREE.LineBasicMaterial({color:0x34D399,transparent:true,opacity:.22});
+ const pts=[]; for(let c=0;c<=COLS;c++){pts.push(gx0+c*SP-SP/2,gy0+SP/2,0,gx0+c*SP-SP/2,gy0-ROWS*SP+SP/2,0)} for(let r=0;r<=ROWS;r++){pts.push(gx0-SP/2,gy0-r*SP+SP/2,0,gx0+COLS*SP-SP/2,gy0-r*SP+SP/2,0)}
+ const lg=new THREE.BufferGeometry(); lg.setAttribute('position',new THREE.Float32BufferAttribute(pts,3)); gridG.add(new THREE.LineSegments(lg,lineMat));
+ const key=new THREE.DirectionalLight(0xffffff,1.2); key.position.set(-3,4,5); scene.add(key);
+ const rim=new THREE.PointLight(0x10B981,18,10); rim.position.set(2.5,-1,2); scene.add(rim);
+ const HGX=-1.05, GRIDX=.75;
+ hg.position.x=HGX; gridG.position.set(GRIDX,0,.2); gridG.rotation.y=-.38;
+ const startP=[],target=[],launch=[]; const tmpV=new THREE.Vector3();
+ for(let i=0;i<N;i++){const a=Math.random()*Math.PI*2, rr=Math.sqrt(Math.random())*.5, h=.55+Math.random()*.6;
+  startP.push(new THREE.Vector3(HGX+Math.cos(a)*rr, h+.25, Math.sin(a)*rr*.8));
+  const col=i%COLS,row=Math.floor(i/COLS); tmpV.set(gx0+col*SP,gy0-row*SP,0).applyEuler(gridG.rotation).add(gridG.position); target.push(tmpV.clone()); launch.push(.8+i*.085);}
+ const neck=new THREE.Vector3(HGX,-.05,0), dummy=new THREE.Object3D(), p=new THREE.Vector3();
+ const ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2, FLIGHT=1.35;
+ let t0=performance.now(), landed=0;
+ function cubePos(i,t){const lt=t-launch[i];
+  if(lt<=0){ p.copy(startP[i]); p.y+=Math.sin(t*1.4+i)*.03; return 0; }
+  const k=Math.min(1,lt/FLIGHT);
+  if(k<.35){ const e=ease(k/.35); p.lerpVectors(startP[i],neck,e); }
+  else { const e=ease((k-.35)/.65), cx=(neck.x+target[i].x)/2-.2, cy=-2.1, cz=.9, u=1-e;
+   p.set(u*u*neck.x+2*u*e*cx+e*e*target[i].x, u*u*neck.y+2*u*e*cy+e*e*target[i].y, u*u*neck.z+2*u*e*cz+e*e*target[i].z); }
+  return k;}
+ function frame(now){const t=(now-t0)/1000; let n=0;
+  for(let i=0;i<N;i++){const k=reduce?1:cubePos(i,t); if(reduce)p.copy(target[i]);
+   if(k>=1){ n++; p.copy(target[i]); p.y+=Math.sin(t*1.2+i*.7)*.012; }
+   const s=k>=1?1:(k>0?1+.25*Math.sin(k*Math.PI):1);
+   dummy.position.copy(p); dummy.rotation.set(t*.6+i,t*.4+i*.5,0); if(k>=1)dummy.rotation.set(0,gridG.rotation.y,0); dummy.scale.setScalar(s); dummy.updateMatrix();
+   cubes.setMatrixAt(i,dummy.matrix); glowPos[i*3]=p.x;glowPos[i*3+1]=p.y;glowPos[i*3+2]=p.z;}
+  cubes.instanceMatrix.needsUpdate=true; glowGeo.attributes.position.needsUpdate=true;
+  if(n!==landed){landed=n;countEl.textContent=String(n)}
+  hg.rotation.y=t*.25; dust.rotation.y=t*.02; lineMat.opacity=.16+.16*Math.min(1,n/N);
+  if(t>N*.085+FLIGHT+6){t0=now;} // replay every cycle
+ }
+ let tx=0,ty=0,rxv=0,ryv=0;
+ addEventListener('pointermove',e=>{tx=(e.clientX/innerWidth-.5);ty=(e.clientY/innerHeight-.5)},{passive:true});
+ function size(){const r=stage.getBoundingClientRect(),w=Math.max(1,r.width),h=Math.max(1,r.height);renderer.setSize(w,h,false);camera.aspect=w/h;
+  const tan=Math.tan(THREE.MathUtils.degToRad(camera.fov/2)), needW=2.55, needH=2.25;
+  camera.position.set(0,0,Math.max(needW/(tan*camera.aspect),needH/tan));camera.lookAt(0,0,0);camera.updateProjectionMatrix()}
+ size(); addEventListener('resize',size);
+ let visible=true, raf=0;
+ function loop(now){frame(now);
+  if(!reduce){ ryv+=(tx*.45-world.rotation.y)*.06; rxv+=(ty*.22-world.rotation.x)*.06; ryv*=.82; rxv*=.82; world.rotation.y+=ryv; world.rotation.x+=rxv; }
+  renderer.render(scene,camera); if(visible&&!reduce) raf=requestAnimationFrame(loop);}
+ if(reduce){ frame(performance.now()+1e6); renderer.render(scene,camera); countEl.textContent='40'; }
+ else { raf=requestAnimationFrame(loop);
+  new IntersectionObserver(en=>{const v=en[0].isIntersecting; if(v&&!visible){visible=true;raf=requestAnimationFrame(loop)} visible=v;}).observe(stage);
+  document.addEventListener('visibilitychange',()=>{ if(document.hidden){visible=false}else{visible=true;cancelAnimationFrame(raf);raf=requestAnimationFrame(loop)} }); }
+}
 </script>
